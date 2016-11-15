@@ -10,5 +10,6 @@ package com.sg.soupastars.dao;
  * @author apprentice
  */
 public class SoupaStarsDaoDBImpl {
+   
     
 }
