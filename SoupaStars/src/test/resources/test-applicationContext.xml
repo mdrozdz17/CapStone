@@ -26,7 +26,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
                   value="jdbc:mysql://localhost:3306/SoupaStars_database_test" />
-        <property name="username" value="root" />
+        <property name="username" value="soupastar" />
         <property name="password" value="apprentice" />
         <property name="initialSize" value="5" />
         <property name="maxTotal" value="10" />
