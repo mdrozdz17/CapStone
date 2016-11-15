@@ -30,6 +30,6 @@ public interface SoupaStarsDao {
     
    public List<Post> searchPosts(Map<SearchTerm,String> criteria);
    
-   public List<PostCount> getPostCounts();
+   //public List<PostCount> getPostCounts();
     
 }
