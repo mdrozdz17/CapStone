@@ -13,6 +13,7 @@ import java.util.Map;
  *
  * @author apprentice
  */
+
 public class SoupaStarsDaoDBImpl implements SoupaStarsDao {
 
     @Override
@@ -44,7 +45,6 @@ public class SoupaStarsDaoDBImpl implements SoupaStarsDao {
     public void removePost(int postId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 //    @Override
 //    public List<Post> searchPosts(Map<SearchTerm, String> criteria) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -54,5 +54,5 @@ public class SoupaStarsDaoDBImpl implements SoupaStarsDao {
 //    public List<PostCount> getPostCounts() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-    
 }
+

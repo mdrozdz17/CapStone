@@ -27,9 +27,9 @@ public interface SoupaStarsDao {
     
     public void removePost(int postId);
     
-    
+   
    //public List<Post> searchPosts(Map<SearchTerm,String> criteria);
    
    //public List<PostCount> getPostCounts();
-    
+  
 }
