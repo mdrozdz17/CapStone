@@ -8,6 +8,7 @@ package com.sg.soupastars.dao;
 import com.sg.soupastars.model.Post;
 import java.util.List;
 import java.util.Map;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -15,6 +16,16 @@ import java.util.Map;
  */
 
 public class SoupaStarsDaoDBImpl implements SoupaStarsDao {
+
+    // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
+    private JdbcTemplate jdbcTemplate;
+    // #2b - We are using Setter Injection to direct Spring to hand us an instance of
+    // the JdbcTemplate (see the Spring Configuration section below for configuration
+    // details).
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Post addPost(Post post) {
