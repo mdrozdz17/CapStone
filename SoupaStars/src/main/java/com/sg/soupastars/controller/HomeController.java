@@ -5,10 +5,35 @@
  */
 package com.sg.soupastars.controller;
 
+import com.sg.soupastars.dao.SoupaStarsDao;
+import javax.inject.Inject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 /**
  *
  * @author apprentice
  */
+@Controller
 public class HomeController {
     
+    private SoupaStarsDao dao;
+    
+    @Inject
+    public HomeController(SoupaStarsDao dao){
+        this.dao = dao;
+    }
+    
+    @RequestMapping(value={"home","/"}, method=RequestMethod.GET)
+    public String displayHomePage(){
+        return "home";
+    }
+    //Create Post
+    
+    //Get Post By ID
+    
+    //Update Post
+    
+    //Delete Post
 }
