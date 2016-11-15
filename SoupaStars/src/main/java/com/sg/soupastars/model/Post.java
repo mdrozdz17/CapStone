@@ -6,6 +6,7 @@
 package com.sg.soupastars.model;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -131,5 +132,21 @@ public class Post {
      */
     public void setBody(String body) {
         this.body = body;
+    }
+    
+    
+    @Override
+    public int hashCode(){
+        int hash = 5;
+        hash = 37 * hash + this.postId;
+        hash = 37 * hash + Objects.hashCode(this.author);
+        hash = 37 * hash + Objects.hashCode(this.body);
+        hash = 37 * hash + Objects.hashCode(this.year);
+        hash = 37 * hash + Objects.hashCode(this.day);
+        hash = 37 * hash + Objects.hashCode(this.month);
+        hash = 37 * hash + Objects.hashCode();
+
+
+
     }
 }
