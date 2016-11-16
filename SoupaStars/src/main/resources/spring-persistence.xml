@@ -44,7 +44,7 @@
  
     <!-- #5 Define the database DAO -->
     <bean id="SoupaStarsDao"
-            class="com.sg.soupastars.dao.SoupaStarsDaoDBImpl">
-        <property name="jdbcTemplate" ref="jdbcTemplate" />
+            class="com.sg.soupastars.dao.SoupaStarsPostDaoInMemImpl">
+      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
     </bean>
 </beans>

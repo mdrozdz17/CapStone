@@ -9,6 +9,6 @@ package com.sg.soupastars.dao;
  *
  * @author apprentice
  */
-public class SoupaStarsDaoInMemImpl {
+public class SoupaStarsUserInMemImpl {
     
 }
