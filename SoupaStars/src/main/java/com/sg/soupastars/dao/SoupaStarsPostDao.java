@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author apprentice
  */
-public interface SoupaStarsDao {
+public interface SoupaStarsPostDao {
     
     public Post addPost(Post post);
     

@@ -5,7 +5,6 @@
  */
 package com.sg.soupastars.controller;
 
-import com.sg.soupastars.dao.SoupaStarsDao;
 import com.sg.soupastars.model.Post;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import com.sg.soupastars.dao.SoupaStarsPostDao;
 
 /**
  *
@@ -28,10 +28,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Controller
 public class HomeController {
     
-    private SoupaStarsDao dao;
+    private SoupaStarsPostDao dao;
     
     @Inject
-    public HomeController(SoupaStarsDao dao){
+    public HomeController(SoupaStarsPostDao dao){
         this.dao = dao;
     }
     

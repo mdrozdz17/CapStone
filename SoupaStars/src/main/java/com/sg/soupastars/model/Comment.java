@@ -12,9 +12,11 @@ package com.sg.soupastars.model;
 public class Comment {
    public int commentId;
    public String name;
+   private String email;
    public String text;
    public int date;
 
+   
     /**
      * @return the commentId
      */
@@ -69,5 +71,13 @@ public class Comment {
      */
     public void setDate(int date) {
         this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

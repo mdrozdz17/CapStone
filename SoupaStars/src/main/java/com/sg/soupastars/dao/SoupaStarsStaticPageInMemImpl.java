@@ -5,38 +5,45 @@
  */
 package com.sg.soupastars.dao;
 
-import com.sg.soupastars.model.Comment;
+import com.sg.soupastars.model.StaticPage;
 import java.util.List;
 
 /**
  *
  * @author apprentice
  */
-public class SoupaStarsCommentInMemImpl implements SoupaStarsCommentDao {
+public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
 
     @Override
-    public Comment addComment(Comment comment) {
+    public StaticPage addStaticPage(StaticPage staticPage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Comment getCommentById(int commentId) {
+    public StaticPage getStaticPageById(int staticPageId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeComment(int commentId) {
+    public void updateStaticPage(StaticPage staticPage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateComment(Comment comment) {
+    public void removeStaticPage(int staticPageId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Comment> getAllComments() {
+    public List<StaticPage> getAllStaticPages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<StaticPage> listActivePages() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
 }

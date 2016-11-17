@@ -13,13 +13,15 @@ import java.util.Map;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author apprentice
  */
 
-public class SoupaStarsPostDaoDBImpl implements SoupaStarsDao{
+public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
     private static final String SQL_INSERT_POST = "insert into posts (title, year, month, day, author, body) values (?,?,?,?,?,?)";
     private static final String SQL_DELETE_POST = "delete form posts where post_id = ?";
@@ -42,6 +44,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsDao{
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public Post addPost(Post post) {
         jdbcTemplate.update(SQL_INSERT_POST,
         post.getTitle(),

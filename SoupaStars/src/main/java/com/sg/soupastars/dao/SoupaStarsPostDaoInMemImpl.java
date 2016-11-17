@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  *
  * @author apprentice
  */
-public class SoupaStarsPostDaoInMemImpl implements SoupaStarsDao {
+public class SoupaStarsPostDaoInMemImpl implements SoupaStarsPostDao {
     private Map<Integer, Post> postMap = new HashMap<>();
     private static int postIdCounter = 0;
 

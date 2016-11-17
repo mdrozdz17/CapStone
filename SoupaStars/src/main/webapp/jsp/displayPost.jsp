@@ -11,6 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars | View Post</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
+         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
+        <!-- Used for Text Editing -->
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+        <script>tinymce.init({selector: 'textarea'});</script>
 
     </head>
     <body style ="background-color:powderblue;">
@@ -20,15 +24,17 @@
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/home">Home</a>
                     </li>
-                    <form class="navbar-form navbar-right">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="search-title" placeholder="Search" />
-                            <span class="input-group-btn">
-                                id="search-button"
-                                <button class="btn btn-primary">Search</button>
-                            </span>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-6">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </ul>   
             </div>
         </div>

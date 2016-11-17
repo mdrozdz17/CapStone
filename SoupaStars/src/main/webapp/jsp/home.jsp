@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars | Home</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
         <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
@@ -24,15 +25,17 @@
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/home">Home</a>
                     </li>
-                    <form class="navbar-form navbar-right">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="search-title" placeholder="Search" />
-                            <span class="input-group-btn">
-                                id="search-button"
-                                <button class="btn btn-primary">Search</button>
-                            </span>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-6">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </ul>   
             </div>
 
@@ -97,7 +100,7 @@
                     <p class="lead">
                         by <a href="index.php">Start Bootstrap</a>
                     </p>
-                     <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                    <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
                         <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
                         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
                         <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
@@ -143,7 +146,7 @@
                     <div class="well">
                         <h4>Authors</h4>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Author</a>
                                     </li>
@@ -155,8 +158,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- /.col-lg-6 -->
-                            <div class="col-lg-6">
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Author</a>
                                     </li>
@@ -168,7 +171,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- /.col-lg-6 -->
+                            <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
                     </div>
@@ -178,7 +181,7 @@
                     <div class="well">
                         <h4>Blog Categories</h4>
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Category Name</a>
                                     </li>
@@ -190,8 +193,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- /.col-lg-6 -->
-                            <div class="col-lg-6">
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Category Name</a>
                                     </li>
@@ -203,7 +206,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- /.col-lg-6 -->
+                            <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
                     </div>

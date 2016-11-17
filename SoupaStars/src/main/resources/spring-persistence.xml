@@ -43,8 +43,21 @@
     </bean>
  
     <!-- #5 Define the database DAO -->
-    <bean id="SoupaStarsDao"
+    <bean id="SoupaStarsPostDao"
             class="com.sg.soupastars.dao.SoupaStarsPostDaoInMemImpl">
+      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+      <!--  <constructor-arg ref = "jdbcTemplate" /> -->
+    </bean>
+    <bean id="SoupaStarsCommentDao"
+            class="com.sg.soupastars.dao.SoupaStarsCommentDBImpl">
+      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+    </bean>
+    <bean id="SoupaStarsUserDao"
+            class="com.sg.soupastars.dao.SoupaStarsUserDBImpl">
+      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+    </bean>
+    <bean id="SoupaStarsStaticDao"
+            class="com.sg.soupastars.dao.SoupaStarsStaticDaoDBImpl">
       <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
     </bean>
 </beans>
