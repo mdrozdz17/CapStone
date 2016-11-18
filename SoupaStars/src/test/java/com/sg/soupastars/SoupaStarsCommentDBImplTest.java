@@ -27,54 +27,54 @@ import static org.junit.Assert.assertNull;
  */
 public class SoupaStarsCommentDBImplTest {
  
-    private SoupaStarsCommentDBImpl dao;
-    
-    public SoupaStarsCommentDBImplTest(){
-        
-        
-    }
-    
-    @BeforeClass
-    public static void setUpClass(){
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass(){
-        
-    }
-    
-    @Before
-    public void setup(){
-        
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-application.xml");
-        dao = (SoupaStarsCommentDBImpl) ctx.getBean("SoupaStarsCommentInMemImpl");
-    
-        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-    }
-    
-    @After
-    public void tearDown(){
-        
-    }
-    
-    @Test
-    public void addGetDeleteComment(){
-        Comment nc = new Comment();
-        nc.setName("Alyssa");
-        nc.setEmail("arice713@yahoo.com");
-        nc.setText("hi");
-        nc.setDate(11122016);
-        dao.addComment(nc);
-        Comment fromDb = dao.getCommentById(nc.getCommentId());
-        assertEquals(fromDb.getCommentId(), nc.getCommentId());
-        assertEquals(fromDb.getName(), nc.getName());
-        assertEquals(fromDb.getEmail(), nc.getEmail());
-        assertEquals(fromDb.getText(), nc.getText());
-        assertEquals(fromDb.getDate(), nc.getDate());
-        dao.removeComment(nc.getCommentId());
-        assertNull(dao.getCommentById(nc.getCommentId()));
-    }
+//    private SoupaStarsCommentDBImpl dao;
+//    
+//    public SoupaStarsCommentDBImplTest(){
+//        
+//        
+//    }
+//    
+//    @BeforeClass
+//    public static void setUpClass(){
+//        
+//    }
+//    
+//    @AfterClass
+//    public static void tearDownClass(){
+//        
+//    }
+//    
+//    @Before
+//    public void setup(){
+//        
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-application.xml");
+//        dao = (SoupaStarsCommentDBImpl) ctx.getBean("SoupaStarsCommentInMemImpl");
+//    
+//        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+//    }
+//    
+//    @After
+//    public void tearDown(){
+//        
+//    }
+//    
+//    @Test
+//    public void addGetDeleteComment(){
+//        Comment nc = new Comment();
+//        nc.setName("Alyssa");
+//        nc.setEmail("arice713@yahoo.com");
+//        nc.setText("hi");
+//        nc.setDate(11122016);
+//        dao.addComment(nc);
+//        Comment fromDb = dao.getCommentById(nc.getCommentId());
+//        assertEquals(fromDb.getCommentId(), nc.getCommentId());
+//        assertEquals(fromDb.getName(), nc.getName());
+//        assertEquals(fromDb.getEmail(), nc.getEmail());
+//        assertEquals(fromDb.getText(), nc.getText());
+//        assertEquals(fromDb.getDate(), nc.getDate());
+//        dao.removeComment(nc.getCommentId());
+//        assertNull(dao.getCommentById(nc.getCommentId()));
+//    }
     
     }
 

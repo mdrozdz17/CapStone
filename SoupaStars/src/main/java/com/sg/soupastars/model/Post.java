@@ -6,11 +6,11 @@
 package com.sg.soupastars.model;
 
 import java.util.List;
-import javax.persistence.Column;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Store;
+//import javax.persistence.Column;
+//import org.hibernate.search.annotations.Field;
+//import org.hibernate.search.annotations.Index;
+//import org.hibernate.search.annotations.Analyze;
+//import org.hibernate.search.annotations.Store;
 
 /**
  *
@@ -21,8 +21,8 @@ public class Post {
     public int year;
     public String month;
     public int day;
-    @Column(name = "author", nullable = false, length = 25)
-    @Field(index = Index.YES, analyze= Analyze.YES, store = Store.NO)
+//    @Column(name = "author", nullable = false, length = 25)
+//    @Field(index = Index.YES, analyze= Analyze.YES, store = Store.NO)
     public String author;
     public int postId;
     public List<Integer> commentIdList;
