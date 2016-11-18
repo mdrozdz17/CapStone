@@ -80,32 +80,4 @@ public class User {
         this.postList = postList;
     }
     
-    
-    @Override
-    public int hashCode(){
-        int hash = 5;
-        hash = 37 * hash + this.userId;
-        hash = 37 * hash + Objects.hashCode(this.userName);
-        hash = 37 * hash + Objects.hashCode(this.password);
-        hash = 37 * hash + Objects.hashCode(this.postList);
-        return hash;
-    }
-    
-    @Override
-    public boolean equals(Object obj){
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final User other = (User) obj;
-        if (!Objects.equals(this.userName, other.userName)){
-            return false;
-        }
-        return true;
-    }
 }

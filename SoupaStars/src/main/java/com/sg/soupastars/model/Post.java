@@ -20,6 +20,8 @@ public class Post {
     public int postId;
     public List<Integer> commentIdList;
     public String body;
+    public String Category;
+    public List<String> tagList;
 
     /**
      * @return the title
@@ -132,20 +134,33 @@ public class Post {
     public void setBody(String body) {
         this.body = body;
     }
+
+    /**
+     * @return the Category
+     */
+    public String getCategory() {
+        return Category;
+    }
+
+    /**
+     * @param Category the Category to set
+     */
+    public void setCategory(String Category) {
+        this.Category = Category;
+    }
+
+    /**
+     * @return the tagList
+     */
+    public List<String> getTagList() {
+        return tagList;
+    }
+
+    /**
+     * @param tagList the tagList to set
+     */
+    public void setTagList(List<String> tagList) {
+        this.tagList = tagList;
+    }
     
-    
-   // @Override
-   // public int hashCode(){
-//        int hash = 5;
-//        hash = 37 * hash + this.postId;
-//        hash = 37 * hash + Objects.hashCode(this.author);
-//        hash = 37 * hash + Objects.hashCode(this.body);
-//        hash = 37 * hash + Objects.hashCode(this.year);
-//        hash = 37 * hash + Objects.hashCode(this.day);
-//        hash = 37 * hash + Objects.hashCode(this.month);
-//        hash = 37 * hash + Objects.hashCode();
-//
-//
-//
-//    }
 }
