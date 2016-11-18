@@ -11,10 +11,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars | View Post</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
-         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-        <script>tinymce.init({selector: 'textarea'});</script>
+        <script>tinymce.init({
+                selector: "textarea",
+                plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table contextmenu paste",
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
+            });
+        </script>
+
+
 
     </head>
     <body style ="background-color:powderblue;">

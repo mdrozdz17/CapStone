@@ -6,13 +6,18 @@
 package com.sg.soupastars.dao;
 
 import com.sg.soupastars.model.StaticPage;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author apprentice
  */
 public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
+       private Map<Integer, StaticPage> staticMap = new HashMap<>();
+    private static int staticIdCounter = 0;
 
     @Override
     public StaticPage addStaticPage(StaticPage staticPage) {
@@ -36,7 +41,8 @@ public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
 
     @Override
     public List<StaticPage> getAllStaticPages() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<StaticPage> allStaticPages = new ArrayList<>(staticMap.values());
+        return allStaticPages;
     }
 
     @Override
