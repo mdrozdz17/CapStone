@@ -23,8 +23,8 @@
           class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/SoupaStar_database" />
-        <property name="username" value="soupastar" />
+                  value="jdbc:mysql://localhost:3306/SoupaStars" />
+        <property name="username" value="root" />
         <property name="password" value="apprentice" />
         <property name="initialSize" value="5" />
         <property name="maxTotal" value="10" />
@@ -44,8 +44,8 @@
  
     <!-- #5 Define the database DAO -->
     <bean id="SoupaStarsPostDao"
-            class="com.sg.soupastars.dao.SoupaStarsPostDaoInMemImpl">
-      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+            class="com.sg.soupastars.dao.SoupaStarsPostDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" /> 
       <!--  <constructor-arg ref = "jdbcTemplate" /> -->
     </bean>
     <bean id="SoupaStarsCommentDao"
