@@ -14,28 +14,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars | Error</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
         <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
-    <body style ="background-color:powderblue;">
+     <body style ="background-color:powderblue;">
         <div class="container">
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/home">Home</a>
                     </li>
-                    <form class="navbar-form navbar-right">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="search-title" placeholder="Search" />
-                            <span class="input-group-btn">
-                                id="search-button"
-                                <button class="btn btn-primary">Search</button>
-                            </span>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-6">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </ul>   
             </div>
             <center><h1>An error has occurred...</h1>
+                 <img class="img-responsive" src="https://s-media-cache-ak0.pinimg.com/564x/a5/4c/6b/a54c6b19121fcc1b5b5bd415574f09b3.jpg" alt="pea" width="334" height="280">
                 <h3>${errorMessage}</h3>
         </div>
 

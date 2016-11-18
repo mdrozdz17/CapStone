@@ -35,7 +35,7 @@ public class SoupaStarsUserInMemImpl implements SoupaStarsUserDao {
     }
 
     @Override
-    public List<User> getAllPostsByUserName() {
+    public List<User> getAllUserNames() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

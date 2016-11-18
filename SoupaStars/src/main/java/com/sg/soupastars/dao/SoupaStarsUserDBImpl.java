@@ -67,7 +67,7 @@ public class SoupaStarsUserDBImpl implements SoupaStarsUserDao {
 
 
     @Override
-    public List<User> getAllPostsByUserName() {
+    public List<User> getAllUserNames() {
         return jdbcTemplate.query(SQL_SELECT_ALL_USER, new UserMapper());
     }
     
