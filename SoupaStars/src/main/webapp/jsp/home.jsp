@@ -52,7 +52,10 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-
+                    <table id="postTable">
+                        <tablebody id="postRows"></tablebody>
+                    </table>
+                    
                     <!-- First Blog Post -->
                     <h2>
                         <a href="#">Blog Post Title</a>

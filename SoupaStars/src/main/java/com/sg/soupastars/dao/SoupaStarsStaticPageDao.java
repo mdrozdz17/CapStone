@@ -26,6 +26,7 @@ public interface SoupaStarsStaticPageDao {
 
     List<StaticPage> listActivePages();
 
+    public String getExpriationDate(int staticPageId);
 }
     
 
