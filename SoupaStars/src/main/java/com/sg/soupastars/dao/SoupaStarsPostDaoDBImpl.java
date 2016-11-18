@@ -23,12 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
-    private static final String SQL_INSERT_POST = "insert into posts (title, year, month, day, author, body) values (?,?,?,?,?,?)";
-    private static final String SQL_DELETE_POST = "delete form posts where post_id = ?";
-    private static final String SQL_SELECT_POST = "select * from posts where post_id =  ?";
-    private static final String SQL_UPDATE_POST = "update contacts set title = ?, year = ?, month = ?, day = ?, author = ? where post_id = ?";
-    private static final String SQL_SELECT_ALL_POSTS = "select * from posts";
-    private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from posts where title = ?";
+    private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
+    private static final String SQL_DELETE_POST = "delete form Post where PostID= ?";
+    private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
+    private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
+    private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
+    private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from Post where Title = ?";
 
 
 
@@ -52,9 +52,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getMonth(),
         post.getDay(),
         post.getAuthor(),
-        post.getPostId(),
-        post.getCommentIdList(),
-        post.getBody());
+        post.getBody(),
+        post.getCategory());
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID", Integer.class));
         return post;
     }
@@ -88,6 +87,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
                 post.getDay(),
                 post.getAuthor(),
                 post.getBody(),
+                post.getCategory(),
                 post.getPostId());
                 
     }
@@ -108,13 +108,14 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         @Override
         public Post mapRow(ResultSet rs, int i) throws SQLException {
            Post post = new Post();
-           post.setPostId(rs.getInt("postId"));
-            post.setTitle(rs.getString("title"));
-            post.setYear(rs.getInt("year"));
-            post.setMonth(rs.getString("month"));
-            post.setDay(rs.getInt("day"));
-            post.setAuthor(rs.getString("author"));
-            post.setBody(rs.getString("body"));
+           post.setPostId(rs.getInt("PostID"));
+            post.setTitle(rs.getString("Title"));
+            post.setYear(rs.getInt("PostYear"));
+            post.setMonth(rs.getString("PostMonth"));
+            post.setDay(rs.getInt("PostDay"));
+            post.setAuthor(rs.getString("Author"));
+            post.setBody(rs.getString("PostBody"));
+            post.setCategory(rs.getString("Category"));
             return post;
             
         }
