@@ -5,6 +5,7 @@
  */
 package com.sg.soupastars;
 
+import com.sg.soupastars.dao.SoupaStarsCommentDBImpl;
 import com.sg.soupastars.dao.SoupaStarsCommentInMemImpl;
 import com.sg.soupastars.model.Comment;
 import org.junit.After;
@@ -17,16 +18,18 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  *
  * @author apprentice
  */
-public class SoupaStarsDaoInMemTest {
+public class SoupaStarsCommentDBImplTest {
  
-    private SoupaStarsCommentInMemImpl dao;
+    private SoupaStarsCommentDBImpl dao;
     
-    public SoupaStarsDaoInMemTest(){
+    public SoupaStarsCommentDBImplTest(){
         
         
     }
@@ -45,7 +48,7 @@ public class SoupaStarsDaoInMemTest {
     public void setup(){
         
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-application.xml");
-        dao = (SoupaStarsCommentInMemImpl) ctx.getBean("SoupaStarsCommentInMemImpl");
+        dao = (SoupaStarsCommentDBImpl) ctx.getBean("SoupaStarsCommentInMemImpl");
     
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
     }
