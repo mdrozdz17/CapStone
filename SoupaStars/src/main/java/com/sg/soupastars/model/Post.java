@@ -20,7 +20,7 @@ public class Post {
     public int postId;
     public List<Integer> commentIdList;
     public String body;
-    public String Catagory;
+    public String Category;
     public List<String> tagList;
 
     /**
@@ -136,17 +136,17 @@ public class Post {
     }
 
     /**
-     * @return the Catagory
+     * @return the Category
      */
-    public String getCatagory() {
-        return Catagory;
+    public String getCategory() {
+        return Category;
     }
 
     /**
-     * @param Catagory the Catagory to set
+     * @param Category the Category to set
      */
-    public void setCatagory(String Catagory) {
-        this.Catagory = Catagory;
+    public void setCategory(String Category) {
+        this.Category = Category;
     }
 
     /**
