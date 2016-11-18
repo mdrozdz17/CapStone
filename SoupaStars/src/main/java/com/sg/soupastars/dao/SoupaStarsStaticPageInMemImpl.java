@@ -44,6 +44,9 @@ public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String getExpriationDate(int staticPageId) {
+        return getStaticPageById(staticPageId).getExpirationDate();
+    }
 
-    
 }

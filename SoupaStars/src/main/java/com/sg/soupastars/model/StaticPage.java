@@ -18,6 +18,8 @@ public class StaticPage {
     public String body;
 
     public String active;
+    
+    private String expirationDate;
 
     public int getStaticId() {
         return staticId;
@@ -49,6 +51,20 @@ public class StaticPage {
 
     public void setActive(String active) {
         this.active = active;
+    }
+
+    /**
+     * @return the expirationDate
+     */
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    /**
+     * @param expirationDate the expirationDate to set
+     */
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
 
