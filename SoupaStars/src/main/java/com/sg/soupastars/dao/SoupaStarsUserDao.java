@@ -22,6 +22,6 @@ public interface SoupaStarsUserDao {
     
     public void updateUserInfo(User user);
     
-    List<User> getAllPostsByUserName();
+    List<User> getAllUserNames();
     
 }
