@@ -30,6 +30,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
     private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from Post where Title = ?";
+    private static final String SQL_SELECT_TAGS_BY_POSTID = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
 
 
 
@@ -63,6 +64,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     public Post getPostById(int PostId) {
           try {
         Post newPost = jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), PostId);
+        List<String> tagList = (List<String>) jdbcTemplate.queryForObject(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), PostId);
+        newPost.setTagList(tagList);
         return newPost;
         } catch (EmptyResultDataAccessException ex) {
             return null;
@@ -77,7 +80,13 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
 
     @Override
     public List<Post> getAllPosts() {
-        return jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
+        List<Post> postList = jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
+        for (Post post : postList){
+            List<String> tagList = (List<String>) jdbcTemplate.queryForObject(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
+            post.setTagList(tagList);
+        }
+        int x=1;
+        return postList;
     }
 
     @Override
@@ -118,6 +127,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
             post.setAuthor(rs.getString("Author"));
             post.setBody(rs.getString("PostBody"));
             post.setCategory(rs.getString("Category"));
+            
             return post;
             
         }
@@ -127,10 +137,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
      private static final class TagMapper implements RowMapper {
          
          @Override
-         public List<String> mapRow(ResultSet rs, int i) throws SQLException {
-             List<String> tags = new ArrayList();
-             
-             return tags;
+         public String mapRow(ResultSet rs, int i) throws SQLException {
+             return rs.getString("TagBody");
          }
      }
 
