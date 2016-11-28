@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
-    private static final String SQL_DELETE_POST = "delete form Post where PostID= ?";
+    private static final String SQL_DELETE_POST = "delete from Post where PostID= ?";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
@@ -82,10 +82,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     public List<Post> getAllPosts() {
         List<Post> postList = jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
         for (Post post : postList){
-            List<String> tagList = (List<String>) jdbcTemplate.queryForObject(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
+            List<String> tagList =  jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
             post.setTagList(tagList);
         }
-        int x=1;
+        int x=2;
         return postList;
     }
 
@@ -138,7 +138,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
          
          @Override
          public String mapRow(ResultSet rs, int i) throws SQLException {
-             return rs.getString("TagBody");
+             String tagText = rs.getString("TagBody");
+             return tagText;
          }
      }
 

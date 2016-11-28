@@ -95,6 +95,7 @@ public class HomeController {
 //        - /post
     @RequestMapping(value="/post", method=RequestMethod.GET)
     @ResponseBody public List<Post> getAllPosts(){
+        int x=1;
         return pdao.getAllPosts();
     }
     
