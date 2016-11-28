@@ -35,8 +35,6 @@
         <intercept-url pattern="/displayPost" access="ROLE_ADMIN" />
         <intercept-url pattern="/displayStaticPage" access="ROLE_ADMIN" />
         <intercept-url pattern="/edit" access="ROLE_ADMIN" />
-        <intercept-url pattern="/search" access="ROLE_ADMIN" />
-        <intercept-url pattern="/mainPage" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment/**" access="ROLE_ADMIN" />
         <intercept-url pattern="/post" access="ROLE_ADMIN" />

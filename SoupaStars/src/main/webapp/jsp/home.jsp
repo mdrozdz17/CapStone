@@ -15,6 +15,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars</title>
+        
+
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
         <!-- SOUPA-STARS ICON -->
