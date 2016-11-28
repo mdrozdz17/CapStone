@@ -9,6 +9,7 @@ import com.sg.soupastars.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -64,7 +65,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     public Post getPostById(int PostId) {
           try {
         Post newPost = jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), PostId);
-        List<String> tagList = (List<String>) jdbcTemplate.queryForObject(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), PostId);
+        List<String> tagList = (List<String>) jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), PostId);
         newPost.setTagList(tagList);
         return newPost;
         } catch (EmptyResultDataAccessException ex) {
@@ -81,11 +82,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     @Override
     public List<Post> getAllPosts() {
         List<Post> postList = jdbcTemplate.query(SQL_SELECT_ALL_POSTS, new PostMapper());
-        for (Post post : postList){
+        for (Post post : postList) {
             List<String> tagList =  jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
             post.setTagList(tagList);
         }
-        int x=2;
         return postList;
     }
 
@@ -134,7 +134,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         
     }
      
-     private static final class TagMapper implements RowMapper {
+     private static final class TagMapper implements RowMapper<String> {
          
          @Override
          public String mapRow(ResultSet rs, int i) throws SQLException {
