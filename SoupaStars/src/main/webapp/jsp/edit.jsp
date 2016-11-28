@@ -20,7 +20,7 @@
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/home">Home</a>
+                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
                     </li>
                     <div class="row">
                         <div class="col-md-4 col-md-offset-6">

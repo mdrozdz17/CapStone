@@ -25,13 +25,15 @@
            <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/home">Home</a>
+                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
                     </li>
                       <li role="presentation">
                         <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a>
                     </li> 
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-6">
+                    <li role ="presenation">
+                        <a href="${pageContext.request.contextPath}/login">Log In</a>
+                    </li>
+                        <div class="col-md-4 col-md-offset-5">
                             <form action="" class="search-form">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>
@@ -40,9 +42,10 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                   
                 </ul>   
             </div>
+        </div>
         <div class="container">
             <p><a href="${pageContext.request.contextPath}/login">Log In</a></p>
 
