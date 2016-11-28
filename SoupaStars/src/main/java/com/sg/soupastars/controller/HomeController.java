@@ -40,7 +40,7 @@ public class HomeController {
         this.pdao = pdao;
     }
     
-    @RequestMapping(value={"home","/"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/","/home"}, method=RequestMethod.GET)
     public String displayHomePage(){
         return "home";
     }

@@ -29,7 +29,7 @@ public class SearchController {
         this.dao = dao;
     }
     
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String displaySearchPage(){
         return "search";
     }
