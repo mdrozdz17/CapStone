@@ -45,6 +45,12 @@ public class HomeController {
         return "home";
     }
     
+      // Main  Page
+    @RequestMapping(value={"/mainPage"},method=RequestMethod.GET)
+    public String displayMainPage(){
+        return "mainPage";
+    }
+    
     
     // - Retrieve a Post by Id (GET)
 //        - /post/{postId}
