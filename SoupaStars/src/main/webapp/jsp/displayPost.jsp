@@ -15,16 +15,21 @@
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script>tinymce.init({
-                selector: "textarea",
+                selector: "textarea", // change this value according to your HTML
                 plugins: [
+                    "paste",
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table contextmenu paste",
-                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
-                    
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
                 ],
+                toolbar: "paste",
+                paste_data_images: true,
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                 toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
+
+
+
             });
         </script>
 
