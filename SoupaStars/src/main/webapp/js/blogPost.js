@@ -13,6 +13,9 @@ function loadPosts() {
         url: 'post'
     }).success(function (data, status) {
         fillPostTable(data, status);
+        fillAuthorTable(data, status);
+        fillCategoryTable(data, status);
+        fillTagTable(data,status);
     });
 }
 
@@ -28,18 +31,46 @@ function fillPostTable(postList, status) {
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month +' ' + post.day + ', ' + post.year +'&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category +' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comments </a>&nbsp;\n\
-        <p>' + post.body + '</p>\n\ '
+        <p>' + post.body + '</p>'
         
         ))));
+        var tags = "";
         for (var i=0; i < post.tagList.length; i++){
-            postTable.append($('<p> #' + post.tagList[i] + '</p>'));
+            tags = tags + "#" + post.tagList[i] + " ";
         }
-        postTable.append($('<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
-        
+        postTable.append($('<p>'+tags+'</p><a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));        
+    });
+}
+function fillAuthorTable(postList, status) {
+     var authorTable = $('#authorRows');
+    authorTable.empty();
+
+    $.each(postList, function (arrayPosition, post) {
+        authorTable.append($('<tr><td><a href="#">'+ post.author + '</a></td></tr>'));
     });
 }
 
+function fillCategoryTable(postList, status) {
+    var categoryTable = $('#categoryRows');
+    categoryTable.empty();
+    
+    $.each(postList, function (arrayPosition, post) {
+        categoryTable.append($('<tr><td><a href="#">' + post.category + '</a></td></tr>'));
+    });
+}
+
+function fillTagTable(postList, status) {
+    var tagTable = $('#tagRows');
+    tagTable.empty();
+    
+    $.each(postList, function (arrayPosition, post) {
+        //tagTable.append($('<tr><td>'));
+        for (var i=0; i<post.tagList.length; i++){
+        tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
+    }
+    //tagTable.append($('</td></tr>'));
+    });
+}
 function clearPostTable() {
     $('#postRows').empty();
 }
-

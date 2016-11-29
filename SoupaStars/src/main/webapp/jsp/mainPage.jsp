@@ -57,7 +57,7 @@
                     </table>
                     
                     <!-- First Blog Post -->
-                    <h2>
+<!--                    <h2>
                         <a href="#">Blog Post Title</a>
                     </h2>
                     <p class="lead">
@@ -76,7 +76,7 @@
 
                     <hr>
 
-                    <!-- Second Blog Post -->
+                     Second Blog Post 
                     <h2>
                         <a href="#">Blog Post Title</a>
                     </h2>
@@ -96,7 +96,7 @@
 
                     <hr>
 
-                    <!-- Third Blog Post -->
+                     Third Blog Post 
                     <h2>
                         <a href="#">Blog Post Title</a>
                     </h2>
@@ -114,7 +114,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
                     <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                    <hr>
+                    <hr>-->
 
                     <!-- Pager -->
                     <ul class="pager">
@@ -150,19 +150,12 @@
                         <h4>Authors</h4>
                         <div class="row">
                             <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                </ul>
+                                <table id="authorTable">
+                                    <tablebody id="authorRows"></tablebody>
+                                </table>
                             </div>
                             <!-- /.col-md-6 -->
-                            <div class="col-md-6">
+<!--                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Author</a>
                                     </li>
@@ -173,7 +166,7 @@
                                     <li><a href="#">Author</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>-->
                             <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
@@ -185,19 +178,12 @@
                         <h4>Blog Categories</h4>
                         <div class="row">
                             <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                </ul>
+                                <table id="categoryTable">
+                                    <tablebody id="categoryRows"></tablebody>
+                                </table>
                             </div>
                             <!-- /.col-md-6 -->
-                            <div class="col-md-6">
+<!--                            <div class="col-md-6">
                                 <ul class="list-unstyled">
                                     <li><a href="#">Category Name</a>
                                     </li>
@@ -208,7 +194,7 @@
                                     <li><a href="#">Category Name</a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>-->
                             <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
@@ -217,7 +203,10 @@
                     <!-- Tags -->
                     <div class="well">
                         <h4>Tags</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                        <table id="tagTable">
+                            <tablebody id="tagRows"></tablebody>
+                        </table>
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
                     </div>
 
                 </div>
