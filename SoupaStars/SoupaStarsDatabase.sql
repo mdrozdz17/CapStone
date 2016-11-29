@@ -15,14 +15,15 @@ Category varchar(50) not null,
 primary key (PostID) );
 
 Insert into Post (PostID, Title, PostYear, PostMonth, PostDay, Author, PostBody, Category)
-	values(1,'How not to use Sriracha', 2016, 'November', 21, 'Liam Long', 'Number 1: Ketchup','Cooking Fails');
+	values(1,'How Not to Use Sriracha', 2016, 'November', 21, 'Liam Long', 'Number 1: Ketchup','Cooking Fails');
 Insert into Post (PostID, Title, PostYear, PostMonth, PostDay, Author, PostBody, Category)
 	values(2,"Use ovenmits, kids", 2016, 'November', 22, 'Chris Bartley', 'Ovens are hot.','Miscellaneous');
 Insert into Post (PostID, Title, PostYear, PostMonth, PostDay, Author, PostBody, Category)
-	values(3,'Why pie is objectively better than cake', 2016, 'November', 17, 'Matt Drozdz', 'It just is.','Pretentious Pedagogy');
+	values(3,'Why Pie Is Objectively Better Than Cake', 2016, 'November', 17, 'Matt Drozdz', 'It just is.','Pretentious Pedagogy');
 Insert into Post (PostID, Title, PostYear, PostMonth, PostDay, Author, PostBody, Category)
-	values(4, 'How the Cinammon Challenge changed my life', 2016, 'October', 29, 'Alyssa Rice', 'Cinammon is dangerous.','Food Challenges');
-
+	values(4, 'How the Cinammon Challenge Changed My Life', 2016, 'October', 29, 'Alyssa Rice', 'Cinammon is dangerous.','Food Challenges');
+Insert into Post (PostID, Title, PostYear, PostMonth, PostDay, Author, PostBody, Category)
+	values(5, "Top 10 Grossest Foods and How They're Made", 2016, 'November', 25, 'Liam Long', 'Number 1: Hotdogs','Investigative Journalism');
 
 create table if not exists SoupaStars.Comments
 (CommentID int not null auto_increment,
@@ -52,6 +53,7 @@ insert into Tag (TagID, TagBody) values (3,"ICan'tFeelMyFingers");
 insert into Tag (TagID, TagBody) values (4,'appleStreudel');
 insert into Tag (TagID, TagBody) values (5,"'nufSaid");
 insert into Tag (TagID, TagBody) values (6,"tryThisAtHome");
+insert into Tag (TagID, TagBody) values (7, "clickBait");
 
 create table if not exists SoupaStars.User
 (UserID int auto_increment not null,
@@ -81,6 +83,7 @@ insert into PostTag (PostID, TagID) values (2,3);
 insert into PostTag (PostID, TagID) values (3,4);
 insert into PostTag (PostID, TagID) values (3,5);
 insert into PostTag (PostID, TagID) values (4,6);
+insert into PostTag (PostId, TagID) values (5,7);
 
 select * from Post;
 select * from PostComment;
