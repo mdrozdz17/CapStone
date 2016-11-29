@@ -5,81 +5,83 @@
  */
 package com.sg.soupastars.controller;
 
+
 import com.sg.soupastars.dao.SoupaStarsUserDao;
 import com.sg.soupastars.model.User;
-import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
-import javax.validation.Valid;
-import org.springframework.http.HttpStatus;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author apprentice
+ * @author softwareguild
  */
 @Controller
+@RequestMapping(value="/user")
 public class UserController {
 
     private SoupaStarsUserDao dao;
 
+    // #1 - PasswordEncoder interface
+    private PasswordEncoder encoder;
+
+    // #2 - Inject a PasswordEncoder
     @Inject
-    public UserController(SoupaStarsUserDao dao) {
+    public UserController(SoupaStarsUserDao dao, PasswordEncoder encoder) {
         this.dao = dao;
+        this.encoder = encoder;
     }
 
-    // - Retrieve a User by Id (GET)
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public User getUserName(@PathVariable("id") int id) {
-        return dao.getUserNameById(id);
+    // #1 - This endpoint retrieves all users from the database and puts the
+    // List of users on the model
+    @RequestMapping(value = {"/","/displayUserList"}, method = RequestMethod.GET)
+    public String displayUserList(Map<String, Object> model) {
+        List users = dao.getAllUsers();
+        model.put("users", users);
+        return "displayUserList";
     }
+    // #2 - This endpoint just displays the Add User form
 
-    //- Create a User (POST)
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public User createUserName(@Valid @RequestBody User user) {
-        dao.addUserName(user);
-        return user;
+    @RequestMapping(value = "/displayUserForm", method = RequestMethod.GET)
+    public String displayUserForm(Map<String, Object> model) {
+        return "addUserForm";
     }
+    // #3 - This endpoint processes the form data and creates a new User
 
-    //- Delete a User (DELETE)
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUserName(@PathVariable("id") int id) {
-        dao.removeUserName(id);
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addUser(HttpServletRequest req) {
+        User newUser = new User();
+        // #4 - This example uses a plain HTML form so we must get values from the request
+        newUser.setUsername(req.getParameter("username"));
+        //  - Hash the password and then set it on the User object before saving it
+        String clearPw = req.getParameter("password");
+        String hashPw = encoder.encode(clearPw);
+        newUser.setPassword(hashPw);
+        // #5 - All users have ROLE_USER, only add ROLE_ADMIN if the isAdmin box is checked
+        newUser.addAuthority("ROLE_USER");
+        if (null != req.getParameter("isAdmin")) {
+            newUser.addAuthority("ROLE_ADMIN");
+        }
+         if (null != req.getParameter("isVisitor")) {
+            newUser.addAuthority("ROLE_USER");
+        }
+
+        dao.addUser(newUser);
+
+        return "redirect:displayUserList";
     }
+    // #6 - This endpoint deletes the specified User
 
-    //- Update a User (PUT)
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateUserName(@PathVariable("id") int id, @Valid @RequestBody User user) {
-        user.setUserId(id);
-        dao.updateUserInfo(user);
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam("username") String username,
+            Map<String, Object> model) {
+        dao.deleteUser(username);
+        return "redirect:displayUserList";
     }
-
-    //- Retrieve ALL Users (GET)
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    @ResponseBody
-    public List<User> getAllUserNames() {
-        return dao.getAllUserNames();
-    }
-
-    @RequestMapping(value = "/displayUsers", method = RequestMethod.GET)
-    public String displayUserNames(Model model) throws FileNotFoundException {
-        List<User> allUsers = dao.getAllUserNames();
-        model.addAttribute("user", allUsers);
-
-        // return the logical view
-        return "displayUsers";
-    }
-
 }

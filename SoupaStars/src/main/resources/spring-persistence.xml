@@ -53,8 +53,8 @@
       <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
     </bean>
     <bean id="SoupaStarsUserDao"
-            class="com.sg.soupastars.dao.SoupaStarsUserDBImpl">
-      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+            class="com.sg.soupastars.dao.SoupaStarsUserDaoDBImpl">
+          <property name="jdbcTemplate" ref="jdbcTemplate" /> 
     </bean>
     <bean id="SoupaStarsStaticDao"
             class="com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl">

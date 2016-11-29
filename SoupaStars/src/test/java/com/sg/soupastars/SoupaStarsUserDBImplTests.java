@@ -5,18 +5,18 @@
  */
 package com.sg.soupastars;
 
-import com.sg.soupastars.dao.SoupaStarsUserDBImpl;
-import com.sg.soupastars.model.User;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import com.sg.soupastars.dao.SoupaStarsUserDBImpl;
+//import com.sg.soupastars.model.User;
+//import org.junit.After;
+//import org.junit.AfterClass;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNull;
+//import org.junit.Before;
+//import org.junit.BeforeClass;
+//import org.junit.Test;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
+//import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *

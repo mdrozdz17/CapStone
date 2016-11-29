@@ -14,14 +14,10 @@ import java.util.List;
  */
 public interface SoupaStarsUserDao {
     
-    public User addUserName(User user);
-    
-    public User getUserNameById(int userId);
-    
-    public void removeUserName(int userId);
-    
-    public void updateUserInfo(User user);
-    
-    List<User> getAllUserNames();
-    
+ public User addUser(User newUser);
+
+ public void deleteUser(String username);
+ 
+ public List<User> getAllUsers();
+
 }

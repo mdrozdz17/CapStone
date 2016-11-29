@@ -15,28 +15,20 @@ import java.util.List;
 public class SoupaStarsUserInMemImpl implements SoupaStarsUserDao {
 
     @Override
-    public User addUserName(User user) {
+    public User addUser(User newUser) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public User getUserNameById(int userId) {
+    public void deleteUser(String username) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeUserName(int userId) {
+    public List<User> getAllUsers() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void updateUserInfo(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public List<User> getAllUserNames() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
