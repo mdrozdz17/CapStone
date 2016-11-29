@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS SoupaStars;
-
-CREATE DATABASE SoupaStars;
-
 USE  SoupaStars;
 
 --
@@ -40,4 +36,4 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 -- Constraints for table `authorities`
 --
 ALTER TABLE `authorities`
- ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
+ADD CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`);

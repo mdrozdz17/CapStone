@@ -7,9 +7,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Users</title>
+        <title>Users | Display</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
+         <!-- SOUPA-STARS ICON -->
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
     <body style ="background-color:powderblue;">
         <div class="container">

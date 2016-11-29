@@ -1,6 +1,3 @@
-drop database if exists SoupaStars;
-
-create database SoupaStars;
 use SoupaStars;
 
 create table if not exists SoupaStars.Post
