@@ -28,10 +28,14 @@ function fillPostTable(postList, status) {
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month +' ' + post.day + ', ' + post.year +'&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category +' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comments </a>&nbsp;\n\
-        <p>' + post.body + '</p>\n\
-        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a><hr>'))
-                        ));
-
+        <p>' + post.body + '</p>\n\ '
+        //+ '<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a><hr>'
+        ))));
+        for (var i=0; i < post.tagList.length; i++){
+            postTable.append($('<p> #' + post.tagList[i] + '</p>'));
+        }
+        postTable.append($('<a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
+        
     });
 }
 
