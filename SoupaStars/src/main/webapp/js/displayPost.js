@@ -20,6 +20,12 @@ function loadPost() {
 }
 
 function fillPostInfo(post, status){
-    //document.getElementById("postTitle").innerHTML
+    document.getElementById("postTitle").innerHTML = post.title;
+    document.getElementById("postAuthor").innerHTML = "by " + post.author;
+    document.getElementById("postInfo").innerHTML = '<span class="glyphicon glyphicon-user"></span><a href="#"> '+ post.author +' </a>&nbsp;'
+                        + '<span class="glyphicon glyphicon-time"></span> Posted on ' + post.month +" " + post.day + ", " +post.year +'&nbsp;'
+                        + '<span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category +' </a>&nbsp;'
+                        + '<span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + ' Comments </a>&nbsp;';
+    document.getElementById("postBody").innerHTML = post.body;            
 }
 

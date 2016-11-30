@@ -66,10 +66,12 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     @Override
     public Post getPostById(int PostId) {
           try {
-        Post newPost = jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), PostId);
+        Post post = jdbcTemplate.queryForObject(SQL_SELECT_POST, new PostMapper(), PostId);
         List<String> tagList = (List<String>) jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), PostId);
-        newPost.setTagList(tagList);
-        return newPost;
+        post.setTagList(tagList);
+        List<Comment> commentList = jdbcTemplate.query(SQL_SELECT_COMMENTS_BY_POSTID, new CommentMapper(), post.postId);
+        post.setCommentList(commentList);
+        return post;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
