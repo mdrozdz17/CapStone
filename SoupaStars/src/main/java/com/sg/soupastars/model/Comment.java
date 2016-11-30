@@ -14,8 +14,7 @@ public class Comment {
    public String name;
    private String email;
    public String text;
-   public int date;
-
+   private String date;
    
     /**
      * @return the commentId
@@ -59,25 +58,22 @@ public class Comment {
         this.text = text;
     }
 
-    /**
-     * @return the date
-     */
-    public int getDate() {
-        return date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(int date) {
-        this.date = date;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
+    public String getDate() {
+        return date;
     }
 }

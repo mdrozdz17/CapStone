@@ -84,7 +84,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
             comment.setName(rs.getString("name"));
             comment.setEmail(rs.getString("email"));
             comment.setText(rs.getString("text"));
-            comment.setDate(rs.getInt("date"));
+            comment.setDate(rs.getString("date"));
             
             return comment;
 

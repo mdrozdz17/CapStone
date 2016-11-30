@@ -152,7 +152,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
          public Comment mapRow(ResultSet rs, int i) throws SQLException {
              Comment comment = new Comment();
              comment.setCommentId(rs.getInt("CommentID"));
-             comment.setDate(rs.getInt("commentDate"));
+             comment.setDate(rs.getString("commentDate"));
              comment.setEmail(rs.getString("email"));
              comment.setName(rs.getString("userName"));
              comment.setText(rs.getString("commentText"));
