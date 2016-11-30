@@ -1,6 +1,4 @@
-DROP DATABASE IF EXISTS SoupaStars;
 
-CREATE DATABASE SoupaStars;
 
 USE  SoupaStars;
 

@@ -1,6 +1,4 @@
-drop database if exists SoupaStars;
 
-create database SoupaStars;
 use SoupaStars;
 
 create table if not exists SoupaStars.Post
@@ -93,3 +91,4 @@ select * from Tag;
 
 select commentText, userName, email, commentDate from PostComment join Comments using (CommentID) where PostID = 2;
 select TagBody from PostTag join Tag using (TagID) where PostID = 2;
+select CommentID from PostComment join Comments using (CommentID) where PostID = 1;
