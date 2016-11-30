@@ -2,6 +2,7 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -55,8 +56,6 @@
                                     <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
                                     <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
                                 <li>
-
-
                             </div>   
                         </ul> 
 
@@ -64,18 +63,25 @@
 
                     <hr />
                     <jsp:useBean id="date" class="java.util.Date" />
-                    Current date is: 
-                
-                     <fmt:formatDate value="${date}" pattern="MMMM" />
-                     <fmt:formatDate value="${date}" pattern="dd" />,
-                     <fmt:formatDate value="${date}" pattern="yyyy" />
-                        <sf:form class="form-horizontal" role="form" modelAttribute="post"
-                                 action="addNewBlogPost"
-                                 method="POST">
+                    <sf:form class="form-horizontal" role="form" modelAttribute="post"
+                             action="addNewBlogPost"
+                             method="POST">
                         <div class="form-group">
-                            <label for="add-title" 
-                                   class="col-md-4 control-label">Title:</label>
-                            <div class="col-md-5">
+                            <center><label for="add-month" id ="add-month"
+                                   class="col-md-4 control-label">The Date is:   
+                                <fmt:formatDate value="${date}" pattern="MMMM" />
+                                <fmt:formatDate value="${date}" pattern="dd" />,
+                                <fmt:formatDate value="${date}" pattern="yyyy" /> </label>
+                        </div>
+                        <div class="form-group">
+                                <label for="add-author" 
+                                       class="col-md-4 control-label"> Your name is: <sec:authentication property="principal.username" />.<br/></label>
+                                  <sf:errors path="author" cssClass="error"></sf:errors>  
+                            </div>
+                            <div class="form-group">
+                                <label for="add-title" 
+                                       class="col-md-4 control-label">Title:</label>
+                                <div class="col-md-5">
                                 <sf:input type="text" class ="form-control"  required ="true" max = "50"
                                           id="add-title" 
                                           path="title"
@@ -83,27 +89,7 @@
                                 <sf:errors path="title" cssClass="error"></sf:errors>
                                 </div>
                             </div>
-                                    <div class="form-group">
-                                <label for="add-month" 
-                                       class="col-md-4 control-label">Month</label>
-                                <div class="col-md-5">
-                                    <sf:input type="text" class ="form-control"  required ="true" max = "100"
-                                          id="add-month" 
-                                          path="month" />
-                                <sf:errors path="month" cssClass="error"></sf:errors>
-                                </div>
-                            </div>
-                                        <div class="form-group">
-                                <label for="add-author" 
-                                       class="col-md-4 control-label">Author</label>
-                                <div class="col-md-5">
-                                    <sf:input type="text" class ="form-control"  required ="true" max = "100"
-                                          id="add-author" 
-                                          path="author" />
-                                <sf:errors path="author" cssClass="error"></sf:errors>
-                                </div>
-                            </div>
-                    <div class="form-group">
+                            <div class="form-group">
                                 <label for="add-Category" 
                                        class="col-md-4 control-label">Categories:</label>
                                 <div class="col-md-5">
@@ -127,7 +113,7 @@
                                 <sf:errors path="body" cssClass="error"></sf:errors>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="add-tagList" 
                                        class="col-md-4 control-label">Tags</label>
