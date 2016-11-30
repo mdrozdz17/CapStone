@@ -177,25 +177,11 @@
                     <div class="well">
                         <h4>Blog Categories</h4>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <table id="categoryTable">
                                     <tablebody id="categoryRows"></tablebody>
                                 </table>
                             </div>
-                            <!-- /.col-md-6 -->
-<!--                            <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                    <li><a href="#">Category Name</a>
-                                    </li>
-                                </ul>
-                            </div>-->
-                            <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
                     </div>

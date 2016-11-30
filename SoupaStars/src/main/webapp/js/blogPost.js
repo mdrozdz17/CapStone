@@ -116,28 +116,47 @@ function fillAuthorTable(postList, status) {
     var authorTable = $('#authorRows');
     authorTable.empty();
     var authorList = [];
+    var authorString = "";
+    $.each(postList, function(arrayPosition, post) {
+        authorString += post.author;
+    });
     $.each(postList, function (arrayPosition, post) {
-        if(!contains(authorList, post.author)){
-            authorTable.append($('<tr><td><a href="#">' + post.author + '</a></td></tr>'));
+        if (!contains(authorList, post.author)) {
+            authorTable.append($('<tr><td><a href="#">' + post.author + 
+                    ' (' + countInstances(authorString, post.author) + ')</a></td></tr>'));
             authorList.push(post.author);
         }
     }
     );
 }
-function contains(a, obj){
-    for (var i=0; i < a.length; i++){
-        if(a[i] === obj) {
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
             return true;
         }
     }
     return false;
 }
 
+function countInstances(string, word) {
+    var substrings = string.split(word);
+    return substrings.length - 1;
+}
+
 function fillCategoryTable(postList, status) {
     var categoryTable = $('#categoryRows');
     categoryTable.empty();
+    var categoryList = [];
+    var categoryString = "";
+    $.each(postList, function(arrayPosition, post) {
+        categoryString = categoryString + post.category;
+    });
     $.each(postList, function (arrayPosition, post) {
-        categoryTable.append($('<tr><td><a href="#">' + post.category + '</a></td></tr>'));
+        if (!contains(categoryList, post.category)) {
+            categoryTable.append($('<tr><td><a href="#">' + post.category + ' (' 
+                    + countInstances(categoryString, post.category) + ')</a></td></tr>'));
+            categoryTable.push(post.category);
+        }
     });
 }
 

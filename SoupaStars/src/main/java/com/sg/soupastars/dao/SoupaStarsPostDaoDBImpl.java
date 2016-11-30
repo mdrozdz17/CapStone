@@ -5,6 +5,7 @@
  */
 package com.sg.soupastars.dao;
 
+import com.sg.soupastars.model.Comment;
 import com.sg.soupastars.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
     private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from Post where Title = ?";
     private static final String SQL_SELECT_TAGS_BY_POSTID = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
-
+    private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
 
 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
@@ -85,6 +86,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         for (Post post : postList) {
             List<String> tagList =  jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
             post.setTagList(tagList);
+            List<Comment> commentList = jdbcTemplate.query(SQL_SELECT_COMMENTS_BY_POSTID, new CommentMapper(), post.postId);
+            
         }
         return postList;
     }
@@ -140,6 +143,20 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
          public String mapRow(ResultSet rs, int i) throws SQLException {
              String tagText = rs.getString("TagBody");
              return tagText;
+         }
+     }
+     
+     private static final class CommentMapper implements RowMapper<Comment> {
+         
+         @Override
+         public Comment mapRow(ResultSet rs, int i) throws SQLException {
+             Comment comment = new Comment();
+             comment.setCommentId(rs.getInt("CommentID"));
+             comment.setDate(rs.getInt("commentDate"));
+             comment.setEmail(rs.getString("email"));
+             comment.setName(rs.getString("userName"));
+             comment.setText(rs.getString("commentText"));
+             return comment;
          }
      }
 
