@@ -25,7 +25,7 @@ public class Post {
 //    @Field(index = Index.YES, analyze= Analyze.YES, store = Store.NO)
     public String author;
     public int postId;
-    public List<Integer> commentIdList;
+    public List<Comment> commentList;
     public String body;
     public String Category;
     public List<String> tagList;
@@ -117,15 +117,15 @@ public class Post {
     /**
      * @return the commentIdList
      */
-    public List<Integer> getCommentIdList() {
-        return commentIdList;
+    public List<Comment> getCommentList() {
+        return commentList;
     }
 
     /**
-     * @param commentIdList the commentIdList to set
+     * @param commentList the commentList to set
      */
-    public void setCommentIdList(List<Integer> commentIdList) {
-        this.commentIdList = commentIdList;
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     /**

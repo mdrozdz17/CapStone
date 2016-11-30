@@ -101,10 +101,10 @@ function fillPostTable(postList, status) {
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
-        <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comments </a>&nbsp;\n\
-        <p>' + post.body + '</p>'
-
-                                ))));
+        <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
+        + '<p>' + post.body + '</p>'       
+        ))));
+        
         var tags = "";
         for (var i = 0; i < post.tagList.length; i++) {
             tags = tags + "#" + post.tagList[i] + " ";

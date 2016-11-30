@@ -33,6 +33,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
     private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from Post where Title = ?";
     private static final String SQL_SELECT_TAGS_BY_POSTID = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
+    private static final String SQL_SELECT_COMMENTIDS_BY_POSTID = "select CommentID from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
 
 
@@ -87,7 +88,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
             List<String> tagList =  jdbcTemplate.query(SQL_SELECT_TAGS_BY_POSTID, new TagMapper(), post.postId);
             post.setTagList(tagList);
             List<Comment> commentList = jdbcTemplate.query(SQL_SELECT_COMMENTS_BY_POSTID, new CommentMapper(), post.postId);
-            
+            post.setCommentList(commentList);
         }
         return postList;
     }
