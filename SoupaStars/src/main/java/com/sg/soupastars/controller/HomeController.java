@@ -99,12 +99,9 @@ public class HomeController {
     }
     
     
-    @RequestMapping(value = "/displayPost", method = RequestMethod.GET)
-    public String displayPost(Model model) throws FileNotFoundException {
-        List<Post> allPost = pdao.getAllPosts();
-        model.addAttribute("post", allPost);
+    @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
+    public String displayPost() {
 
-        // return the logical view
         return "displayPost";
     }
     
