@@ -97,7 +97,9 @@
 
                     <!-- Post Content -->                    
                     <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
+                    <table>
+                            <tbody id="postTags"></tbody>
+                    </table>
                     <hr>
 
                     <!-- Blog Comments -->
@@ -118,7 +120,10 @@
                     <!-- Posted Comments -->
 
                     <!-- Comment -->
-                    <div class="media">
+                    <table>
+                            <tbody id="commentTable"></tbody>
+                    </table>
+<!--                    <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
                         </a>
@@ -130,7 +135,7 @@
                         </div>
                     </div>
 
-                    <!-- Comment -->
+                     Comment 
                     <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -140,7 +145,7 @@
                                 <small>August 25, 2014 at 9:30 PM</small>
                             </h4>
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            <!-- Nested Comment -->
+                             Nested Comment 
                             <div class="media">
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -152,9 +157,9 @@
                                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                                 </div>
                             </div>
-                            <!-- End Nested Comment -->
+                             End Nested Comment 
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                         <!-- Blog Sidebar Widgets Column -->
                         <div class="col-md-4">
