@@ -5,7 +5,80 @@
  */
 $(document).ready(function () {
     loadPosts();
+    
 });
+// add the onclick handling for our add button
+    $('#add-button').click(function (event) {
+        event.preventDefault();
+        // need to submit this via AJAX
+        $.ajax({
+            type: 'POST',
+            url: 'post',
+            // make the JSON contact
+            data: JSON.stringify({
+                title: $('#add-title').val(),
+                author: $('#add-author').val(),
+                body: $('#add-body').val(),
+                category: $('#add-category').val(),
+                taglist: $('#add-taglist').val()
+
+            }),
+            contentType: 'application/json; charset=utf-8',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            dataType: 'json'
+        }).success(function () {
+            // removing data, status for a question on if we need them
+            // realistically, if you are getting an object back from an endpoint
+            // and you need to work with the data coming back, 
+            // then you want to include the parameters in the anonymous function's signature
+            // clear the form and reload the summary table
+            $('#add-title').val('');
+            $('#add-author').val('');
+            $('#add-body').val('');
+            $('#add-category').val('');
+            $('#add-taglist').val('');
+
+
+            // reload the summary table
+            $('#validationErrors').empty();
+            loadPosts();
+        }).error(function (data, status) {
+            $('#validationErrors').empty();
+            $.each(data.responseJSON.fieldErrors, function (index, validationError) {
+                var errorDiv = $('#validationErrors');
+                errorDiv.append(validationError.message).append($('<br>'));
+            });
+        });
+    });
+
+    $('#edit-button').click(function (event) {
+        event.preventDefault();
+        // update our post via AJAX
+        $.ajax({
+            type: 'PUT',
+            url: 'post/' + $('#edit-post-id').val(),
+            data: JSON.stringify({
+                postId: $('#edit-post-id').val(),
+                title: $('#edit-title').val(),
+                author: $('#edit-author').val(),
+                body: $('#edit-body').val(),
+                category: $('#edit-category').val(),
+                taglist: $('#edit-taglist').val()
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            'dataType': 'json'
+        }).success(function () {
+            loadContacts();
+        });
+    });
+
+
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
