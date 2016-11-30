@@ -59,7 +59,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getAuthor(),
         post.getBody(),
         post.getCategory());
-        post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID", Integer.class));
+        post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         return post;
     }
 
