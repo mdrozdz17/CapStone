@@ -99,15 +99,6 @@ public class HomeController {
         return "redirect:displayPost";
     }
     
-        
-    @RequestMapping(value = "/displayPost", method = RequestMethod.GET)
-    public String displayPost(Model model) throws FileNotFoundException {
-        List<Post> allPost = pdao.getAllPosts();
-        model.addAttribute("post", allPost);
-
-        // return the logical view
-        return "displayPost";
-    }
     
     
 
@@ -138,6 +129,13 @@ public class HomeController {
     }
     
 
+    
+    @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
+    public String displayPost() {
+
+        return "displayPost";
+    }
+    
     // Comments 
    
     
