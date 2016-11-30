@@ -74,7 +74,7 @@ $(document).ready(function () {
             },
             'dataType': 'json'
         }).success(function () {
-            loadContacts();
+            loadPosts();
         });
     });
 
@@ -108,8 +108,11 @@ function fillPostTable(postList, status) {
         var tags = "";
         for (var i = 0; i < post.tagList.length; i++) {
             tags = tags + "#" + post.tagList[i] + " ";
+
         }
+
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
+
     });
 }
 function fillAuthorTable(postList, status) {

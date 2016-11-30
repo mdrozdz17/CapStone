@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Comment;
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -40,16 +44,18 @@ public class HomeController {
         this.pdao = pdao;
     }
     
-    @RequestMapping(value={"/","/home"}, method=RequestMethod.GET)
+       // Main  Page
+    @RequestMapping(value={"/mainPage","/"},method=RequestMethod.GET)
+    public String displayMainPage(){
+        return "mainPage";
+    }
+    
+    @RequestMapping(value={"/home"}, method=RequestMethod.GET)
     public String displayHomePage(){
         return "home";
     }
     
-      // Main  Page
-    @RequestMapping(value={"/mainPage"},method=RequestMethod.GET)
-    public String displayMainPage(){
-        return "mainPage";
-    }
+   
     
     
     // - Retrieve a Post by Id (GET)
@@ -71,6 +77,30 @@ public class HomeController {
         pdao.addPost(post);
         return post;
     }
+    
+        // Display New Blog Post Form
+    @RequestMapping(value = "displayBlogPostForm", method = RequestMethod.GET)
+    public String displayNewBlogForm(Model model) {
+        Post post = new Post();
+        model.addAttribute("post", post);
+
+        return "displayBlogPostForm";
+    }
+    
+    // Add a new Blog Post
+    @RequestMapping(value = "/addNewBlogPost", method = RequestMethod.POST)
+    public String addNewPost(HttpServletRequest req, @Valid @ModelAttribute("post") Post post, BindingResult result) throws IOException {
+
+        if (result.hasErrors()) {
+            return "displayBlogPostForm";
+        }
+        pdao.addPost(post);
+
+        return "redirect:displayPost";
+    }
+    
+    
+    
 
 //- Delete a Post (DELETE)
 //        - post/{postId}
@@ -98,6 +128,7 @@ public class HomeController {
         return pdao.getAllPosts();
     }
     
+
     
     @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
     public String displayPost() {
