@@ -39,7 +39,7 @@
                 </ul>   
             </div>
             <center><h1>An error has occurred...</h1>
-                 <img class="img-responsive" src="https://s-media-cache-ak0.pinimg.com/564x/a5/4c/6b/a54c6b19121fcc1b5b5bd415574f09b3.jpg" alt="pea" width="334" height="280">
+                 <img class="img-responsive" src="https://3.bp.blogspot.com/-ad69Y3hy2yU/UxJS4cpgzKI/AAAAAAAAANM/GFkNMxAWlJ4/s1600/Posters+-+teams+in+the+classroom-3.png" alt="pea" width="334" height="280">
                 <h3>${errorMessage}</h3>
         </div>
 

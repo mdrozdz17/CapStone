@@ -5,9 +5,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Users</title>
+        <title>Users | Add</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
+         <!-- SOUPA-STARS ICON -->
+        <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
     <body style ="background-color:powderblue;">
         <div class="container">
@@ -30,7 +32,6 @@
             Username: <input type="text" name="username"/><br/>
             Password:&nbsp; <input type="password" name="password"/><br/>
             Admin User? <input type="checkbox" name="isAdmin" value="yes"/> <br/>
-            Guest User? <input type="checkbox" name="isVisitor" value="yes"/> <br/>
             <input type="submit" value="Add User"/><br/>
         </form>
     </center>

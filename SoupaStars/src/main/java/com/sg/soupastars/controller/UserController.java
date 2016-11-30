@@ -68,9 +68,6 @@ public class UserController {
         if (null != req.getParameter("isAdmin")) {
             newUser.addAuthority("ROLE_ADMIN");
         }
-         if (null != req.getParameter("isVisitor")) {
-            newUser.addAuthority("ROLE_USER");
-        }
 
         dao.addUser(newUser);
 

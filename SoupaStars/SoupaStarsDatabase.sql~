@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> a70790363b0c8af1c5e7e56c3555401895cd686b
 use SoupaStars;
 
 create table if not exists SoupaStars.Post
