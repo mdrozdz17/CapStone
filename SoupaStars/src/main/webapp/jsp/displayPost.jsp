@@ -13,7 +13,7 @@
         <title>Soupa-Stars | View Post</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
-         <!-- SOUPA-STARS ICON -->
+        <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
@@ -75,14 +75,14 @@
                     <h1 id="postTitle">Blog Post Title</h1>
 
                     <!-- Author -->
-                    <p class="lead">
-                        by <a href="#">Author</a>
+                    <p class="lead" id="postAuthor">
+                        by Author
                     </p>
 
                     <hr>
 
                     <!-- Date/Time -->
-                    <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                    <p id="postInfo"><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
                         <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
                         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
                         <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
@@ -95,13 +95,11 @@
 
                     <hr>
 
-                    <!-- Post Content -->
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
+                    <!-- Post Content -->                    
+                    <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+                    <table>
+                            <tbody id="postTags"></tbody>
+                    </table>
                     <hr>
 
                     <!-- Blog Comments -->
@@ -122,7 +120,10 @@
                     <!-- Posted Comments -->
 
                     <!-- Comment -->
-                    <div class="media">
+                    <table>
+                            <tbody id="commentTable"></tbody>
+                    </table>
+<!--                    <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
                         </a>
@@ -134,7 +135,7 @@
                         </div>
                     </div>
 
-                    <!-- Comment -->
+                     Comment 
                     <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -144,7 +145,7 @@
                                 <small>August 25, 2014 at 9:30 PM</small>
                             </h4>
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            <!-- Nested Comment -->
+                             Nested Comment 
                             <div class="media">
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -156,13 +157,87 @@
                                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                                 </div>
                             </div>
-                            <!-- End Nested Comment -->
+                             End Nested Comment 
                         </div>
-                    </div>
-                    <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
-                    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-                    <script src="${pageContext.request.contextPath}/js/displayPost.js"></script>
+                    </div>-->
+                </div>
+                        <!-- Blog Sidebar Widgets Column -->
+                        <div class="col-md-4">
+                            <p></p>
+                            <!-- Blog Search Well -->
+                            <div class="well">
+                                <h4>Blog Search</h4>
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /.input-group -->
+                            </div>
 
-                    </body>
-                    </html>
+                            <!-- Authors -->
+                            <div class="well">
+                                <h4>Authors</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table id="authorTable">
+                                            <tablebody id="authorRows"></tablebody>
+                                        </table>
+                                    </div>
+                                    <!-- /.col-md-6 -->
+                                    <!--                            <div class="col-md-6">
+                                                                    <ul class="list-unstyled">
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>-->
+                                    <!-- /.col-md-6 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+
+                            <!-- Blog Categories Well -->
+                            <div class="well">
+                                <h4>Blog Categories</h4>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <table id="categoryTable">
+                                            <tablebody id="categoryRows"></tablebody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="well">
+                                <h4>Tags</h4>
+                                <table id="tagTable">
+                                    <tablebody id="tagRows"></tablebody>
+                                </table>
+                                <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            
+            <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/displayPost.js"></script>
+            <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>    
+
+    </body>
+</html>
 
