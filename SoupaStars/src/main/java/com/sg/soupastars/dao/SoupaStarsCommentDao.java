@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface SoupaStarsCommentDao {
      
-    public Comment addComment(Comment comment);
+    public Comment addComment(Comment comment, int postID);
     
     public Comment getCommentById(int commentId);
 

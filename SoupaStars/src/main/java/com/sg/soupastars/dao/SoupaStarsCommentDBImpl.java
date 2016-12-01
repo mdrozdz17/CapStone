@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
     
-    private static final String SQL_INSERT_COMMENT = "insert into comment (name, email, text, date) VALUES (?, ?, ?, ?)";
+    private static final String SQL_INSERT_COMMENT = "insert into Comment (userName, email, commentText, commentDate) VALUES (?, ?, ?, ?)";
     private static final String SQL_DELETE_COMMENT = "delete from comment where comment_id = ? ";
     private static final String SQL_SELECT_COMMENT = "select * from comment where comment_id= ?";
     private static final String SQL_UPDATE_COMMENT = "update static_page set name= ?, email= ?, text= ?, date = ?, where comment_id =?";
@@ -31,8 +31,8 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
-    public Comment addComment(Comment comment) {
+   @Override
+    public Comment addComment(Comment comment, int postID) {
          jdbcTemplate.update(SQL_INSERT_COMMENT,
                 comment.getName(),
                 comment.getEmail(),
@@ -74,6 +74,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
     public List<Comment> getAllComments() {
         return jdbcTemplate.query(SQL_SELECT_ALL_COMMENT, new CommentMapper());
     }
+
     
        private static final class CommentMapper implements RowMapper<Comment> {
 

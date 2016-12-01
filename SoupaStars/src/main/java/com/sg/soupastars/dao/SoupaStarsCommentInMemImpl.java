@@ -15,7 +15,7 @@ import java.util.List;
 public class SoupaStarsCommentInMemImpl implements SoupaStarsCommentDao {
 
     @Override
-    public Comment addComment(Comment comment) {
+    public Comment addComment(Comment comment, int postID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
