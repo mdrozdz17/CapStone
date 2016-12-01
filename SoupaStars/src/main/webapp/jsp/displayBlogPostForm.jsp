@@ -18,12 +18,18 @@
         <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
+                   
                     "paste",
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table contextmenu paste",
                     'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
+                   
                 ],
+              width : 600,
+         height : 90,
+         theme_advanced_resizing_min_height : 90,
+         theme_advanced_resizing_max_height : 180,
                 toolbar: "paste",
                 paste_data_images: true,
                 force_p_newlines : false,
@@ -64,22 +70,9 @@
                     </div>
 
                     <hr />
-                    <jsp:useBean id="date" class="java.util.Date" />
                     <sf:form class="form-horizontal" role="form" modelAttribute="post"
                              action="addNewBlogPost"
                              method="POST">
-                        <div class="form-group">
-                            <center><label for="add-month" id ="add-month"
-                                   class="col-md-4 control-label">The Date is:   
-                                <fmt:formatDate value="${date}" pattern="MMMM" />
-                                <fmt:formatDate value="${date}" pattern="dd" />,
-                                <fmt:formatDate value="${date}" pattern="yyyy" /> </label>
-                        </div>
-                        <div class="form-group">
-                                <label for="add-author" 
-                                       class="col-md-4 control-label"> Your name is: <sec:authentication property="principal.username" />.<br/></label>
-                                  <sf:errors path="author" cssClass="error"></sf:errors>  
-                            </div>
                             <div class="form-group">
                                 <label for="add-title" 
                                        class="col-md-4 control-label">Title:</label>

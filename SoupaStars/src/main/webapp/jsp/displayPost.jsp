@@ -69,7 +69,7 @@
             <div class="row">
 
                 <!-- Blog Post Content Column -->
-                <div class="col-lg-8">
+                <div class="col-md-8">
 
                     <!-- Blog Post -->
 
@@ -114,7 +114,7 @@
                                 Username* <input id="username" name="username" required type="text">
                                 Email <input id="email" name="email" type="text"><br><br>
                                 <textarea id="comment-body" name="comment-body" class="form-control" rows="3" type="text"></textarea>
-                                <input type="hidden" name="postId" id="postId">
+                                <input type="hidden" name="postId" id="postId" value="id-placeholder">
                             </div>
                             <button id="submit-comment" type="submit" class="btn btn-primary">Submit</button>
                         </form>

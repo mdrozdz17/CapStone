@@ -58,7 +58,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
 
     @Override
     public void removeComment(int commentId) {
-       jdbcTemplate.update(SQL_DELETE_COMMENT, new CommentMapper());
+       jdbcTemplate.update(SQL_DELETE_COMMENT, commentId);
     }
 
     @Override
