@@ -41,6 +41,8 @@ public class Post {
     public String body;
     public String Category;
     public List<String> tagList;
+    private int tagId;
+
 
     /**
      * @return the title
@@ -180,6 +182,14 @@ public class Post {
      */
     public void setTagList(List<String> tagList) {
         this.tagList = tagList;
+    }
+
+    public int getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
     }
     
 }
