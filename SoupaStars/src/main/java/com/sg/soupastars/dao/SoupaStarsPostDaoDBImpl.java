@@ -9,10 +9,10 @@ import com.sg.soupastars.model.Comment;
 import com.sg.soupastars.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT_TAG = "insert into Tag (TagBody) values (?)";
     private static final String SQL_DELETE_POST = "delete from Post where PostID= ?";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
@@ -51,7 +52,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Post addPost(Post post) {
-        jdbcTemplate.update(SQL_INSERT_POST,
+        jdbcTemplate.update(SQL_INSERT_POST, SQL_INSERT_TAG,
         post.getTitle(),
         post.getYear(),
         post.getMonth(),
@@ -59,7 +60,9 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getAuthor(),
         post.getBody(),
         post.getCategory());
-        post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID", Integer.class));
+       // post.getTagList());
+        post.setTagId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+        post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         return post;
     }
 

@@ -96,7 +96,7 @@ public class HomeController {
         }
         pdao.addPost(post);
 
-        return "redirect:displayPost";
+        return "redirect:mainPage";
     }
     
     
@@ -131,8 +131,9 @@ public class HomeController {
 
     
     @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
-    public String displayPost() {
-
+    public String displayPost(Model model) throws FileNotFoundException {
+        List<Post> allPost = pdao.getAllPosts();
+        model.addAttribute("posts", allPost);
         return "displayPost";
     }
     
