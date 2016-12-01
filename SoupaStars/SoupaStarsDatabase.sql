@@ -87,7 +87,10 @@ select * from PostComment;
 select * from PostTag;
 select * from Comments;
 select * from Tag;
-
+UPDATE `SoupaStars`.`Post` SET `PostMonth`='October', `PostDay`='23' WHERE `PostID`='1';
+UPDATE `SoupaStars`.`Post` SET `PostMonth`='October', `PostDay`='29' WHERE `PostID`='2';
+UPDATE `SoupaStars`.`Post` SET `PostDay`='8' WHERE `PostID`='3';
+UPDATE `SoupaStars`.`Post` SET `PostMonth`='November', `PostDay`='14' WHERE `PostID`='4';
 select commentText, userName, email, commentDate from PostComment join Comments using (CommentID) where PostID = 2;
 select TagBody from PostTag join Tag using (TagID) where PostID = 2;
 select CommentID from PostComment join Comments using (CommentID) where PostID = 1;
