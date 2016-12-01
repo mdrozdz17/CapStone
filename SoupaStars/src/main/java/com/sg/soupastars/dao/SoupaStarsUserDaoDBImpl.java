@@ -59,6 +59,11 @@ public class SoupaStarsUserDaoDBImpl implements SoupaStarsUserDao {
     public List<User> getAllUsers() {
         return jdbcTemplate.query(SQL_SELECT_ALL_USERS, new UserMapper());
     }
+
+    @Override
+    public User getUserId(int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    private static final class UserMapper implements RowMapper<User> {
 
         @Override

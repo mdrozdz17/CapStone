@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
-    private static final String SQL_DELETE_POST = "delete from Post where PostID= ?";
+    private static final String SQL_DELETE_POST = "delete from Post where PostID = ?";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";

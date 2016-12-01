@@ -5,7 +5,7 @@
  */
 package com.sg.soupastars;
 
-import com.sg.soupastars.dao.SoupaStarsPostDaoDBImpl;
+import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Post;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -24,12 +24,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class SoupaStarsPostDaoDBImplTest {
     
-//    private SoupaStarsPostDaoDBImpl dao;
-//    
-//    public SoupaStarsPostDaoDBImplTest(){
-//        
-//    }
-//    
+//  private SoupaStarsPostDao dao;
+    
+   //public SoupaStarsPostDaoDBImplTest(){
+        
+    }
+    
 //    @BeforeClass
 //    public static void setUpClass(){
 //        
@@ -42,9 +42,9 @@ public class SoupaStarsPostDaoDBImplTest {
 //    
 //    @Before
 //    public void setUp(){
-//        ApplicationContext ctx  = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+//    ApplicationContext ctx  = new ClassPathXmlApplicationContext("test-applicationContext.xml");
 //        
-//        dao = (SoupaStarsPostDaoDBImpl) ctx. getBean("SoupaStarsPostDaoDBImpl");
+//        dao = (SoupaStarsPostDao) ctx. getBean("SoupaStarsPostDaoDBImpl");
 //        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
 //        cleaner.execute("delete from posts");
 //        
@@ -57,10 +57,10 @@ public class SoupaStarsPostDaoDBImplTest {
 //    
 //    @Test
 //    public void addGetDeletePost(){
-//        Post pt = new Post();
+//     Post pt = new Post();
 //        pt.setTitle("Cookies");
 //        pt.setYear(2016);
-//        pt.setMonth("Decemeber");
+//        pt.setMonth("December");
 //        pt.setDay(02);
 //        pt.setAuthor("Alyssa");
 //        pt.setBody("hello");
@@ -75,10 +75,9 @@ public class SoupaStarsPostDaoDBImplTest {
 //        assertEquals(fromDb.getAuthor(), pt.getAuthor());
 //        assertEquals(fromDb.getBody(), pt.getBody());
 //        assertEquals(fromDb.getCategory(), pt.getCategory());
-//        
 //        dao.removePost(pt.getPostId());
 //        assertNull(dao.getPostById(pt.getPostId()));
 //        
 //        
 //    }
-    }
+//   }
