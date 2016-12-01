@@ -37,7 +37,7 @@
                             </form>
                         </div>
                     
-                        <li role ="presenation">
+                        <li role ="presentation">
                             <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
                             <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
                         <li>
@@ -63,8 +63,8 @@
                     </h1>
                     
                     <div class = table-responsive" id="postTable">
-                        
-                        <tablebody id="postRows"></tablebody>
+                        <table>
+                        <tbody id="postRows"></tbody>
                     </table>
                     </div>
 

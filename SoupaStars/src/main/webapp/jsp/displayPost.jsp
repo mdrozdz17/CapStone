@@ -69,7 +69,7 @@
             <div class="row">
 
                 <!-- Blog Post Content Column -->
-                <div class="col-lg-8">
+                <div class="col-md-8">
 
                     <!-- Blog Post -->
 

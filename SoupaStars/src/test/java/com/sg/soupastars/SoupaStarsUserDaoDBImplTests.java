@@ -5,9 +5,9 @@
  */
 package com.sg.soupastars;
 
-import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
-import com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl;
-import com.sg.soupastars.model.StaticPage;
+import com.sg.soupastars.dao.SoupaStarsUserDaoDBImpl;
+import com.sg.soupastars.dao.SoupaStarsUserDao;
+import com.sg.soupastars.model.User;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
@@ -23,13 +23,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
  *
  * @author apprentice
  */
-public class SoupaStarsStaticPageDaoDBImplTests {
+public class SoupaStarsUserDaoDBImplTests {
     
-    private SoupaStarsStaticPageDao dao;
+   // private SoupaStarsUserDao dao;
     
-    //public SoupaStarsStaticPageDaoDBImplTests(){
+   // public SoupaStarsUserDaoDBImplTests(){
         
-    }
+   }
     
 //    @BeforeClass
 //    public static void setUpClass(){
@@ -44,10 +44,10 @@ public class SoupaStarsStaticPageDaoDBImplTests {
 //    @Before
 //    public void setUp(){
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+//        dao = (SoupaStarsUserDao) ctx.getBean("SoupaStarsUserDaoDBImpl");
 //        
-//        dao = (SoupaStarsStaticPageDao) ctx.getBean("SoupaStarsStaticPageDaoDBImpl");
 //        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-//        cleaner.execute("delete from Static Page");
+//        cleaner.execute("delete from users");
 //    }
 //    
 //    @After
@@ -56,20 +56,16 @@ public class SoupaStarsStaticPageDaoDBImplTests {
 //    }
 //    
 //    @Test
-//    public void addGetDeleteStaticPage(){
-//        StaticPage sp = new StaticPage();
-//        sp.setTitle("candy");
-//        sp.setBody("yum");
-//        sp.setActive("active");
-//        sp.setExpirationDate("12/30/2016");
-//        dao.addStaticPage(sp);
-//        StaticPage fromDb = dao.getStaticPageById(sp.getStaticId());
-//        assertEquals(fromDb.getStaticId(), sp.getStaticId());
-//        assertEquals(fromDb.getBody(), sp.getBody());
-//        assertEquals(fromDb.getActive(), sp.getActive());
-//        assertEquals(fromDb.getExpirationDate(), sp.getExpirationDate());
-//        dao.removeStaticPage(sp.getStaticId());
-//        assertNull(dao.getStaticPageById(sp.getStaticId()));
+//    public void addGetDeleteUser(){
+//        User us = new User();
+//        us.setUserId(9);
+//        us.setPassword("cat");
+//        us.setUsername("meow");
+//        us = dao.addUser(us);
+//        User fromDb = dao.getUserId(us.getUserId());
+//        assertEquals(fromDb.getUserId(), us.getUserId());
+//        assertEquals(fromDb.getUsername(), us.getUsername());
+//        assertEquals(fromDb.getPassword(), us.getPassword());
+//      
 //    }
-//  
 //}

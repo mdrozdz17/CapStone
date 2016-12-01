@@ -20,4 +20,7 @@ public interface SoupaStarsUserDao {
  
  public List<User> getAllUsers();
 
+    public User getUserId(int userId);
+
+
 }

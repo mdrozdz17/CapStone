@@ -33,8 +33,6 @@ public class Post {
     public int year = LocalDate.now().getYear();
     public String month = new SimpleDateFormat("MMMM").format(cal.getTime());
     public int day = LocalDate.now().getDayOfMonth();
-//    @Column(name = "author", nullable = false, length = 25)
-//    @Field(index = Index.YES, analyze= Analyze.YES, store = Store.NO)
     public String author = authentication.getName();
     public int postId;
     public List<Comment> commentList;

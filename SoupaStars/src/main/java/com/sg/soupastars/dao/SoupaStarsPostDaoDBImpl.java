@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -27,8 +28,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
    
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
+    private static final String SQL_DELETE_POST = "delete from Post where PostID = ?";
     private static final String SQL_INSERT_TAG = "insert into Tag (TagBody) values (?)";
-    private static final String SQL_DELETE_POST = "delete from Post where PostID= ?";
+    private static final String SQL_SELECT_POSTTAG = "insert into PostTag (PostId, TagId) values (?,?)";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
@@ -52,7 +54,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Post addPost(Post post) {
-        jdbcTemplate.update(SQL_INSERT_POST, SQL_INSERT_TAG,
+        jdbcTemplate.update(SQL_INSERT_POST,
         post.getTitle(),
         post.getYear(),
         post.getMonth(),
@@ -60,11 +62,20 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getAuthor(),
         post.getBody(),
         post.getCategory());
-       // post.getTagList());
-        post.setTagId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         return post;
     }
+    
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Post addTag(Post post) {
+        jdbcTemplate.update(SQL_INSERT_TAG,
+         post.getTagList());
+        post.setTagId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+        return post;
+    }
+    
+ 
 
     @Override
     public Post getPostById(int PostId) {
@@ -78,6 +89,14 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
+    }
+    
+        @Override
+    public List<Post> read(Integer postId) {
+
+        List<Post> b = jdbcTemplate.query(SQL_SELECT_POSTTAG, new PostMapper(), postId);
+
+        return b;
     }
 
     @Override
@@ -117,11 +136,13 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         jdbcTemplate.update(SQL_DELETE_POST, postId);
     }
 
-//   add search term
-   // @Override
-  //  public List<Post> searchPosts(Map<SearchTerm, String> criteria) {
-  //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   // }
+    @Override
+    public ArrayList<Post> searchPosts(String searchTerm) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //   jdbcTemplate.
+    }
+
+
     
      private static final class PostMapper implements RowMapper<Post> {
 

@@ -60,9 +60,6 @@ public class HomeController {
         return "home";
     }
     
-   
-    
-    
     // - Retrieve a Post by Id (GET)
 //        - /post/{postId}
 //        - Response Body: POST in JSON  
@@ -103,8 +100,6 @@ public class HomeController {
 
         return "redirect:mainPage";
     }
-    
-    
     
 
 //- Delete a Post (DELETE)

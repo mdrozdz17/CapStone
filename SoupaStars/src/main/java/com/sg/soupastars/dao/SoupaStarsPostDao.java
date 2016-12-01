@@ -6,6 +6,7 @@
 package com.sg.soupastars.dao;
 
 import com.sg.soupastars.model.Post;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,18 @@ public interface SoupaStarsPostDao {
     
     public Post addPost(Post post);
     
+    public Post addTag(Post post);
+    
+    
+    public List<Post> read(Integer postId);
+    
     public Post getPostById(int PostId);
     
     public List<Post> getAllPostsByTitle(String titleToSearch);
     
     public List<Post> getAllPosts();
+    
+    public ArrayList<Post> searchPosts(String searchTerm);
     
     public void updatePost(Post post);
     
@@ -29,8 +37,7 @@ public interface SoupaStarsPostDao {
     
    
  
-    // add search term
-   //public List<Post> searchPosts(Map<SearchTerm,String> criteria);
+    
    
 
 }

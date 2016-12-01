@@ -26,7 +26,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
                   value="jdbc:mysql://localhost:3306/SoupaStars_database_test" />
-        <property name="username" value="soupastar" />
+        <property name="username" value="root" />
         <property name="password" value="apprentice" />
         <property name="initialSize" value="5" />
         <property name="maxTotal" value="10" />
@@ -43,12 +43,31 @@
           class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
-    <bean id="SoupaStarsInMemImpl" class="com.sg.soupastars.dao.SoupaStarsDaoInMemImpl" >
-    </bean>
-    <bean id ="SoupaStarsDBImpl" class ="com.sg.soupastars.dao.SoupaStarsDaoDBImpl" >
+        
+    <bean id="SoupaStarsCommentDBImpl" class="com.sg.soupastars.dao.SoupaStarsCommentDBImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
+    <bean id="SoupaStarsCommentInMemImpl" class="com.sg.soupastars.dao.SoupaStarsCommentInMemImpl">
+    </bean>
     
-
+    <bean id= "SoupaStarsPostDaoDBImpl" class="com.sg.soupastars.dao.SoupaStarsPostDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    <bean id="SoupaStarsPostDaoInMemImpl" class="com.sg.soupastars.dao.SoupaStarsPostDaoInMemImpl">
+    </bean>
+    
+    
+    <bean id="SoupaStarsStaticPageDaoDBImpl" class="com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    <bean id="SoupaStarsStaticPageInMemImpl" class="com.sg.soupastars.dao.SoupaStarsPostDaoInMemImpl">
+    </bean>
+    
+   
+    <bean id="SoupaStarsUserDaoDBImpl" class="com.sg.soupastars.dao.SoupaStarsUserDaoDBImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+    <bean id="SoupaStarsUserInMemImpl" class="com.sg.soupastars.dao.SoupaStarsUserInMemImpl">
+    </bean>    
 </beans>
+
