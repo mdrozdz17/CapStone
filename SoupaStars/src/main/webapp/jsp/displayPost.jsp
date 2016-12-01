@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-        <script>tinymce.init({
+<!--        <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
                     "paste",
@@ -28,13 +28,15 @@
                 ],
                 toolbar: "paste",
                 paste_data_images: true,
+                force_p_newlines : false,
+                forced_root_block : '',
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
                 toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
 
 
 
             });
-        </script>
+        </script>-->
 
 
 
@@ -107,11 +109,13 @@
                     <!-- Comments Form -->
                     <div class="well">
                         <h4>Leave a Comment:</h4>
-                        <form role="form">
+                        <form role="form" action="comment" method="POST">
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                Username* <input id="username" name="username" required type="text">
+                                Email <input id="email" name="email" type="text"><br><br>
+                                <textarea id="comment-body" class="form-control" rows="3" type="text"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button id="submit-comment" type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
 
@@ -123,43 +127,7 @@
                     <table>
                             <tbody id="commentTable"></tbody>
                     </table>
-<!--                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Start Bootstrap
-                                <small>August 25, 2014 at 9:30 PM</small>
-                            </h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-
-                     Comment 
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Start Bootstrap
-                                <small>August 25, 2014 at 9:30 PM</small>
-                            </h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                             Nested Comment 
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Nested Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                                </div>
-                            </div>
-                             End Nested Comment 
-                        </div>
-                    </div>-->
+                    <br>
                 </div>
                         <!-- Blog Sidebar Widgets Column -->
                         <div class="col-md-4">

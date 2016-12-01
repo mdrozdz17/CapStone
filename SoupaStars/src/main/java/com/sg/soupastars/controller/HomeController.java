@@ -149,8 +149,10 @@ public class HomeController {
 //- Create a Comment (POST)
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public Comment createComment(@Valid @RequestBody Comment comment) {
+    public Comment createComment(HttpServletRequest req) {
+        Comment comment = new Comment();
+        comment.setName(req.getParameter("username"));
+        comment.setEmail(req.getParameter("email"));
         cdao.addComment(comment);
         return comment;
     }
