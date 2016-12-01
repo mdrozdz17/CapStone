@@ -26,6 +26,8 @@
                 ],
                 toolbar: "paste",
                 paste_data_images: true,
+                force_p_newlines : false,
+                forced_root_block : '',
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | codesample',
             });
         </script>

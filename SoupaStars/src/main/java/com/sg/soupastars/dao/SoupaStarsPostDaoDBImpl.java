@@ -9,10 +9,10 @@ import com.sg.soupastars.model.Comment;
 import com.sg.soupastars.model.Post;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -54,9 +54,9 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         jdbcTemplate.update(SQL_INSERT_POST,
         post.getTitle(),
         post.getYear(),
-        post.getMonth()== null,
+        post.getMonth(),
         post.getDay(),
-        post.getAuthor() == null,
+        post.getAuthor(),
         post.getBody(),
         post.getCategory());
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));

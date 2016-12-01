@@ -96,7 +96,7 @@ public class HomeController {
         }
         pdao.addPost(post);
 
-        return "redirect:displayPost";
+        return "redirect:mainPage";
     }
     
     

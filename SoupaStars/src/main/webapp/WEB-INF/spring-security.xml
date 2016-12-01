@@ -19,9 +19,10 @@
     <!-- PASSWORD ENCODER BEAN CHANGES END -->
 
     <!-- #2 - Make sure we don’t need authorization to get to the login or home page -->
-        <http pattern="/mainPage" security="none" />
+    <http pattern="/mainPage" security="none" />
     <http pattern="/login" security="none" />
     <http pattern="/home" security="none" />
+    <http pattern="/displayPost" security="none" />
     <http pattern="/" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
@@ -35,9 +36,9 @@
                     login-page="/login"
                     authentication-failure-url="/login?login_error=1"/>
         <!-- #3d - Go back to home page when user logs out -->
-        <logout logout-success-url="/mainPage" />
+        <logout logout-success-url="/login" />
         <!-- #3e - Access to these endpoints require admin role -->
-        <intercept-url pattern="/displayPost" access="ROLE_ADMIN" />
+        
         <intercept-url pattern="/displayStaticPage" access="ROLE_ADMIN" />
          <intercept-url pattern="/addNewBlogPost" access="ROLE_ADMIN" />
         <intercept-url pattern="/edit" access="ROLE_ADMIN" />
