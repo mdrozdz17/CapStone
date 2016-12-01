@@ -5,6 +5,7 @@
  */
 package com.sg.soupastars.controller;
 
+import com.sg.soupastars.dao.SoupaStarsCommentDBImpl;
 import com.sg.soupastars.dao.SoupaStarsCommentDao;
 import com.sg.soupastars.model.Post;
 import java.io.FileNotFoundException;
@@ -26,8 +27,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -38,7 +41,7 @@ public class HomeController {
     
     private SoupaStarsPostDao pdao;
      
-   private SoupaStarsCommentDao cdao;
+    private SoupaStarsCommentDBImpl cdao;
     
     
     @Inject
@@ -56,9 +59,6 @@ public class HomeController {
     public String displayHomePage(){
         return "home";
     }
-    
-   
-    
     
     // - Retrieve a Post by Id (GET)
 //        - /post/{postId}
@@ -100,8 +100,6 @@ public class HomeController {
 
         return "redirect:mainPage";
     }
-    
-    
     
 
 //- Delete a Post (DELETE)
@@ -151,7 +149,7 @@ public class HomeController {
 //- Create a Comment (POST)
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createComment(HttpServletRequest req) {
+    public void createComment(HttpServletRequest req, HttpServletResponse response) throws IOException {
         Comment comment = new Comment();
         Date date = new Date();
         SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm MMMM dd, yyyy");       
@@ -162,8 +160,8 @@ public class HomeController {
         comment.setText(req.getParameter("comment-body"));
         comment.setDate(dateString);
         int postID = Integer.parseInt(req.getParameter("postId"));
-        cdao.addComment(comment);
-        return "mainPage";
+        cdao.addComment(comment, postID);
+        response.sendRedirect("/SoupaStars/displayPost"+postID);
     }
 
 //- Delete a Comment (DELETE)

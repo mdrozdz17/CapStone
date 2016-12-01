@@ -95,7 +95,7 @@ function fillPostTable(postList, status) {
     clearPostTable();
     var postTable = $('#postRows');
     var sortedPosts = postList.sort(function(a,b){
-        return a.postId - b.postId;
+        return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
         postTable.append($('<tr>')
