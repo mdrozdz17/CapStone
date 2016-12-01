@@ -113,7 +113,8 @@
                             <div class="form-group">
                                 Username* <input id="username" name="username" required type="text">
                                 Email <input id="email" name="email" type="text"><br><br>
-                                <textarea id="comment-body" class="form-control" rows="3" type="text"></textarea>
+                                <textarea id="comment-body" name="comment-body" class="form-control" rows="3" type="text"></textarea>
+                                <input type="hidden" name="postId" id="postId">
                             </div>
                             <button id="submit-comment" type="submit" class="btn btn-primary">Submit</button>
                         </form>

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Comment;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -149,12 +151,19 @@ public class HomeController {
 //- Create a Comment (POST)
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment createComment(HttpServletRequest req) {
+    public String createComment(HttpServletRequest req) {
         Comment comment = new Comment();
+        Date date = new Date();
+        SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm MMMM dd, yyyy");       
+        String dateString = dateformat.format(date);
+       
         comment.setName(req.getParameter("username"));
         comment.setEmail(req.getParameter("email"));
+        comment.setText(req.getParameter("comment-body"));
+        comment.setDate(dateString);
+        int postID = Integer.parseInt(req.getParameter("postId"));
         cdao.addComment(comment);
-        return comment;
+        return "mainPage";
     }
 
 //- Delete a Comment (DELETE)

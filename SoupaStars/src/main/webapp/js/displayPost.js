@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var url = window.location.pathname;
+var urlSplit = url.split("displayPost");
+var id = urlSplit[1];
+
 $(document).ready(function () {
     loadPost();
 });
 
 function loadPost() {
-    var url = window.location.pathname;
-    var urlSplit = url.split("displayPost");
-    var id = urlSplit[1];
+   
+    
 
     $.ajax({
         url: 'post/' + id
@@ -29,6 +32,7 @@ function fillPostInfo(post, status) {
             + '<span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;'
             + '<span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + ' Comments </a>&nbsp;';
     document.getElementById("postBody").innerHTML = post.body;
+    document.getElementById("postId").value = id;
 }
 
 function fillTags(post, status) {
