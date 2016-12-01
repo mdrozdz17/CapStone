@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -117,11 +118,13 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         jdbcTemplate.update(SQL_DELETE_POST, postId);
     }
 
-//   add search term
-   // @Override
-  //  public List<Post> searchPosts(Map<SearchTerm, String> criteria) {
-  //      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   // }
+    @Override
+    public ArrayList<Post> searchPosts(String searchTerm) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        jdbcTemplate.
+    }
+
+
     
      private static final class PostMapper implements RowMapper<Post> {
 
