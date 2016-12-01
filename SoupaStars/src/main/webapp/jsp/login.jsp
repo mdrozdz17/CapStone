@@ -13,9 +13,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Soupa-Stars | Login</title>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
+        <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
     </head>
     <center>
         <body style ="background-color:powderblue;">
+            <div class="container">
+           <div class ="navbar-inverse">
+                <ul class ="nav nav-tabs">
+                    <li role="presentation">
+                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
+                    </li>
+                </ul>
+           </div>
         <div>
             <h2>Sign in to the Soupa-Stars Food Blog</h2>
             <!-- #1 - If login_error == 1 then there was a failed login attempt -->
@@ -54,6 +64,9 @@
                 </fieldset>
             </form>
         </div> 
+                     <!-- Placed at the end of the document so the pages load faster -->
+        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     </body>
     </center>
 </html>

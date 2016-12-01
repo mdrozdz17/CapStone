@@ -74,7 +74,7 @@ $(document).ready(function () {
             },
             'dataType': 'json'
         }).success(function () {
-            loadContacts();
+            loadPosts();
         });
     });
 
@@ -94,7 +94,10 @@ function loadPosts() {
 function fillPostTable(postList, status) {
     clearPostTable();
     var postTable = $('#postRows');
-    $.each(postList, function (arrayPosition, post) {
+    var sortedPosts = postList.sort(function(a,b){
+        return a.postId - b.postId;
+    });
+    $.each(sortedPosts, function (arrayPosition, post) {
         postTable.append($('<tr>')
                 .append($('<td>')
                         .append($('<h2>' + post.title + '</h2>\n\
@@ -108,8 +111,11 @@ function fillPostTable(postList, status) {
         var tags = "";
         for (var i = 0; i < post.tagList.length; i++) {
             tags = tags + "#" + post.tagList[i] + " ";
+
         }
-        postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
+
+        postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
+
     });
 }
 function fillAuthorTable(postList, status) {

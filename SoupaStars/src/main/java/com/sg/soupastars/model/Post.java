@@ -5,7 +5,16 @@
  */
 package com.sg.soupastars.model;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.sql.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 //import javax.persistence.Column;
 //import org.hibernate.search.annotations.Field;
 //import org.hibernate.search.annotations.Index;
@@ -17,18 +26,23 @@ import java.util.List;
  * @author apprentice
  */
 public class Post {
+   Calendar cal = Calendar.getInstance();
+   // Allows us to get current User logged in
+   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     public String title;
-    public int year;
-    public String month;
-    public int day;
+    public int year = LocalDate.now().getYear();
+    public String month = new SimpleDateFormat("MMMM").format(cal.getTime());
+    public int day = LocalDate.now().getDayOfMonth();
 //    @Column(name = "author", nullable = false, length = 25)
 //    @Field(index = Index.YES, analyze= Analyze.YES, store = Store.NO)
-    public String author;
+    public String author = authentication.getName();
     public int postId;
     public List<Comment> commentList;
     public String body;
     public String Category;
     public List<String> tagList;
+    private int tagId;
+
 
     /**
      * @return the title
@@ -47,15 +61,15 @@ public class Post {
     /**
      * @return the year
      */
-    public int getYear() {
-        return year;
+    public int getYear ()  {
+        return LocalDate.now().getYear();
     }
 
     /**
      * @param year the year to set
      */
     public void setYear(int year) {
-        this.year = year;
+        this.year = LocalDate.now().getYear();
     }
 
     /**
@@ -168,6 +182,14 @@ public class Post {
      */
     public void setTagList(List<String> tagList) {
         this.tagList = tagList;
+    }
+
+    public int getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
     }
     
 }

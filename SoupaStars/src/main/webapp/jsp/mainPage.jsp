@@ -23,10 +23,11 @@
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/home">Home</a>
+                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
                     </li>
+
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-6">
+                        <div class="col-md-4 col-md-offset-4">
                             <form action="" class="search-form">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>
@@ -35,8 +36,16 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </ul>   
+                    
+                        <li role ="presentation">
+                            <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
+                            <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
+                        <li>
+                      
+                    
+                    </div>   
+                </ul> 
+
             </div>
 
 
@@ -52,69 +61,72 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-                    <table id="postTable">
-                        <tablebody id="postRows"></tablebody>
-                    </table>
                     
+                    <div class = table-responsive" id="postTable">
+                        <table>
+                        <tbody id="postRows"></tbody>
+                    </table>
+                    </div>
+
                     <!-- First Blog Post -->
-<!--                    <h2>
-                        <a href="#">Blog Post Title</a>
-                    </h2>
-                    <p class="lead">
-                        by <a href="index.php">Start Bootstrap</a>
-                    </p>
-                    <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                        <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                        <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                        <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                    </p>
-                    <hr>
-                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                    <hr>
-
-                     Second Blog Post 
-                    <h2>
-                        <a href="#">Blog Post Title</a>
-                    </h2>
-                    <p class="lead">
-                        by <a href="index.php">Start Bootstrap</a>
-                    </p>
-                    <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                        <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                        <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                        <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                    </p>
-                    <hr>
-                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quasi, fugiat, asperiores harum voluptatum tenetur a possimus nesciunt quod accusamus saepe tempora ipsam distinctio minima dolorum perferendis labore impedit voluptates!</p>
-                    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                    <hr>
-
-                     Third Blog Post 
-                    <h2>
-                        <a href="#">Blog Post Title</a>
-                    </h2>
-                    <p class="lead">
-                        by <a href="index.php">Start Bootstrap</a>
-                    </p>
-                    <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                        <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                        <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                        <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                    </p>
-                    <hr>
-                    <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
-                    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                    <hr>-->
+                    <!--                    <h2>
+                                            <a href="#">Blog Post Title</a>
+                                        </h2>
+                                        <p class="lead">
+                                            by <a href="index.php">Start Bootstrap</a>
+                                        </p>
+                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
+                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
+                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
+                                        </p>
+                                        <hr>
+                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                                        <hr>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
+                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    
+                                        <hr>
+                    
+                                         Second Blog Post 
+                                        <h2>
+                                            <a href="#">Blog Post Title</a>
+                                        </h2>
+                                        <p class="lead">
+                                            by <a href="index.php">Start Bootstrap</a>
+                                        </p>
+                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
+                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
+                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
+                                        </p>
+                                        <hr>
+                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                                        <hr>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quasi, fugiat, asperiores harum voluptatum tenetur a possimus nesciunt quod accusamus saepe tempora ipsam distinctio minima dolorum perferendis labore impedit voluptates!</p>
+                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    
+                                        <hr>
+                    
+                                         Third Blog Post 
+                                        <h2>
+                                            <a href="#">Blog Post Title</a>
+                                        </h2>
+                                        <p class="lead">
+                                            by <a href="index.php">Start Bootstrap</a>
+                                        </p>
+                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
+                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
+                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
+                                        </p>
+                                        <hr>
+                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+                                        <hr>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
+                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    
+                                        <hr>-->
 
                     <!-- Pager -->
                     <ul class="pager">
@@ -155,18 +167,18 @@
                                 </table>
                             </div>
                             <!-- /.col-md-6 -->
-<!--                            <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                    <li><a href="#">Author</a>
-                                    </li>
-                                </ul>
-                            </div>-->
+                            <!--                            <div class="col-md-6">
+                                                            <ul class="list-unstyled">
+                                                                <li><a href="#">Author</a>
+                                                                </li>
+                                                                <li><a href="#">Author</a>
+                                                                </li>
+                                                                <li><a href="#">Author</a>
+                                                                </li>
+                                                                <li><a href="#">Author</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>-->
                             <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
@@ -192,7 +204,7 @@
                         <table id="tagTable">
                             <tablebody id="tagRows"></tablebody>
                         </table>
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
+                        <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
                     </div>
 
                 </div>
@@ -221,7 +233,8 @@
 
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/blogPost.js"></script>
+
+        <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
 
     </body>
 </html>

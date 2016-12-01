@@ -32,7 +32,7 @@
                       <li role="presentation">
                         <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a>
                     </li> 
-                    <li role ="presenation">
+                    <li role ="presentation">
                         <a href="${pageContext.request.contextPath}/login">Log In</a>
                     </li>
                         <div class="col-md-4 col-md-offset-5">

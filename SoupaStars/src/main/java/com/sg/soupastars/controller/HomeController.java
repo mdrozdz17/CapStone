@@ -22,6 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Comment;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -40,16 +46,18 @@ public class HomeController {
         this.pdao = pdao;
     }
     
-    @RequestMapping(value={"/","/home"}, method=RequestMethod.GET)
+       // Main  Page
+    @RequestMapping(value={"/mainPage","/"},method=RequestMethod.GET)
+    public String displayMainPage(){
+        return "mainPage";
+    }
+    
+    @RequestMapping(value={"/home"}, method=RequestMethod.GET)
     public String displayHomePage(){
         return "home";
     }
     
-      // Main  Page
-    @RequestMapping(value={"/mainPage"},method=RequestMethod.GET)
-    public String displayMainPage(){
-        return "mainPage";
-    }
+   
     
     
     // - Retrieve a Post by Id (GET)
@@ -71,6 +79,30 @@ public class HomeController {
         pdao.addPost(post);
         return post;
     }
+    
+        // Display New Blog Post Form
+    @RequestMapping(value = "displayBlogPostForm", method = RequestMethod.GET)
+    public String displayNewBlogForm(Model model) {
+        Post post = new Post();
+        model.addAttribute("post", post);
+
+        return "displayBlogPostForm";
+    }
+    
+    // Add a new Blog Post
+    @RequestMapping(value = "/addNewBlogPost", method = RequestMethod.POST)
+    public String addNewPost(HttpServletRequest req, @Valid @ModelAttribute("post") Post post, BindingResult result) throws IOException {
+
+        if (result.hasErrors()) {
+            return "displayBlogPostForm";
+        }
+        pdao.addPost(post);
+
+        return "redirect:mainPage";
+    }
+    
+    
+    
 
 //- Delete a Post (DELETE)
 //        - post/{postId}
@@ -98,13 +130,12 @@ public class HomeController {
         return pdao.getAllPosts();
     }
     
+
     
-    @RequestMapping(value = "/displayPost", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
     public String displayPost(Model model) throws FileNotFoundException {
         List<Post> allPost = pdao.getAllPosts();
-        model.addAttribute("post", allPost);
-
-        // return the logical view
+        model.addAttribute("posts", allPost);
         return "displayPost";
     }
     
@@ -120,10 +151,19 @@ public class HomeController {
 //- Create a Comment (POST)
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public Comment createComment(@Valid @RequestBody Comment comment) {
+    public String createComment(HttpServletRequest req) {
+        Comment comment = new Comment();
+        Date date = new Date();
+        SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm MMMM dd, yyyy");       
+        String dateString = dateformat.format(date);
+       
+        comment.setName(req.getParameter("username"));
+        comment.setEmail(req.getParameter("email"));
+        comment.setText(req.getParameter("comment-body"));
+        comment.setDate(dateString);
+        int postID = Integer.parseInt(req.getParameter("postId"));
         cdao.addComment(comment);
-        return comment;
+        return "mainPage";
     }
 
 //- Delete a Comment (DELETE)
