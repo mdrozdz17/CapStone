@@ -138,8 +138,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
 
     @Override
     public ArrayList<Post> searchPosts(String searchTerm) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        jdbcTemplate.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //   jdbcTemplate.
     }
 
 
