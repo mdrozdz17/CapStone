@@ -17,6 +17,11 @@ public interface SoupaStarsPostDao {
     
     public Post addPost(Post post);
     
+    public Post addTag(Post post);
+    
+    
+    public List<Post> read(Integer postId);
+    
     public Post getPostById(int PostId);
     
     public List<Post> getAllPostsByTitle(String titleToSearch);
