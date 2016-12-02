@@ -25,37 +25,37 @@ import static org.junit.Assert.assertNull;
  */
 public class SoupaStarsCommentDBImplTest {
  
- private SoupaStarsCommentDao dao;
+ //private SoupaStarsCommentDao dao;
     
-    public SoupaStarsCommentDBImplTest(){
+   // public SoupaStarsCommentDBImplTest(){
         
         
    }
-    
-    @BeforeClass
-    public static void setUpClass(){
-        
-    }
-    
-    @AfterClass
-    public static void tearDownClass(){
-        
-    }
-    
-    @Before
-    public void setup(){
-        
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-        dao = (SoupaStarsCommentDao) ctx.getBean("SoupaStarsCommentDBImpl");
-    
-        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-     }
-    
-    @After
-    public void tearDown(){
-        
-    }
-    
+
+//    @BeforeClass
+//    public static void setUpClass(){
+//        
+//    }
+//    
+//    @AfterClass
+//    public static void tearDownClass(){
+//        
+//    }
+//    
+//    @Before
+//    public void setup(){
+//        
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+//        dao = (SoupaStarsCommentDao) ctx.getBean("SoupaStarsCommentDBImpl");
+//    
+//        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+//     }
+//    
+//    @After
+//    public void tearDown(){
+//        
+//    }
+//    
 //    @Test
 //    public void addGetDeleteComment(){
 //       Comment nc = new Comment();
@@ -73,4 +73,4 @@ public class SoupaStarsCommentDBImplTest {
 //        dao.removeComment(nc.getCommentId());
 //       assertNull(dao.getCommentById(nc.getCommentId()));
 //   }
-    }
+//    }

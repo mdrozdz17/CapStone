@@ -136,11 +136,19 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         jdbcTemplate.update(SQL_DELETE_POST, postId);
     }
 
+
+  //  @Override
+  //  public ArrayList<Post> searchPosts(String searchTerm) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        jdbcTemplate.
+  //  }
+
     @Override
     public ArrayList<Post> searchPosts(String searchTerm) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //   jdbcTemplate.
     }
+
 
 
     
