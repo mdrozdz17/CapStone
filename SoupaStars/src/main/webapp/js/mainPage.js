@@ -82,7 +82,9 @@ $(document).ready(function () {
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
-        url: 'post'
+        url: 'post',
+        contentType: "application/json",
+        dataType: "json"
     }).success(function (data, status) {
         fillPostTable(data, status);
         fillAuthorTable(data, status);
