@@ -125,6 +125,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
                                 <sf:hidden path="postId" />
+                                
                                 <button type="submit" id="add-button"
                                         class="btn btn-primary">Add New Post</button>
                             </div>

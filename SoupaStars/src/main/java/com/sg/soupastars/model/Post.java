@@ -39,7 +39,7 @@ public class Post {
     public String body;
     public String Category;
     public List<String> tagList;
-    private int tagId;
+    public int[] tagId;
 
 
     /**
@@ -182,12 +182,13 @@ public class Post {
         this.tagList = tagList;
     }
 
-    public int getTagId() {
+    public int[] getTagId() {
         return tagId;
     }
 
-    public void setTagId(int tagId) {
+    public void setTagId(int[] tagId) {
         this.tagId = tagId;
     }
+
     
 }
