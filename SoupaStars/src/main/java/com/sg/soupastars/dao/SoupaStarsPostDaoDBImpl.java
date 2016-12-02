@@ -80,7 +80,6 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
                 ps.setString(1, tagList.get(i)); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
                 // NOTE: This handles the iteration for us - we don't need to do it manually
             }
-
             @Override
             public int getBatchSize() {
                 return tagList.size();
