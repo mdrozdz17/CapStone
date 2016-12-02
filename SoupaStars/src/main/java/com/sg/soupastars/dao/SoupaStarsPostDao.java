@@ -8,7 +8,6 @@ package com.sg.soupastars.dao;
 import com.sg.soupastars.model.Post;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *

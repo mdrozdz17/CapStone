@@ -7,6 +7,7 @@ package com.sg.soupastars.dao;
 
 import com.sg.soupastars.model.Comment;
 import com.sg.soupastars.model.Post;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_TAGS_BY_POSTID = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTIDS_BY_POSTID = "select CommentID from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
-
+    private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
     private JdbcTemplate jdbcTemplate;
@@ -138,8 +139,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
 
     @Override
     public ArrayList<Post> searchPosts(String searchTerm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //   jdbcTemplate.
+//       PreparedStatement ps = jdbcTemplate.prepareStatement("");
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
