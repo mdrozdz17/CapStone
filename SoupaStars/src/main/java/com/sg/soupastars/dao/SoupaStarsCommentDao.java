@@ -18,7 +18,7 @@ public interface SoupaStarsCommentDao {
     
     public Comment getCommentById(int commentId);
 
-    public void removeComment(int commentId);
+    public int removeComment(int commentId);
     
     public void updateComment(Comment comment);
     

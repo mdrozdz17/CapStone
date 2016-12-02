@@ -10,10 +10,6 @@ import com.sg.soupastars.model.Post;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
@@ -40,6 +36,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_TAGS_BY_POSTID = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTIDS_BY_POSTID = "select CommentID from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
+    private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
     private static final String SQL_INSERT_POSTS_TAGS = "insert into posts_tags (PostID, TagID) values(?, ?)";
 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
@@ -55,7 +52,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Post addPost(Post post) {
+    public Post addPost(Post post) {  
         jdbcTemplate.update(SQL_INSERT_POST,
         post.getTitle(),
         post.getYear(),
@@ -152,18 +149,17 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     }
 
 
-  //  @Override
-  //  public ArrayList<Post> searchPosts(String searchTerm) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//        jdbcTemplate.
-  //  }
-
     @Override
-    public ArrayList<Post> searchPosts(String searchTerm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    //   jdbcTemplate.
+    public List<Post> searchPosts(String searchTerm) {
+        searchTerm = "%" + searchTerm + "%";
+        List<Post> list;
+        try {
+             return list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
+        } catch (EmptyResultDataAccessException ex){
+            return null;
+        }            
+          
     }
-
 
 
     
