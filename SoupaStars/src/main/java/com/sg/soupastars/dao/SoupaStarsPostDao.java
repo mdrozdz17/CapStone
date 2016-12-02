@@ -16,10 +16,7 @@ import java.util.List;
 public interface SoupaStarsPostDao {
     
     public Post addPost(Post post);
-    
-    public Post addTag(Post post);
-    
-    
+     
     public List<Post> read(Integer postId);
     
     public Post getPostById(int PostId);
@@ -28,7 +25,7 @@ public interface SoupaStarsPostDao {
     
     public List<Post> getAllPosts();
     
-    public ArrayList<Post> searchPosts(String searchTerm);
+    public List<Post> searchPosts(String searchTerm);
     
     public void updatePost(Post post);
     

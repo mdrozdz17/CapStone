@@ -41,12 +41,13 @@ public class HomeController {
     
     private SoupaStarsPostDao pdao;
      
-    private SoupaStarsCommentDBImpl cdao;
+    private SoupaStarsCommentDao cdao;
     
     
     @Inject
-    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cDao){
+    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao){
         this.pdao = pdao;
+        this.cdao = cdao;
     }
     
        // Main  Page
@@ -165,9 +166,9 @@ public class HomeController {
     }
 
 //- Delete a Comment (DELETE)
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteComment/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable("id") int id) {
+    public void deleteComment(@PathVariable("id") int id,HttpServletResponse response) {
         cdao.removeComment(id);
     }
 

@@ -10,12 +10,9 @@ import com.sg.soupastars.model.Post;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,6 +37,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_COMMENTIDS_BY_POSTID = "select CommentID from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
+    private static final String SQL_INSERT_POSTS_TAGS = "insert into posts_tags (PostID, TagID) values(?, ?)";
 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
     private JdbcTemplate jdbcTemplate;
@@ -64,18 +62,31 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getBody(),
         post.getCategory());
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
+         insertPostTags(post);
         return post;
+        
     }
     
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED)
-    public Post addTag(Post post) {
-        jdbcTemplate.update(SQL_INSERT_TAG,
-         post.getTagList());
-        post.setTagId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
-        return post;
-    }
     
+        private void insertPostTags(Post post) {
+        final int postId = post.getPostId(); // Assume for talking that we have a Book (bookId = 1) 
+        final int[] tagId = post.getTagId(); // with 2 authors (Author Ids: [1,2])
+        // use the batchUpdate so we only make one call to the database
+        jdbcTemplate.batchUpdate(SQL_INSERT_POSTS_TAGS, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                // For reference:  "insert into books_authors (book_id, author_id) values(?, ?)";
+                ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
+                ps.setInt(2, tagId[i]); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
+                // NOTE: This handles the iteration for us - we don't need to do it manually
+            }
+
+            @Override
+            public int getBatchSize() {
+                return tagId.length;
+            }
+        });
+    }
  
 
     @Override
@@ -137,10 +148,17 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         jdbcTemplate.update(SQL_DELETE_POST, postId);
     }
 
+
     @Override
-    public ArrayList<Post> searchPosts(String searchTerm) {
-//       PreparedStatement ps = jdbcTemplate.prepareStatement("");
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Post> searchPosts(String searchTerm) {
+        searchTerm = "%" + searchTerm + "%";
+        List<Post> list;
+        try {
+             return list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
+        } catch (EmptyResultDataAccessException ex){
+            return null;
+        }            
+          
     }
 
 
