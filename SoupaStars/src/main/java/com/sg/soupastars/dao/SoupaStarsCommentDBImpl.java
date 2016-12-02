@@ -26,6 +26,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
     private static final String SQL_SELECT_ALL_COMMENT = "select * from Comments";
     private static final String SQL_INSERT_POSTID = "insert into PostComment (PostID, CommentID) values (?, ?)";
     private static final String SQL_DELETE_COMMENT_FROM_POSTCOMMENT = "delete from PostComment where CommentID = ?";
+    private static final String SQL_SELECT_POSTID_FROM_POSTCOMMENT = "select PostID from PostComment where CommentID = ?";
     
     private JdbcTemplate jdbcTemplate;
 
@@ -60,10 +61,11 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
     }
 
     @Override
-    public void removeComment(int commentId) {
-        
+    public int removeComment(int commentId) {
+        int postId = jdbcTemplate.queryForObject(SQL_SELECT_POSTID_FROM_POSTCOMMENT, Integer.class, commentId );
         jdbcTemplate.update(SQL_DELETE_COMMENT_FROM_POSTCOMMENT, commentId);
         jdbcTemplate.update(SQL_DELETE_COMMENT, commentId);
+        return postId;
     }
 
     @Override

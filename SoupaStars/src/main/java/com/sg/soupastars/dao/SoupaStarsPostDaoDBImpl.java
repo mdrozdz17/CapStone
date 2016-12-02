@@ -55,7 +55,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Post addPost(Post post) {
+    public Post addPost(Post post) {  
         jdbcTemplate.update(SQL_INSERT_POST,
         post.getTitle(),
         post.getYear(),

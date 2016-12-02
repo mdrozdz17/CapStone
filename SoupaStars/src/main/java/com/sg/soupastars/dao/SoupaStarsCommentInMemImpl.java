@@ -25,7 +25,7 @@ public class SoupaStarsCommentInMemImpl implements SoupaStarsCommentDao {
     }
 
     @Override
-    public void removeComment(int commentId) {
+    public int removeComment(int commentId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
