@@ -8,7 +8,6 @@ package com.sg.soupastars.dao;
 import com.sg.soupastars.model.Post;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -26,7 +25,7 @@ public interface SoupaStarsPostDao {
     
     public List<Post> getAllPosts();
     
-    public ArrayList<Post> searchPosts(String searchTerm);
+    public List<Post> searchPosts(String searchTerm);
     
     public void updatePost(Post post);
     

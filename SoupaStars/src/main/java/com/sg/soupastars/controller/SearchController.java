@@ -34,6 +34,8 @@ public class SearchController {
         return "search";
     }
     
+    
+    
 //    @RequestMapping(value = "search/posts", method = RequestMethod.POST)
 //    @ResponseBody
 //    public List<Post> searchPost(@RequestBody Map<String, String> searchMap){
