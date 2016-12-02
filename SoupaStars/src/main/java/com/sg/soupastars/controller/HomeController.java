@@ -41,12 +41,13 @@ public class HomeController {
     
     private SoupaStarsPostDao pdao;
      
-    private SoupaStarsCommentDBImpl cdao;
+    private SoupaStarsCommentDao cdao;
     
     
     @Inject
-    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cDao){
+    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao){
         this.pdao = pdao;
+        this.cdao = cdao;
     }
     
        // Main  Page

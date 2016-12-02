@@ -46,11 +46,10 @@
     <bean id="SoupaStarsPostDao"
             class="com.sg.soupastars.dao.SoupaStarsPostDaoDBImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate" /> 
-      <!--  <constructor-arg ref = "jdbcTemplate" /> -->
-    </bean>
+    </bean>  
     <bean id="SoupaStarsCommentDao"
             class="com.sg.soupastars.dao.SoupaStarsCommentDBImpl">
-      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+      <property name="jdbcTemplate" ref="jdbcTemplate" />
     </bean>
     <bean id="SoupaStarsUserDao"
             class="com.sg.soupastars.dao.SoupaStarsUserDaoDBImpl">
@@ -58,7 +57,7 @@
     </bean>
     <bean id="SoupaStarsStaticDao"
             class="com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl">
-      <!--  <property name="jdbcTemplate" ref="jdbcTemplate" /> -->
+      <property name="jdbcTemplate" ref="jdbcTemplate" /> 
     </bean>
 </beans>
 
