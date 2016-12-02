@@ -73,20 +73,20 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     
         private void insertPostTags(Post post) {
         final int postId = post.getPostId(); // Assume for talking that we have a Book (bookId = 1) 
-        final int[] tagId = post.getTagId(); // with 2 authors (Author Ids: [1,2])
+        final List<String> tagList = post.getTagList(); // with 2 authors (Author Ids: [1,2])
         // use the batchUpdate so we only make one call to the database
-        jdbcTemplate.batchUpdate(SQL_INSERT_POSTS_TAGS, new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate(SQL_INSERT_TAG, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 // For reference:  "insert into books_authors (book_id, author_id) values(?, ?)";
-                ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
-                ps.setInt(2, tagId[i]); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
+              //  ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
+                ps.setString(1, tagList.get(i)); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
                 // NOTE: This handles the iteration for us - we don't need to do it manually
             }
 
             @Override
             public int getBatchSize() {
-                return tagId.length;
+                return tagList.size();
             }
         });
     }
