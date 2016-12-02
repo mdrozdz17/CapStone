@@ -166,9 +166,9 @@ public class HomeController {
     }
 
 //- Delete a Comment (DELETE)
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteComment/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable("id") int id) {
+    public void deleteComment(@PathVariable("id") int id,HttpServletResponse response) {
         cdao.removeComment(id);
     }
 
