@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-<!--        <script>tinymce.init({
+        <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
                     "paste",
@@ -36,7 +36,7 @@
 
 
             });
-        </script>-->
+        </script>
 
 
 

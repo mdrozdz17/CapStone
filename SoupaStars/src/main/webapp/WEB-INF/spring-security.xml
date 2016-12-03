@@ -34,11 +34,14 @@
         <!-- #3c - Redirect here if login fails -->
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
-                    authentication-failure-url="/login?login_error=1"/>
+                    authentication-failure-url="/login?login_error=1"
+        <!-- This fixed issue where login was taking us to /post instead of /mainPage -->
+                    always-use-default-target="true"/>
         <!-- #3d - Go back to home page when user logs out -->
         <logout logout-success-url="/login" />
         <!-- #3e - Access to these endpoints require admin role -->
         
+       
         <intercept-url pattern="/displayStaticPage" access="ROLE_ADMIN" />
          <intercept-url pattern="/addNewBlogPost" access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/edit" access="ROLE_ADMIN" />
