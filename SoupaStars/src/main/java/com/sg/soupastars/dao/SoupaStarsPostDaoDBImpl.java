@@ -28,8 +28,9 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
     private static final String SQL_DELETE_POST = "delete from Post where PostID = ?";
     private static final String SQL_INSERT_TAG = "insert into Tag (TagBody) values (?)";
-    private static final String SQL_SELECT_POSTTAG = "insert into PostTag (PostId, TagId) values (?,?)";
+    private static final String SQL_SELECT_POSTTAG = "insert into PostTag (PostID, TagID) values (?,?)";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
+    private static final String SQL_SELECT_TAG = "select * from Post where TagID =  ?";
     private static final String SQL_UPDATE_POST = "update Post set Title = ?, PostYear = ?, PostMonth = ?, PostDay = ?, Author = ? , PostBody = ?, Category = ? where PostID = ?";
     private static final String SQL_SELECT_ALL_POSTS = "select * from Post";
     private static final String SQL_SELECT_POSTS_BY_TITLE = "select * from Post where Title = ?";
@@ -37,8 +38,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     private static final String SQL_SELECT_COMMENTIDS_BY_POSTID = "select CommentID from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_COMMENTS_BY_POSTID = "select * from PostComment join Comments using (CommentID) where PostID = ?";
     private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
-    private static final String SQL_INSERT_POSTS_TAGS = "insert into posts_tags (PostID, TagID) values(?, ?)";
+    private static final String SQL_INSERT_POSTS_TAGS = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
 
+    private static final String SQL_SELECT_TAGS_BY_POST = "select p.PostID, p.Title, p.PostYear, p.PostMonth, p.PostDay, p.Author, p.PostBody, p.Category \n" +
+"from Post p join PostTag on p.PostID = PostTag.PostID where PostTag.TagID = ?"; 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
     private JdbcTemplate jdbcTemplate;
     // #2b - We are using Setter Injection to direct Spring to hand us an instance of
@@ -53,7 +56,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Post addPost(Post post) {  
-        jdbcTemplate.update(SQL_INSERT_POST,
+        jdbcTemplate.update(SQL_INSERT_POST, 
         post.getTitle(),
         post.getYear(),
         post.getMonth(),
@@ -61,8 +64,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getAuthor(),
         post.getBody(),
         post.getCategory());
+        insertPostTags(post);
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
-         insertPostTags(post);
+        
+         
         return post;
         
     }
@@ -76,7 +81,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 // For reference:  "insert into books_authors (book_id, author_id) values(?, ?)";
-              //  ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
+                // ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
                 ps.setString(1, tagList.get(i)); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
                 // NOTE: This handles the iteration for us - we don't need to do it manually
             }

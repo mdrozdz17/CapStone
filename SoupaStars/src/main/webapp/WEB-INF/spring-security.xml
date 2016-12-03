@@ -22,7 +22,7 @@
     <http pattern="/mainPage" security="none" />
     <http pattern="/login" security="none" />
     <http pattern="/home" security="none" />
-    <http pattern="/displayPost" security="none" />
+    <http pattern="/displayPost/**" security="none" />
     <http pattern="/" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
@@ -40,12 +40,12 @@
         <!-- #3e - Access to these endpoints require admin role -->
         
         <intercept-url pattern="/displayStaticPage" access="ROLE_ADMIN" />
-         <intercept-url pattern="/addNewBlogPost" access="ROLE_ADMIN" />
+         <intercept-url pattern="/addNewBlogPost" access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/edit" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/post" access="ROLE_ADMIN" />
-        <intercept-url pattern="/post/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/post" access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/post/**" access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/displayUserForm" access="ROLE_ADMIN" />
         <intercept-url pattern="/addUser" access="ROLE_ADMIN" />
         <intercept-url pattern="/deleteUser" access="ROLE_ADMIN" />

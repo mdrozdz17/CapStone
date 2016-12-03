@@ -23,7 +23,7 @@
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
+                        <a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
 
                     <div class="row">

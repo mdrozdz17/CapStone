@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(document).ready(function () {
+$(function(){
+    
     loadPosts();
     
 });
@@ -58,8 +59,9 @@ $(document).ready(function () {
         event.preventDefault();
         // update our post via AJAX
         $.ajax({
+          
             type: 'PUT',
-            url: 'post/' + $('#edit-post-id').val(),
+            url: 'post' + $('#edit-post-id').val(),
             data: JSON.stringify({
                 postId: $('#edit-post-id').val(),
                 title: $('#edit-title').val(),
@@ -83,8 +85,9 @@ function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
         url: 'post',
-        contentType: "application/json",
-        dataType: "json"
+        cache: false,
+        contentType: 'application/json',
+        dataType: 'json'
     }).success(function (data, status) {
         fillPostTable(data, status);
         fillAuthorTable(data, status);
