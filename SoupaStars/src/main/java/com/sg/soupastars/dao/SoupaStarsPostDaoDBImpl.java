@@ -71,15 +71,13 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     }
    
     private void insertPostTags(Post post) {
-        int postId = post.getPostId(); // Assume for talking that we have a Book (bookId = 1) 
-        List<String> tagList = post.getTagList(); // with 2 authors (Author Ids: [1,2])
-        // use the batchUpdate so we only make one call to the database
+        int postId = post.getPostId();
+        List<String> tagList = post.getTagList(); 
         
         for (String tag : tagList) {
             jdbcTemplate.update(SQL_INSERT_TAG, tag);
      
             int tagId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-            
             
             jdbcTemplate.update(SQL_INSERT_POSTTAG,postId, tagId);
         }
