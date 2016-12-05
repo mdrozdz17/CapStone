@@ -26,12 +26,21 @@ public class SoupaStarsPostDaoDBImplTest {
 
 }
     
+
+  //private SoupaStarsPostDao dao;
+    
+  // public SoupaStarsPostDaoDBImplTest(){
+        
+    //}
+    
+
 //  private SoupaStarsPostDao dao;
 //    
 //   public SoupaStarsPostDaoDBImplTest(){
 //        
 //    }
 //    
+
 //    @BeforeClass
 //    public static void setUpClass(){
 //        

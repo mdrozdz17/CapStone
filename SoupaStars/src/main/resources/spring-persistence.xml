@@ -57,7 +57,7 @@
     </bean>
     <bean id="SoupaStarsStaticPageDao"
             class="com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl">
-      <property name="jdbcTemplate" ref="jdbcTemplate" /> 
+      <constructor-arg ref="jdbcTemplate" />
     </bean>
 </beans>
 

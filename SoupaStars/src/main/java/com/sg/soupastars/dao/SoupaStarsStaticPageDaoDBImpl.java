@@ -28,6 +28,9 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     private static final String SQL_SELECT_ALL_STATICPAGE = "SELECT * FROM static_page";
 
     private JdbcTemplate jdbcTemplate;
+
+       
+
    
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

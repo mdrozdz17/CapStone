@@ -54,6 +54,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
+
     public Post addPost(Post post) {
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getTitle(),
@@ -62,10 +63,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
                 post.getDay(),
                 post.getAuthor(),
                 post.getBody(),
-                post.getCategory());
-        
+                post.getCategory());    
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         insertPostTags(post);
+
         return post;
 
     }
@@ -73,7 +74,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     private void insertPostTags(Post post) {
         int postId = post.getPostId();
         List<String> tagList = post.getTagList(); 
-        
+
         for (String tag : tagList) {
             jdbcTemplate.update(SQL_INSERT_TAG, tag);
      
@@ -81,6 +82,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
             
             jdbcTemplate.update(SQL_INSERT_POSTTAG,postId, tagId);
         }
+
     }
 
     @Override
