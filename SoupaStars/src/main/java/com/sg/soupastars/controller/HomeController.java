@@ -103,12 +103,10 @@ public class HomeController {
     }
     
         // Delete a  Blog Post
-    @RequestMapping(value = "/deleteBlogPost", method = RequestMethod.GET)
-    public String deletePost(HttpServletRequest req) {
-        // Get the id of the DVD
-        int Id = Integer.parseInt(req.getParameter("Id"));
+    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.GET)
+    public String deletePost(@PathVariable("id") int id) {
         // DAO to delete the DVD
-        pdao.removePost(Id);
+        pdao.removePost(id);
         // Refresh the DVD list
         return "redirect:mainPage";
     }
@@ -142,14 +140,14 @@ public class HomeController {
     }
     
 
-//- Delete a Post (DELETE)
-//        - post/{postId}
-//        - Note: No RequestBody, no ResponseBody
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePost(@PathVariable("id") int id) {
-        pdao.removePost(id);
-    }
+////- Delete a Post (DELETE)
+////        - post/{postId}
+////        - Note: No RequestBody, no ResponseBody
+//    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void deletePost(@PathVariable("id") int id) {
+//        pdao.removePost(id);
+//    }
 
 //- Update a Post (PUT)
 //        - post/{postId}
