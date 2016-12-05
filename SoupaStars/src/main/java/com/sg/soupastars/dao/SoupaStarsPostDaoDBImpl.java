@@ -27,7 +27,9 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
 
     private static final String SQL_INSERT_POST = "insert into Post (Title, PostYear, PostMonth, PostDay, Author, PostBody, Category) values (?,?,?,?,?,?,?)";
     private static final String SQL_DELETE_POST = "delete from Post where PostID = ?";
+    private static final String SQL_DELETE_TAG = "delete from Tag where TagID = ?";
     private static final String SQL_INSERT_TAG = "insert into Tag (TagBody) values (?)";
+    private static final String SQL_GET_TAGIDS_BY_POSTID = "select TagID from PostTag where PostID = ?";
     private static final String SQL_INSERT_POSTTAG = "insert into PostTag (PostID, TagID) values (?,?)";
     private static final String SQL_SELECT_POST = "select * from Post where PostID =  ?";
     private static final String SQL_SELECT_TAG = "select * from Post where TagID =  ?";
@@ -144,6 +146,10 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     @Override
     public void removePost(int postId) {
         jdbcTemplate.update(SQL_DELETE_POST, postId);
+        List <Integer> tagIds = jdbcTemplate.query(SQL_GET_TAGIDS_BY_POSTID, new TagIDMapper(), postId);
+        for (int id : tagIds){
+        jdbcTemplate.update(SQL_DELETE_TAG, id);
+        }
     }
 
     @Override
@@ -184,6 +190,15 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
         public String mapRow(ResultSet rs, int i) throws SQLException {
             String tagText = rs.getString("TagBody");
             return tagText;
+        }
+    }
+    
+    private static final class TagIDMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet rs, int i) throws SQLException {
+            Integer tagId = Integer.parseInt(rs.getString("TagID"));
+            return tagId;
         }
     }
 

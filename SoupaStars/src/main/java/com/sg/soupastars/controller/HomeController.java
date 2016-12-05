@@ -112,7 +112,7 @@ public class HomeController {
     }
     
      // Edit a Post
-    @RequestMapping(value = "/editBlogPost", method = RequestMethod.POST)
+    @RequestMapping(value = "/editBlogPost{id}", method = RequestMethod.POST)
     public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
         // If there are errors, display the form with those error messages
         if (result.hasErrors()) {
