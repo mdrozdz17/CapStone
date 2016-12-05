@@ -14,7 +14,7 @@ $(function(){
         // need to submit this via AJAX
         $.ajax({
             type: 'POST',
-            url: 'post',
+            url: 'post/',
             // make the JSON contact
             data: JSON.stringify({
                 title: $('#add-title').val(),
@@ -58,10 +58,11 @@ $(function(){
     $('#edit-button').click(function (event) {
         event.preventDefault();
         // update our post via AJAX
+        
         $.ajax({
           
             type: 'PUT',
-            url: 'post' + $('#edit-post-id').val(),
+            url: 'post/' + $('#edit-post-id').val(),
             data: JSON.stringify({
                 postId: $('#edit-post-id').val(),
                 title: $('#edit-title').val(),
@@ -84,7 +85,7 @@ $(function(){
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
-        url: 'post',
+        url: 'post/',
         cache: false,
         contentType: 'application/json',
         dataType: 'json'
@@ -118,10 +119,17 @@ function fillPostTable(postList, status) {
             tags = tags + "#" + post.tagList[i] + " ";
 
         }
+<<<<<<< HEAD
+        
+        postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '"> Read More <span class="glyphicon glyphicon-chevron-right"></span></a>')); 
+        postTable.append($('< <a class="btn btn-primary" href="displayPost' + post.postId + '"> Edit <span class="glyphicon glyphicon"> </span> </a>')); 
+        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '"> Delete <span class="glyphicon glyphicon"> </span> </a>')); 
+=======
 
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
         postTable.append($('<a class="btn btn-primary" href="editBlogPost' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
         postTable.append($('<a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
+>>>>>>> 945c21a3520d97eb49c70b9b5216b90d321a7489
     });
 }
 function fillAuthorTable(postList, status) {
