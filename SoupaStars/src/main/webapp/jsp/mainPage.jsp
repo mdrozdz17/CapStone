@@ -71,7 +71,7 @@
                    
                     <div class = table-responsive" id="postTable">
                         <table>
-                        <tbody id="postRows"></tbody>
+                            <tbody id="postRows"></tbody>
                    
 
                     </table>
