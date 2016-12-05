@@ -6,28 +6,23 @@
 package com.sg.soupastars.controller;
 
 import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
-import com.sg.soupastars.model.Comment;
-import com.sg.soupastars.model.Post;
 import com.sg.soupastars.model.StaticPage;
-import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
-import javax.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  *
  * @author apprentice
  */
 @Controller
+@RequestMapping(value = "/staticpage")
 public class StaticPageController {
     
     private SoupaStarsStaticPageDao dao;
@@ -37,51 +32,92 @@ public class StaticPageController {
         this.dao=dao;
     }
     
-       // - Retrieve a StaticPage by Id (GET)
-    @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public StaticPage getStaticPage (@PathVariable("id") int id) {
-        return dao.getStaticPageById(id);
+   @RequestMapping(value = "", method = RequestMethod.GET)
+    public String home(Map model) {
+
+        List<StaticPage> pages = dao.listAll();
+
+        model.put("staticPage", new StaticPage());
+        model.put("staticPageList", pages);
+
+        return "adminStaticPageHome";
     }
 
-//- Create a StaticPage (POST)
-    @RequestMapping(value = "/staticPage", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "show/{id}", method = RequestMethod.GET)
+    public String show(@PathVariable("id") Integer staticPageId, Map Model) {
+
+        StaticPage staticPage = dao.read(staticPageId);
+
+        Model.put("page", staticPage);
+
+        return "adminShowStaticPage";
+
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+    public String getToUpdate(@PathVariable("id") Integer pageId, Map model) {
+
+        StaticPage page = dao.read(pageId);
+
+        model.put("page", page);
+
+        return "adminStaticPageUpdate";
+
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public StaticPage createStaticPage(@Valid @RequestBody StaticPage staticPage) {
-        dao.addStaticPage(staticPage);
+    public StaticPage editSubmit(@RequestBody StaticPage staticPage) {
+
+        dao.update(staticPage);
+
         return staticPage;
+
     }
 
-//- Delete a StaticPage (DELETE)
-    @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteStaticPage(@PathVariable("id") int id) {
-        dao.removeStaticPage(id);
+
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    public StaticPage create(@RequestBody StaticPage staticPage) {
+
+
+        //staticPage.setActive(true);
+
+        StaticPage s = dao.create(staticPage);
+
+        return s;
+
     }
 
-//- Update a StaticPage (PUT)
-    @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateStaticPage(@PathVariable("id") int id, @Valid @RequestBody StaticPage staticPage) {
-        staticPage.setStaticId(id);
-        dao.updateStaticPage(staticPage);
-    }
-    
-//- Retrieve ALL StaticPages (GET)
-    @RequestMapping(value="/staticPage", method=RequestMethod.GET)
-    @ResponseBody public List<StaticPage> getAllStaticPages(){
-        return dao.getAllStaticPages();
-    }
-    
-    
-    @RequestMapping(value = "/displayStaticPage", method = RequestMethod.GET)
-    public String displayStaticPage(Model model) throws FileNotFoundException {
-        List<StaticPage> allStaticPages = dao.getAllStaticPages();
-        model.addAttribute("staticPage", allStaticPages);
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public StaticPage delete(@PathVariable("id") Integer staticPostId) {
 
-        // return the logical view
-        return "displayStaticPage";
+        StaticPage staticPage = dao.read(staticPostId);
+
+        return staticPage;
+
     }
-    
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void confirmDelete(@RequestBody StaticPage staticPage) {
+
+        dao.delete(staticPage);
+
+    }
+
+    /////////we need a post to web method for static pages!!!!!!!!!!!//////
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String userGoToStaticPAges(Map model) {
+
+        List<StaticPage> pages = dao.listActivePages();
+
+        model.put("staticPage", new StaticPage());
+        model.put("staticPageList", pages);
+
+        return "userStaticPageHome";
+    }
 }

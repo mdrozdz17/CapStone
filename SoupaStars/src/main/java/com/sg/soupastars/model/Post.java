@@ -10,16 +10,11 @@ import java.sql.Date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-//import javax.persistence.Column;
-//import org.hibernate.search.annotations.Field;
-//import org.hibernate.search.annotations.Index;
-//import org.hibernate.search.annotations.Analyze;
-//import org.hibernate.search.annotations.Store;
+
 
 /**
  *

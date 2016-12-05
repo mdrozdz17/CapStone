@@ -3,10 +3,11 @@
     Created on : Nov 15, 2016, 1:46:42 PM
     Author     : apprentice
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix ="s" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,9 @@
         <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
+        
     <body style ="background-color:buttonhighlight;">
+
         <div class="container">
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
@@ -62,78 +65,16 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-                    
+        
+                   
                     <div class = table-responsive" id="postTable">
                         <table>
                         <tbody id="postRows"></tbody>
+                   
+
                     </table>
                     </div>
-
-                    First Blog Post 
-                                       <h2>
-                                            <a href="#">Blog Post Title</a>
-                                        </h2>
-                                        <p class="lead">
-                                            by <a href="index.php">Start Bootstrap</a>
-                                        </p>
-                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                                        </p>
-                                        <hr>
-                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                                        <hr>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
-                                        
-                                            <hr>
-                    
-                   Second Blog Post
-                                         
-                                        <h2>
-                                             
-                                            <a href="#">Blog Post Title</a>
-                                        </h2>
-                                        <p class="lead">
-                                            by <a href="index.php">Start Bootstrap</a>
-                                        </p>
-                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                                        </p>
-                                        <hr>
-                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                                        <hr>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quasi, fugiat, asperiores harum voluptatum tenetur a possimus nesciunt quod accusamus saepe tempora ipsam distinctio minima dolorum perferendis labore impedit voluptates!</p>
-                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
-                                        <hr>
-                    
-                                         Third Blog Post 
-                                        <h2>
-                                            <a href="#">Blog Post Title</a>
-                                        </h2>
-                                        <p class="lead">
-                                            by <a href="index.php">Start Bootstrap</a>
-                                        </p>
-                                        <p><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                                            <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                                            <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                                            <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                                        </p>
-                                        <hr>
-                                        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
-                                        <hr>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
-                                        <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
-                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
-                                        <hr>-->
+                        
 
                     <!-- Pager -->
                     <ul class="pager">

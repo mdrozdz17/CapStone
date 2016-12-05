@@ -14,19 +14,18 @@ import java.util.List;
  */
 public interface SoupaStarsStaticPageDao {
     
-    public StaticPage addStaticPage(StaticPage staticPage);
+StaticPage create(StaticPage staticPage);
 
-    public StaticPage getStaticPageById(int staticPageId);
+    StaticPage read(Integer id);
 
-    public void updateStaticPage(StaticPage staticPage);
+    void update(StaticPage staticPage);
 
-    public void removeStaticPage(int staticPageId);
+    void delete(StaticPage staticPage);
 
-    List<StaticPage> getAllStaticPages();
+    List<StaticPage> listAll();
 
     List<StaticPage> listActivePages();
 
-    public String getExpriationDate(int staticPageId);
 }
     
 

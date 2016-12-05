@@ -72,7 +72,7 @@ Insert into PostComment (PostID, CommentID) values(1,1);
 Insert into PostComment (PostID, CommentID) values(1,2);
 Insert into PostComment (PostID, CommentID) values(2,3);
 Insert into PostComment (PostID, CommentID) values(2,4);
-Insert into PostComment (PostID, CommentID, TagID) values(2,5);
+Insert into PostComment (PostID, CommentID) values(2,5);
 
 create table if not exists SoupaStars.PostTag
 (PostID int not null, TagID int);

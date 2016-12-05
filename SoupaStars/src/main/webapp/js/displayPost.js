@@ -43,6 +43,7 @@ function fillTags(post, status) {
     }
 }
 
+
 function fillComments(post, status) {
     var commentTable = $('#commentTable');
     for (var i = 0; i < post.commentList.length; i++) {
@@ -51,7 +52,8 @@ function fillComments(post, status) {
                 + '<a class="pull-left" href="#"><img class="media-object" src="http://placehold.it/64x64" alt=""></a>'
                 + '<div class="media-body">'
                 + '<h4 class="media-heading">' + comment.name
-                + '<small> ' + comment.date + ' </small><a href="deleteComment/' + comment.commentId + '">Delete</a>'
+                + '<small> ' + comment.date + ' </small><a href="deleteComment/' + comment.commentId + '"> Delete | </a>'
+                + '</small><a href="editComment/' + comment.commentId + '"> Edit </a>'
                 + '</h4>' + comment.text + '</div>'
                 ));
     }

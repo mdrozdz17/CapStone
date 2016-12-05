@@ -6,53 +6,43 @@
 package com.sg.soupastars.dao;
 
 import com.sg.soupastars.model.StaticPage;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author apprentice
  */
 public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
-       private Map<Integer, StaticPage> staticMap = new HashMap<>();
-    private static int staticIdCounter = 0;
 
     @Override
-    public StaticPage addStaticPage(StaticPage staticPage) {
+    public StaticPage create(StaticPage staticPage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public StaticPage getStaticPageById(int staticPageId) {
+    public StaticPage read(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void updateStaticPage(StaticPage staticPage) {
+    public void update(StaticPage staticPage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void removeStaticPage(int staticPageId) {
+    public void delete(StaticPage staticPage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<StaticPage> getAllStaticPages() {
-        List<StaticPage> allStaticPages = new ArrayList<>(staticMap.values());
-        return allStaticPages;
+    public List<StaticPage> listAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<StaticPage> listActivePages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public String getExpriationDate(int staticPageId) {
-        return getStaticPageById(staticPageId).getExpirationDate();
-    }
-
+    
 }
+ 
