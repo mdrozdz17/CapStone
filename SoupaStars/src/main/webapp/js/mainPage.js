@@ -103,8 +103,8 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
-        postTable.append($('<tr>')
-                .append($('<td>')
+        postTable.append($('<tr>').after(" d")
+                .append($(' <td> ').after("")
                         .append($('<h2>' + post.title + '</h2>\n\
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
@@ -119,9 +119,10 @@ function fillPostTable(postList, status) {
 
         }
 
-        postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
-        postTable.append($('<a class="btn btn-primary" href="editBlogPost' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
-        postTable.append($('<a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
+         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
+     
+         postTable.append($ ( '<a class="btn btn-primary" href="editBlogPost' + post.postId + ' "> Edit' + '</a>')).after(""); 
+         postTable.append($ ( '<a class="btn btn-primary" href="deleteBlogPost' + post.postId + ' "> Delete </a>'));
     });
 }
 function fillAuthorTable(postList, status) {
