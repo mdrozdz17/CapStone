@@ -14,7 +14,7 @@ $(function(){
         // need to submit this via AJAX
         $.ajax({
             type: 'POST',
-            url: 'post',
+            url: 'post/',
             // make the JSON contact
             data: JSON.stringify({
                 title: $('#add-title').val(),
@@ -61,7 +61,7 @@ $(function(){
         $.ajax({
           
             type: 'PUT',
-            url: 'post' + $('#edit-post-id').val(),
+            url: 'post/' + $('#edit-post-id').val(),
             data: JSON.stringify({
                 postId: $('#edit-post-id').val(),
                 title: $('#edit-title').val(),
@@ -84,7 +84,7 @@ $(function(){
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
-        url: 'post',
+        url: 'post/',
         cache: false,
         contentType: 'application/json',
         dataType: 'json'
