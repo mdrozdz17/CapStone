@@ -7,10 +7,14 @@ package com.sg.soupastars.controller;
 
 import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
 import com.sg.soupastars.model.StaticPage;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +47,8 @@ public class StaticPageController {
         return "adminStaticPageHome";
     }
 
+
+    
     @RequestMapping(value = "show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Integer staticPageId, Map Model) {
 
@@ -120,4 +126,6 @@ public class StaticPageController {
 
         return "userStaticPageHome";
     }
+    
+    
 }

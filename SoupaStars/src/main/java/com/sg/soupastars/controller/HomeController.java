@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
+import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
+import com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl;
 import com.sg.soupastars.model.Comment;
+import com.sg.soupastars.model.StaticPage;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,12 +45,13 @@ public class HomeController {
     private SoupaStarsPostDao pdao;
      
     private SoupaStarsCommentDao cdao;
-    
+    private SoupaStarsStaticPageDao spdao;
     
     @Inject
-    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao){
+    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao, SoupaStarsStaticPageDao spdao){
         this.pdao = pdao;
         this.cdao = cdao;
+        this.spdao = spdao;
     }
     
        // Main  Page
@@ -232,7 +236,40 @@ public class HomeController {
         // return the logical view
         return "displayComment";
     }
+  
+        @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
+    public String showStaticPageForm() {
+        return "displayStaticPageForm";
+    }
     
+    // Add a new Static Page
+    @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
+    public String addNewPage(HttpServletRequest req)  {
+        StaticPage page = new StaticPage();
+        
+        String expirationString = req.getParameter("add-expiration");
+        String[] expirationArray = expirationString.split("/");
+        
+        try {
+            int month = Integer.parseInt(expirationArray[0]);
+            int day = Integer.parseInt(expirationArray[1]);
+            int year = Integer.parseInt(expirationArray[2]);
+            if(month < 1 || month > 12 ||
+               day < 1 || day > 31 ||
+               year < 1900 || year > 2100){
+                expirationString = "N/A";
+            }
+        }
+        catch(NumberFormatException nfe){
+            expirationString = "N/A";
+        }
+        page.setTitle(req.getParameter("add-title"));
+        page.setBody(req.getParameter("add-body"));
+        page.setExpirationDate(expirationString);
+        spdao.create(page);
+
+        return "redirect:mainPage";
+    }
     
   
 }
