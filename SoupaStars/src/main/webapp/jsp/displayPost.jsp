@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
         <!-- Used for Text Editing -->
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-<!--        <script>tinymce.init({
+        <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
                     "paste",
@@ -36,7 +36,7 @@
 
 
             });
-        </script>-->
+        </script>
 
 
 
@@ -92,10 +92,10 @@
 
                     <hr>
 
-                    <!-- Preview Image -->
+<!--                     Preview Image 
                     <img class="img-responsive" src="http://placehold.it/900x300" alt="">
 
-                    <hr>
+                    <hr>-->
 
                     <!-- Post Content -->                    
                     <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>

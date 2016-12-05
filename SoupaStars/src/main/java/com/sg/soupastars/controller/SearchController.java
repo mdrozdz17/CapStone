@@ -8,10 +8,10 @@ package com.sg.soupastars.controller;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Post;
 import java.util.List;
-import java.util.Map;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,14 +31,18 @@ public class SearchController {
     
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String displaySearchPage(){
+        
         return "search";
     }
     
     
     
-//    @RequestMapping(value = "search/posts", method = RequestMethod.POST)
-//    @ResponseBody
-//    public List<Post> searchPost(@RequestBody Map<String, String> searchMap){
-//       
-//    }
+@RequestMapping(value = "/search", method = RequestMethod.POST)
+    @ResponseBody 
+        public String searchPost (HttpServletRequest req, Model model){
+            String searchString = req.getParameter("searchTerm");
+        List<Post> results = dao.searchPosts(searchString);
+        model.addAttribute(results);
+        return "search";
+    }
 }

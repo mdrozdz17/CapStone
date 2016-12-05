@@ -91,7 +91,7 @@
                                 <sf:input type="text" class ="form-control"  required ="true" max = "100"
                                           id="add-Category" 
                                           path="Category"
-                                          placeholder="Categories" />
+                                          placeholder="Category" />
                                 <sf:errors path="category" cssClass="error"></sf:errors>
                                 </div>
                             </div>

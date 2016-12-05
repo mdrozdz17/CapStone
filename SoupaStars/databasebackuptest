@@ -1,4 +1,6 @@
-use SoupaStars;
+create database SoupaStarsBkup;
+
+use SoupaStarsBkup;
 
 create table if not exists SoupaStars.Post
 (PostID int not null auto_increment,
@@ -74,8 +76,6 @@ Insert into PostComment (PostID, CommentID, TagID) values(2,5);
 
 create table if not exists SoupaStars.PostTag
 (PostID int not null, TagID int);
-alter table PostTag add constraint fk_PostTag_PostID foreign key (PostID) references Post(PostID);
-alter table PostTag add constraint fk_PostTag_TagID foreign key (TagID) references Tag(TagID);
 
 insert into PostTag (PostID, TagID) values(1,1);
 insert into PostTag (PostID, TagID) values (2,2);
