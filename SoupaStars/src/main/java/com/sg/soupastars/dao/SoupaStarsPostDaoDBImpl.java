@@ -54,6 +54,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
+
     public Post addPost(Post post) {
         jdbcTemplate.update(SQL_INSERT_POST,
                 post.getTitle(),
@@ -62,29 +63,29 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
                 post.getDay(),
                 post.getAuthor(),
                 post.getBody(),
-                post.getCategory());
-        
+                post.getCategory());    
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         insertPostTags(post);
+
         return post;
 
     }
    
     private void insertPostTags(Post post) {
-        int postId = post.getPostId(); // Assume for talking that we have a Book (bookId = 1) 
-        List<String> tagList = post.getTagList(); // with 2 authors (Author Ids: [1,2])
-        String tagString = tagList.get(0);
-        String[] tagArray = tagString.split("#");
-        // use the batchUpdate so we only make one call to the database
-        
-        for (String tag : tagArray) {
-            if(!tag.equals("")){
+
+        int postId = post.getPostId();
+        List<String> tagList = post.getTagList(); 
+
+        for (String tag : tagList) {
+
             jdbcTemplate.update(SQL_INSERT_TAG, tag);
             int tagId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
+
             jdbcTemplate.update(SQL_INSERT_POSTTAG,postId, tagId);
             }
         }
-    }
+
+   
 
     @Override
     public Post getPostById(int PostId) {

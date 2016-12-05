@@ -120,7 +120,8 @@ function fillPostTable(postList, status) {
         }
 
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
-
+        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
+        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
     });
 }
 function fillAuthorTable(postList, status) {
@@ -184,3 +185,28 @@ function fillTagTable(postList, status) {
 function clearPostTable() {
     $('#postRows').empty();
 }
+
+$(document).ready(function() {
+    $(function() {
+        $("#searchTerm").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/mainPage/searchPost",
+                    type: "POST",
+                    data: {term: request.term},
+                    dataType: "json",
+                    
+                    success: function(data) {
+                        response($.map(data, function(v, i) {
+                            return {
+                                label: v.post,
+                                value: v.post
+                            };
+                        }));
+                    }
+                });
+            }
+        });
+    });
+});
+

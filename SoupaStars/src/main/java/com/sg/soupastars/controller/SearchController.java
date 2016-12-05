@@ -5,11 +5,14 @@
  */
 package com.sg.soupastars.controller;
 
+import com.google.gson.Gson;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
 import com.sg.soupastars.model.Post;
+import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +42,17 @@ public class SearchController {
     
 @RequestMapping(value = "/search", method = RequestMethod.POST)
     @ResponseBody 
-        public String searchPost (HttpServletRequest req, Model model){
-            String searchString = req.getParameter("searchTerm");
-        List<Post> results = dao.searchPosts(searchString);
-        model.addAttribute(results);
-        return "search";
+        public void searchPost (HttpServletRequest req, HttpServletResponse response){
+        try{
+            response.setContentType("application/json");
+             String searchString = new Gson().toJson(req.getParameter("searchTerm"));
+             response.getWriter().write(searchString);
+        } catch(IOException e){
+            
+        }    
+           
+//        List<Post> results = dao.searchPosts(searchString);
+//        model.addAttribute(results);
+//        return "search";
     }
 }
