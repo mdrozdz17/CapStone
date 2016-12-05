@@ -83,7 +83,7 @@ $('#edit-button').click(function (event) {
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
-        url: 'post',
+        url: 'post/',
         cache: false,
         contentType: 'application/json',
         dataType: 'json'
@@ -102,8 +102,8 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
-        postTable.append($('<tr>')
-                .append($('<td>')
+        postTable.append($('<tr>').after(" d")
+                .append($(' <td> ').after("")
                         .append($('<h2>' + post.title + '</h2>\n\
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
@@ -119,8 +119,10 @@ function fillPostTable(postList, status) {
         }
 
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
-        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
-        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
+        postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
+        postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
+
+
     });
 }
 function fillAuthorTable(postList, status) {
@@ -160,13 +162,17 @@ function fillCategoryTable(postList, status) {
     var categoryList = [];
     var categoryString = "";
     $.each(postList, function (arrayPosition, post) {
+
         categoryString = categoryString + post.category;
+
+        categoryString += post.category;
+
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(categoryList, post.category)) {
             categoryTable.append($('<tr><td><a href="#">' + post.category + ' ('
                     + countInstances(categoryString, post.category) + ')</a></td></tr>'));
-            categoryTable.push(post.category);
+            categoryList.push(post.category);
         }
     });
 }
@@ -174,16 +180,20 @@ function fillCategoryTable(postList, status) {
 function fillTagTable(postList, status) {
     var tagTable = $('#tagRows');
     tagTable.empty();
+    var tagList = [];
     $.each(postList, function (arrayPosition, post) {
-
         for (var i = 0; i < post.tagList.length; i++) {
-            tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
+            if (!contains(tagList, post.tagList[i])) {
+                tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
+                tagList.push(post.tagList[i]);
+            }
         }
     });
 }
 function clearPostTable() {
     $('#postRows').empty();
 }
+
 
 
 
@@ -197,13 +207,13 @@ $(function () {
                 dataType: "json",
                 success: function (data) {
                     if (typeof Array.prototype.forEach !== 'function') {
-                        Array.prototype.forEach = function(callback){
-                        for (var i = 0; i < this.length; i++) {
-                            callback.apply(this, [this[i], i, this]);
+                        Array.prototype.forEach = function (callback) {
+                            for (var i = 0; i < this.length; i++) {
+                                callback.apply(this, [this[i], i, this]);
 
-                        }
-                    };
-                    
+                            }
+                        };
+
                     }
 
                     var values = data;
@@ -212,7 +222,7 @@ $(function () {
                     values.forEach(function (entry) {
                         var newObject = {
                             label: entry.title
-                            };
+                        };
                         var newObject = {
                             label: entry.author
                         };

@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.sg.soupastars.dao.SoupaStarsPostDao;
+import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
+import com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl;
 import com.sg.soupastars.model.Comment;
+import com.sg.soupastars.model.StaticPage;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,12 +45,13 @@ public class HomeController {
     private SoupaStarsPostDao pdao;
      
     private SoupaStarsCommentDao cdao;
-    
+    private SoupaStarsStaticPageDao spdao;
     
     @Inject
-    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao){
+    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao, SoupaStarsStaticPageDao spdao){
         this.pdao = pdao;
         this.cdao = cdao;
+        this.spdao = spdao;
     }
     
        // Main  Page
@@ -103,18 +107,16 @@ public class HomeController {
     }
     
         // Delete a  Blog Post
-    @RequestMapping(value = "/deleteBlogPost", method = RequestMethod.GET)
-    public String deletePost(HttpServletRequest req) {
-        // Get the id of the DVD
-        int Id = Integer.parseInt(req.getParameter("Id"));
+    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.GET)
+    public String deletePost(@PathVariable("id") int id) {
         // DAO to delete the DVD
-        pdao.removePost(Id);
+        pdao.removePost(id);
         // Refresh the DVD list
         return "redirect:mainPage";
     }
     
      // Edit a Post
-    @RequestMapping(value = "/editBlogPost", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
     public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
         // If there are errors, display the form with those error messages
         if (result.hasErrors()) {
@@ -128,13 +130,10 @@ public class HomeController {
     // EditPostForm
     @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
     public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
-        // Get the DVD id
-        int Id = Integer.parseInt(req.getParameter("Id"));
+        int PostId = Integer.parseInt(req.getParameter("PostId"));
 
-        // Get the DVD from the Dao
-        Post postToEdit = pdao.getPostById(Id);
+        Post postToEdit = pdao.getPostById(PostId);
 
-        // Put the DVD on the Model
         model.addAttribute("post", postToEdit);
 
         // Return the logical view
@@ -142,24 +141,24 @@ public class HomeController {
     }
     
 
-//- Delete a Post (DELETE)
-//        - post/{postId}
-//        - Note: No RequestBody, no ResponseBody
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePost(@PathVariable("id") int id) {
-        pdao.removePost(id);
-    }
+////- Delete a Post (DELETE)
+////        - post/{postId}
+////        - Note: No RequestBody, no ResponseBody
+//    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void deletePost(@PathVariable("id") int id) {
+//        pdao.removePost(id);
+//    }
 
-//- Update a Post (PUT)
-//        - post/{postId}
-//        - RequestBody: JSON object of our Post, with the postId
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
-        post.setPostId(id);
-        pdao.updatePost(post);
-    }
+////- Update a Post (PUT)
+////        - post/{postId}
+////        - RequestBody: JSON object of our Post, with the postId
+//    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+//        post.setPostId(id);
+//        pdao.updatePost(post);
+//    }
     
 //- Retrieve ALL Posts (GET)
 //        - /post
@@ -239,7 +238,40 @@ public class HomeController {
         // return the logical view
         return "displayComment";
     }
+  
+        @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
+    public String showStaticPageForm() {
+        return "displayStaticPageForm";
+    }
     
+    // Add a new Static Page
+    @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
+    public String addNewPage(HttpServletRequest req)  {
+        StaticPage page = new StaticPage();
+        
+        String expirationString = req.getParameter("add-expiration");
+        String[] expirationArray = expirationString.split("/");
+        
+        try {
+            int month = Integer.parseInt(expirationArray[0]);
+            int day = Integer.parseInt(expirationArray[1]);
+            int year = Integer.parseInt(expirationArray[2]);
+            if(month < 1 || month > 12 ||
+               day < 1 || day > 31 ||
+               year < 1900 || year > 2100){
+                expirationString = "N/A";
+            }
+        }
+        catch(NumberFormatException nfe){
+            expirationString = "N/A";
+        }
+        page.setTitle(req.getParameter("add-title"));
+        page.setBody(req.getParameter("add-body"));
+        page.setExpirationDate(expirationString);
+        spdao.create(page);
+
+        return "redirect:mainPage";
+    }
     
   
 }
