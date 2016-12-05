@@ -32,9 +32,12 @@
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
+                    <li role="presentation" class="active">
+                        <a href="${pageContext.request.contextPath}/displayStaticPageForm">Create Static Page</a>
+                    </li>
 
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-4 col-md-offset-2">
                             <form action="" class="search-form">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>

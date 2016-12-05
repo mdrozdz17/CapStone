@@ -12,13 +12,15 @@ package com.sg.soupastars.model;
  */
 public class StaticPage {
 
-    private int id;
+    private int pageId;
+    
+    private String author;
 
     private String title;
 
     private String body;
 
-    private String active;
+    private String expirationDate;
 
     public String getTitle() {
         return title;
@@ -28,12 +30,12 @@ public class StaticPage {
         this.title = title;
     }
 
-    public int getId() {
-        return id;
+    public int getPageId() {
+        return pageId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPageId(int pageId) {
+        this.pageId = pageId;
     }
 
     public String getBody() {
@@ -44,11 +46,25 @@ public class StaticPage {
         this.body = body;
     }
 
-    public String getActive() {
-        return active;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setActive(String active) {
-        this.active = active;
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    /**
+     * @return the author
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * @param author the author to set
+     */
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

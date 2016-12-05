@@ -50,7 +50,7 @@
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
                     <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/addStaticPage">Create Static Page</a>
+                        <a href="${pageContext.request.contextPath}/displayStaticPageForm">Create Static Page</a>
                     </li>
 
                     <div class="row">
@@ -78,71 +78,60 @@
             </div>
 
                     <hr />
-                    <center><h1 style="font-family: initial;">Add New Blog Post</h1></center>
+                    <center><h1 style="font-family: initial;">Add New Static Page</h1></center>
                     <hr />
-                    <sf:form class="form-horizontal" role="form" modelAttribute="post"
-                             action="addNewBlogPost"
+                    <form class="form-horizontal" role="form" modelAttribute="post"
+                             action="addNewStaticPage"
                              method="POST">
                         <div class="form-group">
                             <label for="add-title" 
                                    class="col-md-4 control-label">Title:</label>
                             <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "50"
+                                <input type="text" class ="form-control"  required ="true" max = "50"
                                           id="add-title" 
                                           path="title"
                                           placeholder="Title" />
-                                <sf:errors path="title" cssClass="error"></sf:errors>
+                                
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="add-Category" 
-                                       class="col-md-4 control-label">Categories:</label>
+                                <label for="add-Expiration" 
+                                       class="col-md-4 control-label">Expiration Date (Optional):</label>
                                 <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "100"
-                                          id="add-Category" 
-                                          path="Category"
-                                          placeholder="Category" />
-                                <sf:errors path="category" cssClass="error"></sf:errors>
+                                <input type="text" class ="form-control"  required ="true" max = "100"
+                                          id="add-Expiration" 
+                                          path="Expiration"
+                                          placeholder="01/01/2017" />
+                                
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="add-body"
-                                       class="col-md-4 control-label">Body of Post:</label>
+                                       class="col-md-4 control-label">Body of Page:</label>
                                 <div class="col-md-7">
 
-                                <sf:textarea rows = "8" type="text" class="form-control" max = "10000"
+                                <textarea rows = "8" type="text" class="form-control" max = "10000"
                                              id="add-body" 
                                              path="body"
                                              placeholder="Text Goes Here" />
                                 </textarea>
-                                <sf:errors path="body" cssClass="error"></sf:errors>
+                                
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="add-tagList" 
-                                       class="col-md-4 control-label">Tags</label>
-                                <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "300"
-                                          id="add-tagList" 
-                                          path="tagList"
-                                          placeholder="Tags" />
-                                <sf:errors path="tagList" cssClass="error"></sf:errors>
-                                </div>
-                            </div>
 
 
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
-                                <sf:hidden path="postId" />
+                                <hidden path="postId" />
 
                                 <button type="submit" id="add-button"
-                                        class="btn btn-primary">Add New Post</button>
+                                        class="btn btn-primary">Add Static Page</button>
                             </div>
                         </div>
                     </div>
 
-                </sf:form>
+                </form>
         </div>
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
