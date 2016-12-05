@@ -14,7 +14,7 @@ $('#add-button').click(function (event) {
     // need to submit this via AJAX
     $.ajax({
         type: 'POST',
-        url: 'post/',
+        url: 'post',
         // make the JSON contact
         data: JSON.stringify({
             title: $('#add-title').val(),
@@ -58,10 +58,9 @@ $('#add-button').click(function (event) {
 $('#edit-button').click(function (event) {
     event.preventDefault();
     // update our post via AJAX
-
     $.ajax({
         type: 'PUT',
-        url: 'post/' + $('#edit-post-id').val(),
+        url: 'post' + $('#edit-post-id').val(),
         data: JSON.stringify({
             postId: $('#edit-post-id').val(),
             title: $('#edit-title').val(),
@@ -164,7 +163,11 @@ function fillCategoryTable(postList, status) {
     var categoryList = [];
     var categoryString = "";
     $.each(postList, function (arrayPosition, post) {
+
+        categoryString = categoryString + post.category;
+
         categoryString += post.category;
+
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(categoryList, post.category)) {
@@ -192,26 +195,49 @@ function clearPostTable() {
     $('#postRows').empty();
 }
 
-$(document).ready(function () {
-    $(function () {
-        $("#searchTerm").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/soupaStars/searchPost",
-                    type: "POST",
-                    data: {term: request.term},
-                    dataType: "json",
-                    success: function (data) {
-                        response($.map(data, function (v, i) {
-                            return {
-                                label: v.post,
-                                value: v.post
-                            };
-                        }));
+
+
+
+$(function () {
+
+    $("#searchTerm").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "SearchController/search/" + $("#searchTerm").val(),
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (typeof Array.prototype.forEach !== 'function') {
+                        Array.prototype.forEach = function (callback) {
+                            for (var i = 0; i < this.length; i++) {
+                                callback.apply(this, [this[i], i, this]);
+
+                            }
+                        };
+
                     }
-                });
-            }
-        });
+
+                    var values = data;
+                    var newArray = new Array(values.length);
+                    var i = 0;
+                    values.forEach(function (entry) {
+                        var newObject = {
+                            label: entry.title
+                        };
+                        var newObject = {
+                            label: entry.author
+                        };
+                        newArray[i] = newObject;
+                        i++
+                    });
+                    response(newArray);
+                }
+            });
+        },
+        minLength: 1
     });
+
 });
+
+
 
