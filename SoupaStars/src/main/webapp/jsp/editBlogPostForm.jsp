@@ -71,7 +71,7 @@
 
                     <hr />
                     <sf:form class="form-horizontal" role="form" modelAttribute="post"
-                             action="editBlogPost"
+                             action="editPost"
                              method="POST">
                             <div class="form-group">
                                 <label for="edit-title" 

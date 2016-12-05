@@ -43,10 +43,10 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
         jdbcTemplate.update(SQL_INSERT_STATICPAGE,
                 staticPage.getBody(),
                 staticPage.getTitle(),
-                staticPage.getActive());
+                staticPage.getExpirationDate());
 
         Integer staticPageId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        staticPage.setId(staticPageId);
+        staticPage.setPageId(staticPageId);
         return staticPage;
 
     }
@@ -65,15 +65,15 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
         jdbcTemplate.update(SQL_UPDATE_STATICPAGE,
                 staticPage.getBody(),
                 staticPage.getTitle(),
-                staticPage.getActive(),
-                staticPage.getId());
+                staticPage.getExpirationDate(),
+                staticPage.getPageId());
 
     }
 
     @Override
     public void delete(StaticPage staticPage) {
 
-        jdbcTemplate.update(SQL_DELETE_STATICPAGE, staticPage.getId());
+        jdbcTemplate.update(SQL_DELETE_STATICPAGE, staticPage.getPageId());
 
     }
 
@@ -94,7 +94,7 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
 
         for (StaticPage s : staticPage)
         {
-            if (s.getActive().equals(isActive) ) {
+            if (s.getExpirationDate().equals(isActive) ) {
 
                 pages.add(s);
 
@@ -114,10 +114,10 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
         public StaticPage mapRow(ResultSet rs, int i) throws SQLException {
 
             StaticPage staticPage = new StaticPage();
-            staticPage.setId(rs.getInt("id"));
+            staticPage.setPageId(rs.getInt("id"));
             staticPage.setBody(rs.getString("body"));
             staticPage.setTitle(rs.getString("title"));
-            staticPage.setActive(rs.getString("active"));
+            staticPage.setExpirationDate(rs.getString("active"));
 
             return staticPage;
 
