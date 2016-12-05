@@ -184,3 +184,28 @@ function fillTagTable(postList, status) {
 function clearPostTable() {
     $('#postRows').empty();
 }
+
+$(document).ready(function() {
+    $(function() {
+        $("#searchTerm").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/mainPage/searchPost",
+                    type: "POST",
+                    data: {term: request.term},
+                    dataType: "json",
+                    
+                    success: function(data) {
+                        response($.map(data, function(v, i) {
+                            return {
+                                label: v.post,
+                                value: v.post
+                            };
+                        }));
+                    }
+                });
+            }
+        });
+    });
+});
+
