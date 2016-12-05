@@ -149,8 +149,6 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
         List <Integer> tagIds = jdbcTemplate.query(SQL_GET_TAGIDS_BY_POSTID, new TagIDMapper(), postId);
         for (int id : tagIds){
         jdbcTemplate.update(SQL_DELETE_TAG, id);
-       
-
      
         }
          jdbcTemplate.update(SQL_DELETE_POST, postId);

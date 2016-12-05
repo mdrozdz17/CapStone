@@ -178,12 +178,78 @@
                 </div>
                 <!-- /.row -->
             </footer>
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                     aria-labelledby="editDetailsModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="editDetailsModalLabel"s>Edit Blog Post</h4>
+                            </div>
+                            
+                            
+                            
+                            <div class="modal-body">
+                                <h2>Edit Post</h2>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="edit-title" 
+                                               class="col-md-4 control-label">Title:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="edit-title" placeholder="Title" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-author" 
+                                               class="col-md-4 control-label">Author:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="edit-author" placeholder="Author" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-body" 
+                                               class="col-md-4 control-label">Body:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="edit-body" placeholder="Body" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-category" 
+                                               class="col-md-4 control-label">Category:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="edit-category" placeholder="Category" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="edit-taglist" 
+                                               class="col-md-4 control-label">TagList:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="edit-taglist" placeholder="TagList" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-4 col-md-8">
+                                            <button type="submit"
+                                                    id="edit-button"
+                                                    class="btn btn-primary" data-dismiss="modal">
+                                                Edit Blog Post
+                                            </button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+
+                                            <input type="hidden" id="edit-post-id" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </div>
-        <script>
-            var today = new Date;
-            document.getElementById('date').innerHTML = today.toDateString();
-        </script>
+       
 
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
