@@ -112,7 +112,7 @@ public class HomeController {
     }
     
      // Edit a Post
-    @RequestMapping(value = "/editBlogPost{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
     public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
         // If there are errors, display the form with those error messages
         if (result.hasErrors()) {
@@ -126,13 +126,10 @@ public class HomeController {
     // EditPostForm
     @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
     public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
-        // Get the DVD id
-        int Id = Integer.parseInt(req.getParameter("Id"));
+        int PostId = Integer.parseInt(req.getParameter("PostId"));
 
-        // Get the DVD from the Dao
-        Post postToEdit = pdao.getPostById(Id);
+        Post postToEdit = pdao.getPostById(PostId);
 
-        // Put the DVD on the Model
         model.addAttribute("post", postToEdit);
 
         // Return the logical view
@@ -149,15 +146,15 @@ public class HomeController {
 //        pdao.removePost(id);
 //    }
 
-//- Update a Post (PUT)
-//        - post/{postId}
-//        - RequestBody: JSON object of our Post, with the postId
-    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
-        post.setPostId(id);
-        pdao.updatePost(post);
-    }
+////- Update a Post (PUT)
+////        - post/{postId}
+////        - RequestBody: JSON object of our Post, with the postId
+//    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+//        post.setPostId(id);
+//        pdao.updatePost(post);
+//    }
     
 //- Retrieve ALL Posts (GET)
 //        - /post

@@ -29,7 +29,7 @@
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
 
