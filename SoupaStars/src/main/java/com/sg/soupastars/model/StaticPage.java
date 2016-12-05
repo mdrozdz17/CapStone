@@ -6,6 +6,9 @@
 
 package com.sg.soupastars.model;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 /**
  *
  * @author apprentice
@@ -13,8 +16,8 @@ package com.sg.soupastars.model;
 public class StaticPage {
 
     private int pageId;
-    
-    private String author;
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    private String author = authentication.getName();
 
     private String title;
 

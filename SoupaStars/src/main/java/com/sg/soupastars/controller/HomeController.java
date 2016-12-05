@@ -243,11 +243,30 @@ public class HomeController {
         return "displayStaticPageForm";
     }
     
-    // Add a new Blog Post
+    // Add a new Static Page
     @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
     public String addNewPage(HttpServletRequest req)  {
         StaticPage page = new StaticPage();
         
+        String expirationString = req.getParameter("add-expiration");
+        String[] expirationArray = expirationString.split("/");
+        
+        try {
+            int month = Integer.parseInt(expirationArray[0]);
+            int day = Integer.parseInt(expirationArray[1]);
+            int year = Integer.parseInt(expirationArray[2]);
+            if(month < 1 || month > 12 ||
+               day < 1 || day > 31 ||
+               year < 1900 || year > 2100){
+                expirationString = "N/A";
+            }
+        }
+        catch(NumberFormatException nfe){
+            expirationString = "N/A";
+        }
+        page.setTitle(req.getParameter("add-title"));
+        page.setBody(req.getParameter("add-body"));
+        page.setExpirationDate(expirationString);
         spdao.create(page);
 
         return "redirect:mainPage";
