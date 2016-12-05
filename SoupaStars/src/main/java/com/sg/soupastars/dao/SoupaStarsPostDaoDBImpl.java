@@ -66,7 +66,6 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
         post.getCategory());
         insertPostTags(post);
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
-        
          
         return post;
         
@@ -81,7 +80,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao{
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 // For reference:  "insert into books_authors (book_id, author_id) values(?, ?)";
-                // ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
+             //   ps.setInt(1, postId); // Set parameter 1 = value of book Id - 1 indicates 1st question mark
                 ps.setString(1, tagList.get(i)); // Set parameter 2 = the author[i] where i is the iteration; 2 indicates 2nd question mark
                 // NOTE: This handles the iteration for us - we don't need to do it manually
             }

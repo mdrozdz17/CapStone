@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.sg.soupastars.model;
 
 /**
@@ -10,24 +11,14 @@ package com.sg.soupastars.model;
  * @author apprentice
  */
 public class StaticPage {
-    
-    public int staticId;
 
-    public String title;
+    private int id;
 
-    public String body;
+    private String title;
 
-    public String active;
-    
-    private String expirationDate;
+    private String body;
 
-    public int getStaticId() {
-        return staticId;
-    }
-
-    public void setStaticId(int staticId) {
-        this.staticId = staticId;
-    }
+    private String active;
 
     public String getTitle() {
         return title;
@@ -35,6 +26,14 @@ public class StaticPage {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBody() {
@@ -52,23 +51,4 @@ public class StaticPage {
     public void setActive(String active) {
         this.active = active;
     }
-
-    /**
-     * @return the expirationDate
-     */
-    public String getExpirationDate() {
-        return expirationDate;
-    }
-
-    /**
-     * @param expirationDate the expirationDate to set
-     */
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-
-
-
- 
 }

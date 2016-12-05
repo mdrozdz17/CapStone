@@ -102,6 +102,45 @@ public class HomeController {
         return "redirect:mainPage";
     }
     
+        // Delete a  Blog Post
+    @RequestMapping(value = "/deleteBlogPost", method = RequestMethod.GET)
+    public String deletePost(HttpServletRequest req) {
+        // Get the id of the DVD
+        int Id = Integer.parseInt(req.getParameter("Id"));
+        // DAO to delete the DVD
+        pdao.removePost(Id);
+        // Refresh the DVD list
+        return "redirect:mainPage";
+    }
+    
+     // Edit a Post
+    @RequestMapping(value = "/editBlogPost", method = RequestMethod.POST)
+    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
+        // If there are errors, display the form with those error messages
+        if (result.hasErrors()) {
+            return "editBlogPostForm";
+        }
+        pdao.updatePost(post);
+        return "redirect:mainPage";
+    }
+    
+    
+    // EditPostForm
+    @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
+    public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
+        // Get the DVD id
+        int Id = Integer.parseInt(req.getParameter("Id"));
+
+        // Get the DVD from the Dao
+        Post postToEdit = pdao.getPostById(Id);
+
+        // Put the DVD on the Model
+        model.addAttribute("post", postToEdit);
+
+        // Return the logical view
+        return "editBlogPostForm";
+    }
+    
 
 //- Delete a Post (DELETE)
 //        - post/{postId}
@@ -174,7 +213,7 @@ public class HomeController {
     }
 
 //- Update a Comment (PUT)
-    @RequestMapping(value = "/comment/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/editComment/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateComment(@PathVariable("id") int id, @Valid @RequestBody Comment comment) {
         comment.setCommentId(id);

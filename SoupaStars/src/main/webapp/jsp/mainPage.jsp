@@ -3,9 +3,10 @@
     Created on : Nov 15, 2016, 1:46:42 PM
     Author     : apprentice
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix ="s" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,6 +20,7 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
     <body style ="background-color:powderblue;">
+        
         <div class="container">
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
@@ -61,12 +63,16 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-                    
+        
+                   
                     <div class = table-responsive" id="postTable">
                         <table>
                         <tbody id="postRows"></tbody>
+                   
+
                     </table>
                     </div>
+                        
 
                     <!-- First Blog Post -->
                     <!--                    <h2>
