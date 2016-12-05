@@ -32,7 +32,7 @@
                     <li role="presentation">
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="${pageContext.request.contextPath}/displayStaticPageForm">Create Static Page</a>
                     </li>
 
