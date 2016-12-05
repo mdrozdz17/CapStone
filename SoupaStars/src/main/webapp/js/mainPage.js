@@ -170,7 +170,7 @@ function fillCategoryTable(postList, status) {
         if (!contains(categoryList, post.category)) {
             categoryTable.append($('<tr><td><a href="#">' + post.category + ' (' 
                     + countInstances(categoryString, post.category) + ')</a></td></tr>'));
-            categoryTable.push(post.category);
+            categoryList.push(post.category);
         }
     });
 }
@@ -178,10 +178,13 @@ function fillCategoryTable(postList, status) {
 function fillTagTable(postList, status) {
     var tagTable = $('#tagRows');
     tagTable.empty();
+    var tagList = [];
     $.each(postList, function (arrayPosition, post) {
-
         for (var i = 0; i < post.tagList.length; i++) {
+            if(!contains(tagList, post.tagList[i])){
             tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
+            tagList.push(post.tagList[i]);
+        }
         }
     });
 }
