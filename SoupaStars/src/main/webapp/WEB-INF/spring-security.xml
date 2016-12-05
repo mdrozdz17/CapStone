@@ -32,10 +32,10 @@
         <!-- #3a - Login via html form, use Spring to do the security check --> 
         <!-- #3b - Use the login page at this endpoint -->
         <!-- #3c - Redirect here if login fails -->
+       <!-- always-use-default target = "true" fixed issue where login was taking us to /post instead of /mainPage -->
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/login"
                     authentication-failure-url="/login?login_error=1"
-        <!-- This fixed issue where login was taking us to /post instead of /mainPage -->
                     always-use-default-target="true"/>
         <!-- #3d - Go back to home page when user logs out -->
         <logout logout-success-url="/login" />
