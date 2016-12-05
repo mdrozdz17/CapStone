@@ -19,8 +19,9 @@
         <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
-    <body style ="background-color:powderblue;">
         
+    <body style ="background-color:buttonhighlight;">
+
         <div class="container">
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
@@ -33,7 +34,7 @@
                             <form action="" class="search-form">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                    <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">
                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                 </div>
                             </form>
@@ -74,8 +75,8 @@
                     </div>
                         
 
-                    <!-- First Blog Post -->
-                    <!--                    <h2>
+                    First Blog Post 
+                                       <h2>
                                             <a href="#">Blog Post Title</a>
                                         </h2>
                                         <p class="lead">
@@ -91,12 +92,15 @@
                                         <hr>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
                                         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                                        <a class="btn btn-" href="#">Edit <span class="glyphicon glyphicon-chevron-left"></span>
+                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
+                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
+                                        
+                                            <hr>
                     
-                                        <hr>
-                    
-                                         Second Blog Post 
+                   Second Blog Post
+                                         
                                         <h2>
+                                             
                                             <a href="#">Blog Post Title</a>
                                         </h2>
                                         <p class="lead">
@@ -112,7 +116,8 @@
                                         <hr>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, quasi, fugiat, asperiores harum voluptatum tenetur a possimus nesciunt quod accusamus saepe tempora ipsam distinctio minima dolorum perferendis labore impedit voluptates!</p>
                                         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    
+                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
+                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
                                         <hr>
                     
                                          Third Blog Post 
@@ -132,7 +137,8 @@
                                         <hr>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, voluptates, voluptas dolore ipsam cumque quam veniam accusantium laudantium adipisci architecto itaque dicta aperiam maiores provident id incidunt autem. Magni, ratione.</p>
                                         <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    
+                                        <a class="btn btn-primary" href="#">Edit <span class="glyphicon glyphicon-right"></span></a>
+                                        <a class="btn btn-primary" href="#">Delete <span class="glyphicon glyphicon-right"></span></a>
                                         <hr>-->
 
                     <!-- Pager -->
