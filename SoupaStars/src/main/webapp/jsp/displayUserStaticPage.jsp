@@ -15,7 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Soupa-Stars | User Page</title>
+        <title>Soupa-Stars | Home</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
         <!-- SOUPA-STARS ICON -->
@@ -25,6 +25,8 @@
     <body style ="background-color:buttonhighlight;">
 
         <div class="container">
+            <h1>Display User Static Page</h1>
+            <a href="displayStaticPageForm">Create Static Page</a></br>
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
                     <li role="presentation" class="active">
