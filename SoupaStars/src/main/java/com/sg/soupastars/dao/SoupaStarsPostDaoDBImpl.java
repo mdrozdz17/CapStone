@@ -72,18 +72,20 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     }
    
     private void insertPostTags(Post post) {
+
         int postId = post.getPostId();
         List<String> tagList = post.getTagList(); 
 
         for (String tag : tagList) {
+
             jdbcTemplate.update(SQL_INSERT_TAG, tag);
-     
             int tagId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
-            
+
             jdbcTemplate.update(SQL_INSERT_POSTTAG,postId, tagId);
+            }
         }
 
-    }
+   
 
     @Override
     public Post getPostById(int PostId) {
