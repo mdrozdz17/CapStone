@@ -158,8 +158,14 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     public List<Post> searchPosts(String searchTerm) {
         searchTerm = "%" + searchTerm + "%";
         List<Post> list;
+        ArrayList<Post> postList = new ArrayList();
         try {
-            return list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
+           list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
+            for(Post p : list){
+                postList.add(p);
+            }
+            return postList;
+            
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : Home
-    Created on : Nov 15, 2016, 1:46:42 PM
+    Document   : displayUserStaticPage
+    Created on : Dec 5, 2016, 4:51:10 PM
     Author     : apprentice
 --%>
+
 <%@taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix ="s" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix ="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,15 +15,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Soupa-Stars | Home</title>
+        <title>Soupa-Stars | User Page</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         <!-- SOUPA-STARS ICON -->
-        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
         
@@ -37,8 +33,11 @@
                     <li role="presentation">
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
-                    <li role="presentation">
+                    <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/displayStaticPageForm">Create Static Page</a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a href="${pageContext.request.contextPath}/displayStaticPageForm">User Page</a>
                     </li>
 
                     <div class="row">
@@ -186,80 +185,17 @@
                 </div>
                 <!-- /.row -->
             </footer>
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
-                     aria-labelledby="editDetailsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span>
-                                    <span class="sr-only">Close</span>
-                                </button>
-                                <h4 class="modal-title" id="editDetailsModalLabel"s>Edit Blog Post</h4>
-                            </div>
-                            
-                            
-                            
-                            <div class="modal-body">
-                                <h2>Edit Post</h2>
-                                <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                        <label for="edit-title" 
-                                               class="col-md-4 control-label">Title:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-title" placeholder="Title" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit-author" 
-                                               class="col-md-4 control-label">Author:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-author" placeholder="Author" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit-body" 
-                                               class="col-md-4 control-label">Body:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-body" placeholder="Body" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit-category" 
-                                               class="col-md-4 control-label">Category:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-category" placeholder="Category" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="edit-taglist" 
-                                               class="col-md-4 control-label">TagList:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-taglist" placeholder="TagList" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-offset-4 col-md-8">
-                                            <button type="submit"
-                                                    id="edit-button"
-                                                    class="btn btn-primary" data-dismiss="modal">
-                                                Edit Blog Post
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-
-                                            <input type="hidden" id="edit-post-id" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
         </div>
-       
+        <script>
+            var today = new Date;
+            document.getElementById('date').innerHTML = today.toDateString();
+        </script>
 
-        
-        
+        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+
+        <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
+
     </body>
 </html>

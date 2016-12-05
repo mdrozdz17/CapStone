@@ -43,9 +43,8 @@ public class StaticPageController {
 
         model.put("staticPage", new StaticPage());
         model.put("staticPageList", pages);
-
-        return "adminStaticPageHome";
-    }
+         return "adminStaticPageHome";
+    };
 
 
     
