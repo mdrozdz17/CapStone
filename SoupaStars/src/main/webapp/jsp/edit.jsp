@@ -15,7 +15,7 @@
         <!-- SOUPA-STARS ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
-    <body style ="background-color:powderblue;">
+    <body style ="background-color:bisque;">
         <div class="container">
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">

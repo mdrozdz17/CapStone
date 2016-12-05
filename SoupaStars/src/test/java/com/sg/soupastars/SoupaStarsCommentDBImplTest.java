@@ -63,7 +63,7 @@ public class SoupaStarsCommentDBImplTest {
 //        nc.setEmail("arice713@yahoo.com");
 //        nc.setText("hi");
 //        nc.setDate("07/02/2016");
-//        dao.addComment(nc);
+//        dao.addComment();
 //        Comment fromDb = dao.getCommentById(nc.getCommentId());
 //        assertEquals(fromDb.getCommentId(), nc.getCommentId());
 //        assertEquals(fromDb.getName(), nc.getName());
