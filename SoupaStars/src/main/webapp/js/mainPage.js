@@ -121,8 +121,8 @@ function fillPostTable(postList, status) {
         }
         
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '"> Read More <span class="glyphicon glyphicon-chevron-right"></span></a>')); 
-        postTable.append($('<p></p> <a class="btn btn-primary" href="displayPost' + post.postId + '"> Edit <span class="glyphicon glyphicon"> </span> </a>')); 
-        postTable.append($('<p></p><a class="btn btn-primary" href="displayPost' + post.postId + '"> Delete <span class="glyphicon glyphicon"> </span> </a>')); 
+        postTable.append($('< <a class="btn btn-primary" href="displayPost' + post.postId + '"> Edit <span class="glyphicon glyphicon"> </span> </a>')); 
+        postTable.append($('<a class="btn btn-primary" href="displayPost' + post.postId + '"> Delete <span class="glyphicon glyphicon"> </span> </a>')); 
     });
 }
 function fillAuthorTable(postList, status) {
