@@ -29,6 +29,9 @@
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
+                    <li role="presentation" class="active">
+                        <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
+                    </li>
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4">

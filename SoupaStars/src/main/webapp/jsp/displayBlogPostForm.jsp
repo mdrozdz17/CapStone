@@ -18,65 +18,72 @@
         <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
-                   
                     "paste",
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table contextmenu paste",
                     'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
-                   
                 ],
-              width : 600,
-         height : 90,
-         theme_advanced_resizing_min_height : 90,
-         theme_advanced_resizing_max_height : 180,
+                width: 600,
+                height: 90,
+                theme_advanced_resizing_min_height: 90,
+                theme_advanced_resizing_max_height: 180,
                 toolbar: "paste",
                 paste_data_images: true,
-                force_p_newlines : false,
-                forced_root_block : '',
+                force_p_newlines: false,
+                forced_root_block: '',
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | codesample',
             });
         </script>
     </head>
     <body style="background-color:powderblue;" >
         <div class="container">
-            <center><h1 style="font-family: initial;">Add New Blog Post</h1></center>
-            <hr />
+
             <body style ="background-color:powderblue;">
                 <div class="container">
                     <div class ="navbar-inverse">
                         <ul class ="nav nav-tabs">
                             <li role="presentation" class="active">
-                                <a href="${pageContext.request.contextPath}/mainPage">Home</a>
+                                <a href="${pageContext.request.contextPath}/">Home</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                             </li>
 
                             <div class="row">
-                                <div class="col-md-4 col-md-offset-5">
+                                <div class="col-md-4 col-md-offset-4">
                                     <form action="" class="search-form">
                                         <div class="form-group has-feedback">
                                             <label for="search" class="sr-only">Search</label>
-                                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                            <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">
                                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                                         </div>
                                     </form>
                                 </div>
-                                <li role ="presenation">
+
+                                <li role ="presentation">
                                     <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
                                     <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
+
                                 <li>
-                            </div>   
+
+
+                            </div>  
+
                         </ul> 
 
                     </div>
 
                     <hr />
+                    <center><h1 style="font-family: initial;">Add New Blog Post</h1></center>
+                    <hr />
                     <sf:form class="form-horizontal" role="form" modelAttribute="post"
                              action="addNewBlogPost"
                              method="POST">
-                            <div class="form-group">
-                                <label for="add-title" 
-                                       class="col-md-4 control-label">Title:</label>
-                                <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="add-title" 
+                                   class="col-md-4 control-label">Title:</label>
+                            <div class="col-md-5">
                                 <sf:input type="text" class ="form-control"  required ="true" max = "50"
                                           id="add-title" 
                                           path="title"
@@ -125,7 +132,7 @@
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
                                 <sf:hidden path="postId" />
-                                
+
                                 <button type="submit" id="add-button"
                                         class="btn btn-primary">Add New Post</button>
                             </div>
