@@ -17,7 +17,12 @@
         <title>Soupa-Stars | Home</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         <!-- SOUPA-STARS ICON -->
+        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
         
@@ -182,10 +187,7 @@
             document.getElementById('date').innerHTML = today.toDateString();
         </script>
 
-        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
-        <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
-
+        
+        
     </body>
 </html>
