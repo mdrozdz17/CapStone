@@ -83,8 +83,7 @@ $('#edit-button').click(function (event) {
 function loadPosts() {
     //Get our JSON objects from the controller
     $.ajax({
-        url: 'post/',
-        cache: false,
+        url: 'post',
         contentType: 'application/json',
         dataType: 'json'
     }).success(function (data, status) {
@@ -102,8 +101,8 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
-        postTable.append($('<tr>').after(" d")
-                .append($(' <td> ').after("")
+        postTable.append($('<tr>')
+                .append($(' <td> ')
                         .append($('<h2>' + post.title + '</h2>\n\
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
@@ -122,8 +121,7 @@ function fillPostTable(postList, status) {
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
         postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
         postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
-        
-        
+
     });
 }
 function fillAuthorTable(postList, status) {
@@ -191,6 +189,27 @@ function fillTagTable(postList, status) {
         }
     });
 }
+
+$('#editModal').on('show.bs.modal', function (event) {
+    var element = $(event.relatedTarget);
+    var postId = element.data('post-id');
+    var modal = $(this);
+
+    // get our object via AJAX
+    $.ajax({
+        type: 'GET',
+        url: 'post/' + postId
+    }).success(function (sampleEditPost) {
+        modal.find('#edit-post-id').val(sampleEditPost.postId);
+        modal.find('#edit-title').val(sampleEditPost.title);
+        modal.find('#edit-author').val(sampleEditPost.author);
+        modal.find('#edit-body').val(sampleEditPost.body);
+        modal.find('#edit-category').val(sampleEditPost.category);
+        modal.find('#edit-taglist').val(sampleEditPost.taglist);
+
+    });
+});
+
 function clearPostTable() {
     $('#postRows').empty();
 }

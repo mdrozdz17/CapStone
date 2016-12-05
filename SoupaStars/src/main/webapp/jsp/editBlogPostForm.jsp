@@ -18,22 +18,20 @@
         <script>tinymce.init({
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
-                   
                     "paste",
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table contextmenu paste",
                     'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
-                   
                 ],
-              width : 600,
-         height : 90,
-         theme_advanced_resizing_min_height : 90,
-         theme_advanced_resizing_max_height : 180,
+                width: 600,
+                height: 90,
+                theme_advanced_resizing_min_height: 90,
+                theme_advanced_resizing_max_height: 180,
                 toolbar: "paste",
                 paste_data_images: true,
-                force_p_newlines : false,
-                forced_root_block : '',
+                force_p_newlines: false,
+                forced_root_block: '',
                 toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image |print preview media | forecolor backcolor emoticons | codesample',
             });
         </script>
@@ -69,72 +67,117 @@
 
                     </div>
 
-                    <hr />
-                    <sf:form class="form-horizontal" role="form" modelAttribute="post"
-                             action="editPost"
-                             method="POST">
-                            <div class="form-group">
-                                <label for="edit-title" 
-                                       class="col-md-4 control-label">Title:</label>
-                                <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "50"
-                                          id="add-title" 
-                                          path="title"
-                                          placeholder="Title" />
-                                <sf:errors path="title" cssClass="error"></sf:errors>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-Category" 
-                                       class="col-md-4 control-label">Categories:</label>
-                                <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "100"
-                                          id="add-Category" 
-                                          path="Category"
-                                          placeholder="Category" />
-                                <sf:errors path="category" cssClass="error"></sf:errors>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-body"
-                                       class="col-md-4 control-label">Body of Post:</label>
-                                <div class="col-md-7">
+                    <!-- Page Content -->
+                    <div class="container">
 
-                                <sf:textarea rows = "8" type="text" class="form-control" max = "10000"
-                                             id="add-body" 
-                                             path="body"
-                                             placeholder="Text Goes Here" />
-                                </textarea>
-                                <sf:errors path="body" cssClass="error"></sf:errors>
+                        <div class="row">
+
+                            <!-- Blog Post Content Column -->
+                            <div class="col-md-8">
+
+                                <!-- Blog Post -->
+
+                                <!-- Title -->
+                                <h1 id="postTitle">Blog Post Title</h1>
+
+                                <!-- Author -->
+                                <p class="lead" id="postAuthor">
+                                    by Author
+                                </p>
+                                <hr>
+                                <!-- Date/Time -->
+                                <p id="postInfo"><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                                    <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
+                                    <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
+                                    <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
+                                </p>
+
+                                <hr>
+                                <!-- Post Content -->                    
+                                <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+                                <table>
+                                    <tbody id="postTags"></tbody>
+                                </table>
+                                <hr>
+                                <!-- Comment -->
+                                <table>
+                                    <tbody id="commentTable"></tbody>
+                                </table>
+                                <br>
+                            </div>
+                            <!-- Blog Sidebar Widgets Column -->
+                            <div class="col-md-4">
+                                <p></p>
+                                <!-- Blog Search Well -->
+                                <div class="well">
+                                    <h4>Blog Search</h4>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <!-- /.input-group -->
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="edit-tagList" 
-                                       class="col-md-4 control-label">Tags</label>
-                                <div class="col-md-5">
-                                <sf:input type="text" class ="form-control"  required ="true" max = "300"
-                                          id="add-tagList" 
-                                          path="tagList"
-                                          placeholder="Tags" />
-                                <sf:errors path="tagList" cssClass="error"></sf:errors>
+                                <!-- Authors -->
+                                <div class="well">
+                                    <h4>Authors</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <table id="authorTable">
+                                                <tablebody id="authorRows"></tablebody>
+                                            </table>
+                                        </div>
+                                        <!-- /.col-md-6 -->
+                                        <!--                            <div class="col-md-6">
+                                                                        <ul class="list-unstyled">
+                                                                            <li><a href="#">Author</a>
+                                                                            </li>
+                                                                            <li><a href="#">Author</a>
+                                                                            </li>
+                                                                            <li><a href="#">Author</a>
+                                                                            </li>
+                                                                            <li><a href="#">Author</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>-->
+                                        <!-- /.col-md-6 -->
+                                    </div>
+                                    <!-- /.row -->
                                 </div>
+
+                                <!-- Blog Categories Well -->
+                                <div class="well">
+                                    <h4>Blog Categories</h4>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <table id="categoryTable">
+                                                <tablebody id="categoryRows"></tablebody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+
+                                <!-- Tags -->
+                                <div class="well">
+                                    <h4>Tags</h4>
+                                    <table id="tagTable">
+                                        <tablebody id="tagRows"></tablebody>
+                                    </table>
+                                </div>
+
                             </div>
 
-
-                            <div class="form-group">
-                                <div class="col-md-offset-4 col-md-8">
-                                <sf:hidden path="postId" />
-                                
-                                <button type="submit" id="add-button"
-                                        class="btn btn-primary">Add New Post</button>
-                            </div>
                         </div>
                     </div>
 
-                </sf:form>
-        </div>
-        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+                    <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+                    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+                    <script src="${pageContext.request.contextPath}/js/displayPost.js"></script>
+                    <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>    
     </body>
 </html>

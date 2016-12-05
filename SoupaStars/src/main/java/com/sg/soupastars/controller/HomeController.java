@@ -109,36 +109,34 @@ public class HomeController {
         // Delete a  Blog Post
     @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.GET)
     public String deletePost(@PathVariable("id") int id) {
-        // DAO to delete the DVD
         pdao.removePost(id);
-        // Refresh the DVD list
         return "redirect:mainPage";
     }
     
-     // Edit a Post
-    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
-    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
-        // If there are errors, display the form with those error messages
-        if (result.hasErrors()) {
-            return "editBlogPostForm";
-        }
-        pdao.updatePost(post);
-        return "redirect:mainPage";
-    }
-    
-    
-    // EditPostForm
-    @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
-    public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
-        int PostId = Integer.parseInt(req.getParameter("PostId"));
-
-        Post postToEdit = pdao.getPostById(PostId);
-
-        model.addAttribute("post", postToEdit);
-
-        // Return the logical view
-        return "editBlogPostForm";
-    }
+//     // Edit a Post
+//    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
+//    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
+//        // If there are errors, display the form with those error messages
+//        if (result.hasErrors()) {
+//            return "editBlogPostForm";
+//        }
+//        pdao.updatePost(post);
+//        return "redirect:mainPage";
+//    }
+//    
+//    
+//    // EditPostForm
+//    @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
+//    public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
+//        int PostId = Integer.parseInt(req.getParameter("PostId"));
+//
+//        Post postToEdit = pdao.getPostById(PostId);
+//
+//        model.addAttribute("post", postToEdit);
+//
+//        // Return the logical view
+//        return "editBlogPostForm";
+//    }
     
 
 ////- Delete a Post (DELETE)
@@ -150,15 +148,15 @@ public class HomeController {
 //        pdao.removePost(id);
 //    }
 
-////- Update a Post (PUT)
-////        - post/{postId}
-////        - RequestBody: JSON object of our Post, with the postId
-//    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
-//        post.setPostId(id);
-//        pdao.updatePost(post);
-//    }
+//- Update a Post (PUT)
+//        - post/{postId}
+//        - RequestBody: JSON object of our Post, with the postId
+    @RequestMapping(value = "/editBlogPostForm/{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+        post.setPostId(id);
+        pdao.updatePost(post);
+    }
     
 //- Retrieve ALL Posts (GET)
 //        - /post
