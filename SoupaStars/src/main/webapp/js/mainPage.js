@@ -191,7 +191,7 @@ $(document).ready(function() {
         $("#searchTerm").autocomplete({
             source: function(request, response) {
                 $.ajax({
-                    url: "/mainPage/searchPost",
+                    url: "/soupaStars/searchPost",
                     type: "POST",
                     data: {term: request.term},
                     dataType: "json",
