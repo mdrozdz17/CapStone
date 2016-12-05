@@ -164,7 +164,7 @@ function fillCategoryTable(postList, status) {
     var categoryList = [];
     var categoryString = "";
     $.each(postList, function(arrayPosition, post) {
-        categoryString = categoryString + post.category;
+        categoryString += post.category;
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(categoryList, post.category)) {
