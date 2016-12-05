@@ -18,7 +18,7 @@ PRIMARY KEY(`user_id`)
  
 
 
-CREATE TABLE IF NOT EXISTS `post`(
+CREATE TABLE IF NOT EXISTS `posts`(
 `post_id` int NOT NULL auto_increment,
 `title` varchar(50) NOT NULL,
 `post_year` int NOT NULL,
