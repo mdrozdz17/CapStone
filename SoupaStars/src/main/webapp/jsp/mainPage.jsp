@@ -24,6 +24,27 @@
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
+         <script>
+//             tinymce.init({
+//                selector: "textarea", // change this value according to your HTML
+//                plugins: [
+//                    "paste",
+//                    "advlist autolink lists link image charmap print preview anchor",
+//                    "searchreplace visualblocks code fullscreen",
+//                    "insertdatetime media table contextmenu paste",
+//                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
+//                ],
+//                toolbar: "paste",
+//                paste_data_images: true,
+//                force_p_newlines : false,
+//                forced_root_block : '',
+//                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+//                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
+//
+//
+//
+//            });
+        </script>
     </head>
         
     <body style ="background-color:buttonhighlight;">
@@ -43,8 +64,6 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-        
-                   
                     <div class = table-responsive" id="postTable">
                         <table>
                             <tbody id="postRows"></tbody>
@@ -162,9 +181,6 @@
                                 </button>
                                 <h4 class="modal-title" id="editDetailsModalLabel"s>Edit Blog Post</h4>
                             </div>
-                            
-                            
-                            
                             <div class="modal-body">
                                 <h2>Edit Post</h2>
                                 <form class="form-horizontal" role="form">
@@ -176,17 +192,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="edit-author" 
-                                               class="col-md-4 control-label">Author:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-author" placeholder="Author" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="edit-body" 
                                                class="col-md-4 control-label">Body:</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-body" placeholder="Body" />
+                              <textarea id="edit-body" name="edit-body" class="form-control" rows="3" type="text"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -118,7 +118,7 @@ public class HomeController {
 //- Update a Post (PUT)
 //        - post/{postId}
 //        - RequestBody: JSON object of our Post, with the postId
-    @RequestMapping(value = "/editBlogPostForm/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
         post.setPostId(id);

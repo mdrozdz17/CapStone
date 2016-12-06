@@ -43,6 +43,7 @@
                 <div class="container">
                     <jsp:include page="navbar.jsp" />
 
+
                     <hr />
                     <center><h1 style="font-family: initial;">Add New Blog Post</h1></center>
                     <hr />

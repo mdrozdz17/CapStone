@@ -42,7 +42,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
     private static final String SQL_INSERT_POSTS_TAGS = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
     private static final String SQL_DELETE_COMMENT = "delete from Comments where CommentID = ? ";
-
+        private static final String SQL_DELETE_POSTTAG = "delete from PostTag where PostID = ?";
     private static final String SQL_SELECT_TAGS_BY_POST = "select p.PostID, p.Title, p.PostYear, p.PostMonth, p.PostDay, p.Author, p.PostBody, p.Category \n"
             + "from Post p join PostTag on p.PostID = PostTag.PostID where PostTag.TagID = ?";
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
@@ -141,6 +141,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
                 post.getBody(),
                 post.getCategory(),
                 post.getPostId());
+                jdbcTemplate.update(SQL_DELETE_POSTTAG, post.getPostId());
+                insertPostTags(post);
 
     }
 
@@ -148,7 +150,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     public void removePost(int postId) {
         List <Integer> tagIds = jdbcTemplate.query(SQL_GET_TAGIDS_BY_POSTID, new TagIDMapper(), postId);
         for (int id : tagIds){
-        jdbcTemplate.update(SQL_DELETE_TAG, id);
+         jdbcTemplate.update(SQL_DELETE_TAG, id);
      
         }
          jdbcTemplate.update(SQL_DELETE_POST, postId);
