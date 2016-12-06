@@ -208,7 +208,7 @@ public class HomeController {
     
     @RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public String displayUserPage() {
-    return "displayUserStaticPage";
+    return "userPage";
 }
     
   
@@ -243,14 +243,14 @@ public class HomeController {
         page.setExpirationDate(expirationString);
         spdao.create(page);
 
-        return "redirect:mainPage";
+        return "userPage";
     }
     
     @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.GET)
     public String deleteStaticPage(@PathVariable("id") int id) {
         StaticPage page = spdao.selectPageById(id);
         spdao.delete(page);
-        return "redirect:mainPage";
+        return "redirect:userPage";
     }
   
     @RequestMapping(value = "/editStaticPage{id}", method = RequestMethod.PUT)

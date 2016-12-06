@@ -18,7 +18,8 @@
         <title>Soupa-Stars | Home</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
-        
+         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+         <script src="${pageContext.request.contextPath}/js/userPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
         
@@ -29,18 +30,9 @@
           <jsp:include page="navbar.jsp" />
                     <h1>User Page</h1>
 
-            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Create static Page<span class="glyphicon glyphicon"></span></a>
+            <a class="btn btn-primary" href="displayStaticPageForm">Create static Page<span class="glyphicon glyphicon"></span></a>
                     <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Date</th>
-                                <th><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a></th>
-                                <th><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a></th>
-                                <th>&nbsp;</th>
-
-                            </tr>
-                        </thead>
+                        <tbody id="static-page-table" name="static-page-table"></tbody>
                             
                     </table>
             
@@ -94,9 +86,9 @@
             document.getElementById('date').innerHTML = today.toDateString();
         </script>
 
-        <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+       
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
+        
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
 
     </body>
