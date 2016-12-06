@@ -22,8 +22,12 @@ $(document).ready(function () {
        
         modal.find('#edit-body').val(sampleEditPost.body);
         modal.find('#edit-category').val(sampleEditPost.category);
-        modal.find('#edit-taglist').val(sampleEditPost.taglist);
-        
+        var tagString = "";
+        for (var i = 0; i < sampleEditPost.tagList.length; i++){
+            tagString += "#" + sampleEditPost.tagList[i] + " ";
+        }
+        modal.find('#edit-taglist').val(tagString);
+        loadPosts();
         // needed to have posts show previous text when using tinyMCE
       tinyMCE.activeEditor.setContent($('#edit-body').val());
     });
