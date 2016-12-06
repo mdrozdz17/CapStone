@@ -24,29 +24,7 @@
     </head>
     <body style ="background-color:powderblue;">
         <div class="container">
-           <div class ="navbar-inverse">
-                <ul class ="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
-                    </li>
-                      <li role="presentation">
-                        <a href="${pageContext.request.contextPath}/j_spring_security_logout">Log Out</a>
-                    </li> 
-                    <li role ="presentation">
-                        <a href="${pageContext.request.contextPath}/login">Log In</a>
-                    </li>
-                        <div class="col-md-4 col-md-offset-5">
-                            <form action="" class="search-form">
-                                <div class="form-group has-feedback">
-                                    <label for="search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                </div>
-                            </form>
-                        </div>
-                   
-                </ul>   
-            </div>
+           <jsp:include page="navbar.jsp" />
         </div>
         <div class="container">
             <p><a href="${pageContext.request.contextPath}/login">Log In</a></p>
