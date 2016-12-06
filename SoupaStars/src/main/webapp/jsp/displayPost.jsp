@@ -112,7 +112,7 @@
                     <hr>-->
 
                     <!-- Post Content -->                    
-                    <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+                    <p id="postBody"> content </p>
                     <table>
                             <tbody id="postTags"></tbody>
                     </table>
