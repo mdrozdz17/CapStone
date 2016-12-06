@@ -38,7 +38,7 @@
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
                     <li role="presentation">
-                        <a href="${pageContext.request.contextPath}/displayStaticPageForm">Create Static Page</a>
+                        <a href="${pageContext.request.contextPath}/userPage">User Page</a>
                     </li>
 
                     <div class="row">

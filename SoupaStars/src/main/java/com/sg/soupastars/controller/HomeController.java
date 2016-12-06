@@ -236,6 +236,11 @@ public class HomeController {
         // return the logical view
         return "displayComment";
     }
+    
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    public String displayUserPage() {
+    return "displayUserStaticPage";
+}
   
         @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
     public String showStaticPageForm() {
