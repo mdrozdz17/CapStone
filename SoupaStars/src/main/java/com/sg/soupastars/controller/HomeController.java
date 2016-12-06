@@ -107,7 +107,8 @@ public class HomeController {
     }
     
         // Delete a  Blog Post
-    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deletePost(@PathVariable("id") int id) {
         pdao.removePost(id);
         return "redirect:mainPage";

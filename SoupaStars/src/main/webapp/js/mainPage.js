@@ -242,7 +242,7 @@ function deletePost(id) {
     if (answer === true) {
         $.ajax({
             type: 'DELETE',
-            url: 'post/' + id
+            url: '/SoupaStars/deleteBlogPost' + id
         }).success(function () {
             // reload summary
             loadPosts();
