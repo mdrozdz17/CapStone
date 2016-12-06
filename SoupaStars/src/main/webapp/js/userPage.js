@@ -7,8 +7,51 @@
 
 $(function () {
     loadStaticPageList();
+        $('#editModal').on('show.bs.modal', function (event) {
+    var element = $(event.relatedTarget);
+    var pageId = element.data('page-id');
+    var modal = $(this);
+
+    // get our object via AJAX
+    $.ajax({
+        type: 'GET',
+        url: 'staticPages/' + pageId
+    }).success(function (sampleEditPage) {
+        modal.find('#edit-page-id').val(sampleEditPage.pageId);
+        modal.find('#edit-title').val(sampleEditPage.title);
+        modal.find('#edit-body').val(sampleEditPage.body);
+        modal.find('#edit-expirationDate').val(sampleEditPage.expirationDate);
+        
+        // needed to have posts show previous text when using tinyMCE
+     // tinyMCE.activeEditor.setContent($('#edit-body').val());
+    });
+   
+});
+
+$('#edit-button').click(function (event) {
+    event.preventDefault();
+    // update our post via AJAX
+    $.ajax({
+        type: 'PUT',
+        url: 'editStaticPage/' + $('#edit-page-id').val(),
+        data: JSON.stringify({
+            pageId: $('#edit-page-id').val(),
+            title: $('#edit-title').val(),
+            body: $('#edit-body').val(),
+            expirationdate: $('#edit-expirationDate').val()
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'dataType': 'json'
+    }).success(function () {
+        loadPosts();
+    });
+});
 
 });
+
 
 function loadStaticPageList() {
     $.ajax({
@@ -28,8 +71,22 @@ function fillStaticPageTable(pageList, status) {
         pageTable.append($('<tr><td><h4><a href="displayStaticPage' + page.pageId +
                 '">' + page.title + '</a></h4></td>'
                 + '<td>' + page.expirationDate + '</td>'
-                + '<td><a class="btn btn-primary" href="#" >Edit Page</a></td>'
-                + '<td><a class="btn btn-primary "href="deleteStaticPage' + page.pageId +'">Delete Page</a></td>'
+             //   + '<td><a class="btn btn-primary" href="#" >Edit Page</a></td>'
+            //    + '<td><a class="btn btn-primary "href="deleteStaticPage' + page.pageId +'">Delete Page</a></td>'
                 +'</tr>'));
     });
 }
+    
+    function deleteStaticPage(id) {
+    var answer = confirm('Do you really want to delete this Static Page?');
+
+    if (answer === true) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/SoupaStars/deleteStaticPage' + id
+        }).success(function () {
+            // reload summary
+             loadStaticPageList();
+        });
+    }
+} 
