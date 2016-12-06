@@ -54,4 +54,8 @@ public class SearchController {
         }    
            
     }
+  
+// @RequestMapping(value = "/search/{searchTerm}", method = RequestMethod.POST)
+// @ResponseBody
+//    public String 
 }
