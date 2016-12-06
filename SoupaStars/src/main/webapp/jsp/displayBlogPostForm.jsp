@@ -33,7 +33,7 @@
             });
         </script>
     </head>
-    <body style="background-color:powderblue;" >
+    <body style="background-color:powderblue;" onload="loadTabs();" >
         <div class="container">
 
             <body style ="background-color:powderblue;">

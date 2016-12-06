@@ -6,7 +6,7 @@
 $(document).ready(function () {
 
     loadPosts();
-    
+    loadTabs();
     $('#editModal').on('show.bs.modal', function (event) {
     var element = $(event.relatedTarget);
     var postId = element.data('post-id');
