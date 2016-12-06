@@ -18,48 +18,35 @@
         <title>Soupa-Stars | Home</title>
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css"rel="stylesheet">
         <link href="${pageContext.request.contextPath}/css/searchForm.css"rel="stylesheet">
-         SOUPA-STARS ICON 
+        
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
         
     <body style ="background-color:buttonhighlight;">
 
         <div class="container">
-            <h1>Display User Static Page</h1>
-            <a href="displayStaticPageForm">Create Static Page</a></br>
-            <jsp:include page="navbar.jsp" />
+            
+          <jsp:include page="navbar.jsp" />
+                    <h1>User Page</h1>
 
-
-             Page Content 
-
-            <div class="row">
-
-                 Blog Entries Column 
-                <div class="col-md-8">
-
-                    <h1 class="page-header">
-                        <center><img class="img-responsive" src="star.jpg"  alt="star" width="104" height="236" >
-                            <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
-
-                    </h1>
-        
-                   
-                    <c:if test="${fn:length(SoupaStars) lt 1}">
-                       
-                        
-                    </c:if>
-                    <table class="table table-striped">
+            
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Title</th>
                                 <th>Date</th>
                                 <th>Category</th
                                 <th>&nbsp;</th>
-                                <button type="submit" class="btn btn- default"> Create Static Page</button>
-                                </tr>
+
+                            </tr>
                         </thead>
                             
                     </table>
+            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>
+            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>
+            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Create static Page<span class="glyphicon glyphicon"></span></a>
+            
+            
                     <tbody>
                         <c:forEach var="post" items="${SoupaStar}">
                             <s:url value="deleteBlogPostForm" var="deleteBlogPost_url">
@@ -90,15 +77,15 @@
                 </div>
             <hr>
 
-             Footer 
+              
             <footer>
                 <div class="row">
                     <div class="col-lg-12">
                         <p>Copyright &copy; Soupa-Stars 2016</p>
                     </div>
-                     /.col-lg-12 
+                   
                 </div>
-                 /.row 
+                 
             </footer>
 
         </div>
