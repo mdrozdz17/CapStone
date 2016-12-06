@@ -20,7 +20,7 @@ public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
     }
 
     @Override
-    public StaticPage read(Integer id) {
+    public StaticPage selectPageById(Integer id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

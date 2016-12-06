@@ -113,40 +113,7 @@ public class HomeController {
         return "redirect:mainPage";
     }
     
-//     // Edit a Post
-//    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
-//    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
-//        // If there are errors, display the form with those error messages
-//        if (result.hasErrors()) {
-//            return "editBlogPostForm";
-//        }
-//        pdao.updatePost(post);
-//        return "redirect:mainPage";
-//    }
-//    
-//    
-//    // EditPostForm
-//    @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
-//    public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
-//        int PostId = Integer.parseInt(req.getParameter("PostId"));
-//
-//        Post postToEdit = pdao.getPostById(PostId);
-//
-//        model.addAttribute("post", postToEdit);
-//
-//        // Return the logical view
-//        return "editBlogPostForm";
-//    }
-    
 
-////- Delete a Post (DELETE)
-////        - post/{postId}
-////        - Note: No RequestBody, no ResponseBody
-//    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deletePost(@PathVariable("id") int id) {
-//        pdao.removePost(id);
-//    }
 
 //- Update a Post (PUT)
 //        - post/{postId}
@@ -236,6 +203,12 @@ public class HomeController {
         // return the logical view
         return "displayComment";
     }
+    
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    public String displayUserPage() {
+    return "displayUserStaticPage";
+}
+    
   
         @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
     public String showStaticPageForm() {
@@ -271,5 +244,17 @@ public class HomeController {
         return "redirect:mainPage";
     }
     
+    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.GET)
+    public String deleteStaticPage(@PathVariable("id") int id) {
+        StaticPage page = spdao.selectPageById(id);
+        spdao.delete(page);
+        return "redirect:mainPage";
+    }
   
+    @RequestMapping(value = "/editStaticPage{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStaticPage(@PathVariable("id") int id, @Valid @RequestBody StaticPage page) {
+        page.setPageId(id);
+        spdao.update(page);
+    }
 }
