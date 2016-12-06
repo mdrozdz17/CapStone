@@ -20,24 +20,7 @@
     </head>
      <body style ="background-color:powderblue;">
         <div class="container">
-            <div class ="navbar-inverse">
-                <ul class ="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/mainPage">Home</a>
-                    </li>
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-6">
-                            <form action="" class="search-form">
-                                <div class="form-group has-feedback">
-                                    <label for="search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </ul>   
-            </div>
+            <jsp:include page="navbar.jsp" />
             <center><h1>An error has occurred...</h1>
                  <img class="img-responsive" src="https://3.bp.blogspot.com/-ad69Y3hy2yU/UxJS4cpgzKI/AAAAAAAAANM/GFkNMxAWlJ4/s1600/Posters+-+teams+in+the+classroom-3.png" alt="pea" width="334" height="280">
                 <h3>${errorMessage}</h3>
