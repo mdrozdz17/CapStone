@@ -35,7 +35,7 @@ public class SoupaStarsStaticPageInMemImpl implements SoupaStarsStaticPageDao {
     }
 
     @Override
-    public List<StaticPage> listAll() {
+    public List<StaticPage> getAllStaticPages() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

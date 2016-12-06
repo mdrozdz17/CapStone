@@ -22,7 +22,7 @@ StaticPage create(StaticPage staticPage);
 
     void delete(StaticPage staticPage);
 
-    List<StaticPage> listAll();
+    List<StaticPage> getAllStaticPages();
 
     List<StaticPage> listActivePages();
 

@@ -39,7 +39,7 @@ public class StaticPageController {
    @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Map model) {
 
-        List<StaticPage> pages = dao.listAll();
+        List<StaticPage> pages = dao.getAllStaticPages();
 
         model.put("staticPage", new StaticPage());
         model.put("staticPageList", pages);
