@@ -30,6 +30,8 @@ public interface SoupaStarsPostDao {
     public void updatePost(Post post);
     
     public void removePost(int postId);
+
+    
     
    
  

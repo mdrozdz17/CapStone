@@ -23,6 +23,7 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
+        <script src="${pageContext.request.contextPath}/js/search.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
     </head>
         
@@ -43,7 +44,7 @@
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-2">
-                            <form action="search" class="search-form" method="post">
+                            <form action="" class="search-form" method="GET">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>
                                     <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">

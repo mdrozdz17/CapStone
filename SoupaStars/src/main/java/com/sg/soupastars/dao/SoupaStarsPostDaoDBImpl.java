@@ -172,6 +172,8 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
 
     }
 
+   
+
     private static final class PostMapper implements RowMapper<Post> {
 
         @Override
