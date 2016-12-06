@@ -16,7 +16,7 @@ public interface SoupaStarsStaticPageDao {
     
 StaticPage create(StaticPage staticPage);
 
-    StaticPage read(Integer id);
+    StaticPage selectPageById(Integer id);
 
     void update(StaticPage staticPage);
 
