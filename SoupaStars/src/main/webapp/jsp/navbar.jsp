@@ -10,7 +10,7 @@
     <body>
         <div class ="navbar-inverse">
             <ul class ="nav nav-tabs">
-                <li role="presentation" class="active">
+                <li role="presentation" >
                     <a href="${pageContext.request.contextPath}/">Home</a>
                 </li>
                 <li role="presentation">

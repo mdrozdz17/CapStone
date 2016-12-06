@@ -258,4 +258,17 @@ public class HomeController {
         page.setPageId(id);
         spdao.update(page);
     }
+    
+    @RequestMapping(value = "/displayStaticPage{id}", method = RequestMethod.GET)
+    public String displayStaticPage(Model model) throws FileNotFoundException {
+        List<Post> allPost = pdao.getAllPosts();
+        model.addAttribute("posts", allPost);
+        return "displayStaticPage";
+    }
+    
+    @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public StaticPage getStaticPage(@PathVariable("id") int id) {
+        return spdao.selectPageById(id);
+    }
 }
