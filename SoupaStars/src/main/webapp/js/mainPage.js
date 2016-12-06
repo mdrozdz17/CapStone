@@ -208,8 +208,6 @@ function fillCategoryTable(postList, status) {
     var categoryString = "";
     $.each(postList, function (arrayPosition, post) {
 
-        categoryString = categoryString + post.category;
-
         categoryString += post.category;
 
     });
