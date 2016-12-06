@@ -92,8 +92,7 @@
                                 <th>Date</th>
                                 <th>Category</th
                                 <th>&nbsp;</th>
-                                <button type="submit" class="btn btn-default"> Edit</button>
-                                <button type="submit" class="btn btn-default"> Delete</button>
+                                <button type="submit" class="btn btn- default"> Create Static Page</button>
                                 </tr>
                         </thead>
                             
