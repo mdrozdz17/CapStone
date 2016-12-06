@@ -43,7 +43,7 @@
 
                     <div class="row">
                         <div class="col-md-4 col-md-offset-2">
-                            <form action="" class="search-form">
+                            <form action="search" class="search-form" method="post">
                                 <div class="form-group has-feedback">
                                     <label for="search" class="sr-only">Search</label>
                                     <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">

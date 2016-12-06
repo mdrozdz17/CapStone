@@ -197,46 +197,6 @@ function clearPostTable() {
 
 
 
-$(function () {
-
-    $("#searchTerm").autocomplete({
-        source: function (request, response) {
-            $.ajax({
-                url: "SearchController/search/" + $("#searchTerm").val(),
-                type: "POST",
-                dataType: "json",
-                success: function (data) {
-                    if (typeof Array.prototype.forEach !== 'function') {
-                        Array.prototype.forEach = function (callback) {
-                            for (var i = 0; i < this.length; i++) {
-                                callback.apply(this, [this[i], i, this]);
-
-                            }
-                        };
-
-                    }
-
-                    var values = data;
-                    var newArray = new Array(values.length);
-                    var i = 0;
-                    values.forEach(function (entry) {
-                        var newObject = {
-                            label: entry.title
-                        };
-                        var newObject = {
-                            label: entry.author
-                        };
-                        newArray[i] = newObject;
-                        i++
-                    });
-                    response(newArray);
-                }
-            });
-        },
-        minLength: 1
-    });
-
-});
 
 
 
