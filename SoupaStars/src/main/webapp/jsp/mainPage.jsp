@@ -24,6 +24,11 @@
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
+                <style type="text/css">
+            .modal-content {
+                background-color: powderblue;
+            }
+        </style>
         
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
          <script> tinymce.init({
@@ -183,7 +188,7 @@
                                 <h3 class="modal-title" id="editDetailsModalLabel">Edit Blog Post</h3>
                             </div>
                             <div class="modal-body">
-                                <center><h2>Edit Post</h2></center>
+                                <center><strong><h2>Edit Post</h2></strong></center>
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label for="edit-title" 
