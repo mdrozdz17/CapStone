@@ -36,6 +36,9 @@ $(document).ready(function () {
 
 $('#edit-button').click(function (event) {
     event.preventDefault();
+    var tagList = [];
+    tagList.push($('#edit-taglist').val());
+    
     // update our post via AJAX
     $.ajax({
         type: 'PUT',
@@ -45,7 +48,7 @@ $('#edit-button').click(function (event) {
             title: $('#edit-title').val(),
             body: $('#edit-body').val(),
             category: $('#edit-category').val(),
-            taglist: $('#edit-taglist').val()
+            tagList: tagList
         }),
         headers: {
             'Accept': 'application/json',
