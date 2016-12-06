@@ -24,8 +24,7 @@ function loadPage() {
 
 function fillPageInfo(page, status) {
     document.getElementById("pageTitle").innerHTML = page.title;
-    document.getElementById("pageInfo").innerHTML = '<span class="glyphicon glyphicon-user"></span><a href="#"> ' + page.author + ' </a>&nbsp;'
-            
+    document.getElementById("pageInfo").innerHTML = '<span class="glyphicon glyphicon-user"></span><a href="#"> ' + page.author + ' </a>&nbsp;';        
     document.getElementById("pageBody").innerHTML = page.body;
     
 }

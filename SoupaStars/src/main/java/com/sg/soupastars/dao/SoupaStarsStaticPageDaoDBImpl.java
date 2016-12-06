@@ -79,7 +79,7 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     }
 
     @Override
-    public List<StaticPage> listAll() {
+    public List<StaticPage> getAllStaticPages() {
 
         List<StaticPage> staticPage = jdbcTemplate.query(SQL_SELECT_ALL_STATICPAGES, new PageMapper());
         return staticPage;

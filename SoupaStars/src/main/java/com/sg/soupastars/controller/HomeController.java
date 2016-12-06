@@ -271,4 +271,9 @@ public class HomeController {
     public StaticPage getStaticPage(@PathVariable("id") int id) {
         return spdao.selectPageById(id);
     }
+    
+    @RequestMapping(value="/staticPages", method=RequestMethod.GET)
+    @ResponseBody public List<StaticPage> getAllStaticPages(){
+        return spdao.getAllStaticPages();
+    }
 }

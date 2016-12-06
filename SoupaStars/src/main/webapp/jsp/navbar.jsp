@@ -7,9 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="${pageContext.request.contextPath}/js/navbar.js"></script>
+    </head>
     <body>
         <div class ="navbar-inverse">
-            <ul class ="nav nav-tabs">
+            <ul class ="nav nav-tabs" >
                 <li role="presentation" >
                     <a href="${pageContext.request.contextPath}/">Home</a>
                 </li>
@@ -19,7 +22,7 @@
                 <li role="presentation">
                     <a href="${pageContext.request.contextPath}/userPage">User Page</a>
                 </li>
-
+                <ul class="nav nav-tabs" id="static-page-tabs"></ul>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
                         <form action="search" class="search-form" method="post">
