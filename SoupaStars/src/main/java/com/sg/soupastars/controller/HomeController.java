@@ -107,55 +107,24 @@ public class HomeController {
     }
     
         // Delete a  Blog Post
-    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deletePost(@PathVariable("id") int id) {
         pdao.removePost(id);
         return "redirect:mainPage";
     }
     
-//     // Edit a Post
-//    @RequestMapping(value = "/editPost", method = RequestMethod.POST)
-//    public String editPost(@Valid @ModelAttribute("post") Post post, BindingResult result) {
-//        // If there are errors, display the form with those error messages
-//        if (result.hasErrors()) {
-//            return "editBlogPostForm";
-//        }
-//        pdao.updatePost(post);
-//        return "redirect:mainPage";
-//    }
-//    
-//    
-//    // EditPostForm
-//    @RequestMapping(value = "/editBlogPostForm", method = RequestMethod.GET)
-//    public String displayEditBlogPostForm(HttpServletRequest req, Model model) {
-//        int PostId = Integer.parseInt(req.getParameter("PostId"));
-//
-//        Post postToEdit = pdao.getPostById(PostId);
-//
-//        model.addAttribute("post", postToEdit);
-//
-//        // Return the logical view
-//        return "editBlogPostForm";
-//    }
-    
 
-////- Delete a Post (DELETE)
-////        - post/{postId}
-////        - Note: No RequestBody, no ResponseBody
-//    @RequestMapping(value = "/post/{id}", method = RequestMethod.DELETE)
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void deletePost(@PathVariable("id") int id) {
-//        pdao.removePost(id);
-//    }
 
 //- Update a Post (PUT)
 //        - post/{postId}
 //        - RequestBody: JSON object of our Post, with the postId
-    @RequestMapping(value = "/editBlogPostForm/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+    public String updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
         post.setPostId(id);
         pdao.updatePost(post);
+        return "redirect:mainPage";
     }
     
 //- Retrieve ALL Posts (GET)
@@ -239,8 +208,9 @@ public class HomeController {
     
     @RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public String displayUserPage() {
-    return "displayUserStaticPage";
+    return "userPage";
 }
+    
   
         @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
     public String showStaticPageForm() {
@@ -273,8 +243,38 @@ public class HomeController {
         page.setExpirationDate(expirationString);
         spdao.create(page);
 
-        return "redirect:mainPage";
+        return "userPage";
     }
     
+    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.GET)
+    public String deleteStaticPage(@PathVariable("id") int id) {
+        StaticPage page = spdao.selectPageById(id);
+        spdao.delete(page);
+        return "redirect:userPage";
+    }
   
+    @RequestMapping(value = "/editStaticPage{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStaticPage(@PathVariable("id") int id, @Valid @RequestBody StaticPage page) {
+        page.setPageId(id);
+        spdao.update(page);
+    }
+    
+    @RequestMapping(value = "/displayStaticPage{id}", method = RequestMethod.GET)
+    public String displayStaticPage(Model model) throws FileNotFoundException {
+        List<Post> allPost = pdao.getAllPosts();
+        model.addAttribute("posts", allPost);
+        return "displayStaticPage";
+    }
+    
+    @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public StaticPage getStaticPage(@PathVariable("id") int id) {
+        return spdao.selectPageById(id);
+    }
+    
+    @RequestMapping(value="/staticPages", method=RequestMethod.GET)
+    @ResponseBody public List<StaticPage> getAllStaticPages(){
+        return spdao.getAllStaticPages();
+    }
 }

@@ -42,137 +42,65 @@
             <hr />
             <body style ="background-color:powderblue;">
                 <div class="container">
-                    <div class ="navbar-inverse">
-                        <ul class ="nav nav-tabs">
-                            <li role="presentation" class="active">
-                                <a href="${pageContext.request.contextPath}/mainPage">Home</a>
-                            </li>
+                    <jsp:include page="navbar.jsp" />
 
-                            <div class="row">
-                                <div class="col-md-4 col-md-offset-5">
-                                    <form action="" class="search-form">
-                                        <div class="form-group has-feedback">
-                                            <label for="search" class="sr-only">Search</label>
-                                            <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                        </div>
-                                    </form>
+                    <form class="form-horizontal" role="form" modelAttribute="post"
+                             action="editPost"
+                             method="POST">
+                        <div class="form-group">
+                            <label for="edit-title" 
+                                   class="col-md-4 control-label">Title:</label>
+                            <div class="col-md-5">
+                                <input type="text" class ="form-control"  required ="true" max = "50"
+                                          id="add-title" 
+                                          path="title"
+                                          placeholder="Title" />
                                 </div>
-                                <li role ="presenation">
-                                    <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
-                                    <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
-                                <li>
-                            </div>   
-                        </ul> 
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-Category" 
+                                       class="col-md-4 control-label">Categories:</label>
+                                <div class="col-md-5">
+                                <input type="text" class ="form-control"  required ="true" max = "100"
+                                          id="add-Category" 
+                                          path="Category"
+                                          placeholder="Category" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-body"
+                                       class="col-md-4 control-label">Body of Post:</label>
+                                <div class="col-md-7">
 
+                                <textarea rows = "8" type="text" class="form-control" max = "10000"
+                                             id="add-body" 
+                                             path="body"
+                                             placeholder="Text Goes Here" />
+                                </textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit-tagList" 
+                                       class="col-md-4 control-label">Tags</label>
+                                <div class="col-md-5">
+                                <input type="text" class ="form-control"  required ="true" max = "300"
+                                          id="add-tagList" 
+                                          path="tagList"
+                                          placeholder="Tags" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-8">
+                                <hidden path="PostId" value = "0"/>
+                                <button type="submit" id="add-button"
+                                        class="btn btn-primary">Edit Post</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Page Content -->
-                    <div class="container">
-
-                        <div class="row">
-
-                            <!-- Blog Post Content Column -->
-                            <div class="col-md-8">
-
-                                <!-- Blog Post -->
-
-                                <!-- Title -->
-                                <h1 id="postTitle">Blog Post Title</h1>
-
-                                <!-- Author -->
-                                <p class="lead" id="postAuthor">
-                                    by Author
-                                </p>
-                                <hr>
-                                <!-- Date/Time -->
-                                <p id="postInfo"><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
-                                    <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
-                                    <span class="glyphicon glyphicon-duplicate"></span><a href="#"> Category </a>&nbsp;
-                                    <span class="glyphicon glyphicon-comment"></span><a href="#"> # Comment </a>&nbsp;
-                                </p>
-
-                                <hr>
-                                <!-- Post Content -->                    
-                                <p id="postBody">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-                                <table>
-                                    <tbody id="postTags"></tbody>
-                                </table>
-                                <hr>
-                                <!-- Comment -->
-                                <table>
-                                    <tbody id="commentTable"></tbody>
-                                </table>
-                                <br>
-                            </div>
-                            <!-- Blog Sidebar Widgets Column -->
-                            <div class="col-md-4">
-                                <p></p>
-                                <!-- Blog Search Well -->
-                                <div class="well">
-                                    <h4>Blog Search</h4>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button">
-                                                <span class="glyphicon glyphicon-search"></span>
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <!-- /.input-group -->
-                                </div>
-
-                                <!-- Authors -->
-                                <div class="well">
-                                    <h4>Authors</h4>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <table id="authorTable">
-                                                <tablebody id="authorRows"></tablebody>
-                                            </table>
-                                        </div>
-                                        <!-- /.col-md-6 -->
-                                        <!--                            <div class="col-md-6">
-                                                                        <ul class="list-unstyled">
-                                                                            <li><a href="#">Author</a>
-                                                                            </li>
-                                                                            <li><a href="#">Author</a>
-                                                                            </li>
-                                                                            <li><a href="#">Author</a>
-                                                                            </li>
-                                                                            <li><a href="#">Author</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>-->
-                                        <!-- /.col-md-6 -->
-                                    </div>
-                                    <!-- /.row -->
-                                </div>
-
-                                <!-- Blog Categories Well -->
-                                <div class="well">
-                                    <h4>Blog Categories</h4>
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <table id="categoryTable">
-                                                <tablebody id="categoryRows"></tablebody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </div>
-
-                                <!-- Tags -->
-                                <div class="well">
-                                    <h4>Tags</h4>
-                                    <table id="tagTable">
-                                        <tablebody id="tagRows"></tablebody>
-                                    </table>
-                                </div>
-
-                            </div>
-
-                        </div>
+                <form>
+        </div>
                     </div>
 
                     <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>

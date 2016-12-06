@@ -21,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
 
-    private static final String SQL_INSERT_STATICPAGE = "INSERT INTO StaticPage (Author, Body, ExpirationDate) VALUES (?, ?, ?)";
+    private static final String SQL_INSERT_STATICPAGE = "INSERT INTO StaticPage (Author, Title, Body, ExpirationDate) VALUES (?, ?, ?, ?)";
     private static final String SQL_DELETE_STATICPAGE = "DELETE FROM StaticPage WHERE PageID = ? ";
     private static final String SQL_SELECT_STATICPAGE = "SELECT * FROM StaticPage WHERE PageID=?";
-    private static final String SQL_UPDATE_STATICPAGE = "UPDATE StaticPage SET body=?, title=?, active=? WHERE PageID=?";
+    private static final String SQL_UPDATE_STATICPAGE = "UPDATE StaticPage SET Author=?, Title=?, Body = ?, ExpirationDate=? WHERE PageID=?";
     private static final String SQL_SELECT_ALL_STATICPAGES = "SELECT * FROM StaticPage";
 
     private JdbcTemplate jdbcTemplate;
@@ -41,8 +41,9 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     public StaticPage create(StaticPage staticPage) {
 
         jdbcTemplate.update(SQL_INSERT_STATICPAGE,
-                staticPage.getBody(),
+                staticPage.getAuthor(),
                 staticPage.getTitle(),
+                staticPage.getBody(),               
                 staticPage.getExpirationDate());
 
         Integer staticPageId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
@@ -52,9 +53,9 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     }
 
     @Override
-    public StaticPage read(Integer id) {
+    public StaticPage selectPageById(Integer id) {
 
-        StaticPage staticPage = jdbcTemplate.queryForObject(SQL_SELECT_STATICPAGE, new ContactMapper(), id);
+        StaticPage staticPage = jdbcTemplate.queryForObject(SQL_SELECT_STATICPAGE, new PageMapper(), id);
         return staticPage;
 
     }
@@ -78,9 +79,9 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     }
 
     @Override
-    public List<StaticPage> listAll() {
+    public List<StaticPage> getAllStaticPages() {
 
-        List<StaticPage> staticPage = jdbcTemplate.query(SQL_SELECT_ALL_STATICPAGES, new ContactMapper());
+        List<StaticPage> staticPage = jdbcTemplate.query(SQL_SELECT_ALL_STATICPAGES, new PageMapper());
         return staticPage;
 
     }
@@ -88,7 +89,7 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     @Override
     public List<StaticPage> listActivePages() {
 
-        List<StaticPage> staticPage = jdbcTemplate.query(SQL_SELECT_ALL_STATICPAGES, new ContactMapper());
+        List<StaticPage> staticPage = jdbcTemplate.query(SQL_SELECT_ALL_STATICPAGES, new PageMapper());
         List<StaticPage> pages = new ArrayList();
         String isActive = "Active";
 
@@ -108,16 +109,17 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
 
     }
 
-    private static final class ContactMapper implements RowMapper<StaticPage> {
+    private static final class PageMapper implements RowMapper<StaticPage> {
 
         @Override
         public StaticPage mapRow(ResultSet rs, int i) throws SQLException {
 
             StaticPage staticPage = new StaticPage();
-            staticPage.setPageId(rs.getInt("id"));
-            staticPage.setBody(rs.getString("body"));
-            staticPage.setTitle(rs.getString("title"));
-            staticPage.setExpirationDate(rs.getString("active"));
+            staticPage.setPageId(rs.getInt("PageID"));
+            staticPage.setBody(rs.getString("Body"));
+            staticPage.setTitle(rs.getString("Title"));
+            staticPage.setAuthor(rs.getString("Author"));
+            staticPage.setExpirationDate(rs.getString("ExpirationDate"));
 
             return staticPage;
 

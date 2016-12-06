@@ -3,9 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$(function () {
+$(document).ready(function () {
 
     loadPosts();
+    loadTabs();
+    $('#editModal').on('show.bs.modal', function (event) {
+    var element = $(event.relatedTarget);
+    var postId = element.data('post-id');
+    var modal = $(this);
+
+    // get our object via AJAX
+    $.ajax({
+        type: 'GET',
+        url: 'post/' + postId
+    }).success(function (sampleEditPost) {
+        modal.find('#edit-post-id').val(sampleEditPost.postId);
+        modal.find('#edit-title').val(sampleEditPost.title);
+       
+        modal.find('#edit-body').val(sampleEditPost.body);
+        modal.find('#edit-category').val(sampleEditPost.category);
+        modal.find('#edit-taglist').val(sampleEditPost.taglist);
+        
+        // needed to have posts show previous text when using tinyMCE
+      tinyMCE.activeEditor.setContent($('#edit-body').val());
+    });
+   
+});
+
+$('#edit-button').click(function (event) {
+    event.preventDefault();
+    // update our post via AJAX
+    $.ajax({
+        type: 'PUT',
+        url: 'post/' + $('#edit-post-id').val(),
+        data: JSON.stringify({
+            postId: $('#edit-post-id').val(),
+            title: $('#edit-title').val(),
+            body: $('#edit-body').val(),
+            category: $('#edit-category').val(),
+            taglist: $('#edit-taglist').val()
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'dataType': 'json'
+    }).success(function () {
+        loadPosts();
+    });
+});
 
 });
 // add the onclick handling for our add button
@@ -41,6 +87,7 @@ $('#add-button').click(function (event) {
         $('#add-body').val('');
         $('#add-category').val('');
         $('#add-taglist').val('');
+    
 
 
         // reload the summary table
@@ -55,29 +102,7 @@ $('#add-button').click(function (event) {
     });
 });
 
-$('#edit-button').click(function (event) {
-    event.preventDefault();
-    // update our post via AJAX
-    $.ajax({
-        type: 'PUT',
-        url: 'post' + $('#edit-post-id').val(),
-        data: JSON.stringify({
-            postId: $('#edit-post-id').val(),
-            title: $('#edit-title').val(),
-            author: $('#edit-author').val(),
-            body: $('#edit-body').val(),
-            category: $('#edit-category').val(),
-            taglist: $('#edit-taglist').val()
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'dataType': 'json'
-    }).success(function () {
-        loadPosts();
-    });
-});
+
 
 
 function loadPosts() {
@@ -102,14 +127,16 @@ function fillPostTable(postList, status) {
     });
     $.each(sortedPosts, function (arrayPosition, post) {
         postTable.append($('<tr>')
-                .append($(' <td> ')
+                
                         .append($('<h2>' + post.title + '</h2>\n\
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
                                 + '<p>' + post.body + '</p>'
-                                ))));
+                                )));
+              
+
 
         var tags = "";
         for (var i = 0; i < post.tagList.length; i++) {
@@ -117,12 +144,30 @@ function fillPostTable(postList, status) {
 
         }
 
-
         postTable.append($('<p>' + tags + '</p><a class="btn btn-primary" href="displayPost' + post.postId + '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>'));
-        postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
-        postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
+                   postTable.append($('<span>&nbsp</span>')
+                    //   .append($('<span>&nbsp</span>')
+               
+                  .append($('<a>')
+                                .attr({
+                                    'class': 'btn btn-primary',
+                                    'data-post-id': post.postId,
+                                    'data-toggle': 'modal',
+                                    'data-target': '#editModal'
+                                })
+                                .text('Edit')))
+               .append($('<span>&nbsp</span>')
+                        .append($('<a>')
+                                .attr({
+                                    'class': 'btn btn-primary',
+                                    'onClick': 'deletePost(' + post.postId + ')'
+                                })
+                                .text('Delete')));
+     //   postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>'));
+      //  postTable.append($('<span>&nbsp</span><a class="btn btn-primary" href="deleteBlogPost' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>'));
 
     });
+    
 }
 function fillAuthorTable(postList, status) {
     var authorTable = $('#authorRows');
@@ -162,8 +207,6 @@ function fillCategoryTable(postList, status) {
     var categoryString = "";
     $.each(postList, function (arrayPosition, post) {
 
-        categoryString = categoryString + post.category;
-
         categoryString += post.category;
 
     });
@@ -190,33 +233,71 @@ function fillTagTable(postList, status) {
     });
 }
 
-$('#editModal').on('show.bs.modal', function (event) {
-    var element = $(event.relatedTarget);
-    var postId = element.data('post-id');
-    var modal = $(this);
 
-    // get our object via AJAX
-    $.ajax({
-        type: 'GET',
-        url: 'post/' + postId
-    }).success(function (sampleEditPost) {
-        modal.find('#edit-post-id').val(sampleEditPost.postId);
-        modal.find('#edit-title').val(sampleEditPost.title);
-        modal.find('#edit-author').val(sampleEditPost.author);
-        modal.find('#edit-body').val(sampleEditPost.body);
-        modal.find('#edit-category').val(sampleEditPost.category);
-        modal.find('#edit-taglist').val(sampleEditPost.taglist);
-
-    });
-});
 
 function clearPostTable() {
     $('#postRows').empty();
 }
 
+function deletePost(id) {
+    var answer = confirm('Do you really want to delete this Post?');
+
+    if (answer === true) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/SoupaStars/deleteBlogPost' + id
+        }).success(function () {
+            // reload summary
+            loadPosts();
+        });
+    }
+}  
 
 
 
+$(function () {
 
+    $("#searchTerm").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "SearchController/search/" + $("#searchTerm").val(),
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    if (typeof Array.prototype.forEach !== 'function') {
+                        Array.prototype.forEach = function (callback) {
+                            for (var i = 0; i < this.length; i++) {
+                                callback.apply(this, [this[i], i, this]);
+
+                            }
+                        };
+
+                    }
+
+                    var values = data;
+                    var newArray = new Array(values.length);
+                    var i = 0;
+                    values.forEach(function (entry) {
+                        var newObject = {
+                            label: entry.title
+                        };
+                        var newObject = {
+                            label: entry.author
+                        };
+                        newArray[i] = newObject;
+                        i++
+                    });
+                    response(newArray);
+                }
+            });
+        },
+        minLength: 1
+    });
+
+});
+//$(function() {
+//   $('textarea.tinymce').tinymce({
+//   });
+//});
 
 

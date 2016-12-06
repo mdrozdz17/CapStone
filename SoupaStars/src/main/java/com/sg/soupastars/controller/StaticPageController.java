@@ -39,7 +39,7 @@ public class StaticPageController {
    @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Map model) {
 
-        List<StaticPage> pages = dao.listAll();
+        List<StaticPage> pages = dao.getAllStaticPages();
 
         model.put("staticPage", new StaticPage());
         model.put("staticPageList", pages);
@@ -51,7 +51,7 @@ public class StaticPageController {
     @RequestMapping(value = "show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Integer staticPageId, Map Model) {
 
-        StaticPage staticPage = dao.read(staticPageId);
+        StaticPage staticPage = dao.selectPageById(staticPageId);
 
         Model.put("page", staticPage);
 
@@ -62,7 +62,7 @@ public class StaticPageController {
     @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
     public String getToUpdate(@PathVariable("id") Integer pageId, Map model) {
 
-        StaticPage page = dao.read(pageId);
+        StaticPage page = dao.selectPageById(pageId);
 
         model.put("page", page);
 
@@ -99,7 +99,7 @@ public class StaticPageController {
     @ResponseBody
     public StaticPage delete(@PathVariable("id") Integer staticPostId) {
 
-        StaticPage staticPage = dao.read(staticPostId);
+        StaticPage staticPage = dao.selectPageById(staticPostId);
 
         return staticPage;
 

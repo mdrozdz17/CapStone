@@ -25,46 +25,40 @@
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <script src="${pageContext.request.contextPath}/js/search.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
+                <style type="text/css">
+            .modal-content {
+                background-color: powderblue;
+            }
+        </style>
+        
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+         <script> tinymce.init({
+                selector: "textarea", // change this value according to your HTML
+                plugins: [
+                    "paste",
+                    "autoresize",
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table contextmenu paste",
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
+                ],
+                paste_data_images: true,
+                force_p_newlines : false,
+                forced_root_block : '',
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
+
+
+
+            });
+        </script>
     </head>
         
-    <body style ="background-color:buttonhighlight;">
+    <body style ="background-color:powderblue;">
 
         <div class="container">
-            <div class ="navbar-inverse">
-                <ul class ="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/">Home</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
-                    </li>
-                    <li role="presentation">
-                        <a href="${pageContext.request.contextPath}/userPage">User Page</a>
-                    </li>
 
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-2">
-                            <form action="" class="search-form" method="GET">
-                                <div class="form-group has-feedback">
-                                    <label for="search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                </div>
-                            </form>
-                        </div>
-                    
-                        <li role ="presentation">
-                            <a href="${pageContext.request.contextPath}/login"><button type="submit" class="btn btn-success">Log In</button></a>
-                            <a href="${pageContext.request.contextPath}/j_spring_security_logout"><button type ="submit" class="btn btn-danger">Log Out</button></a>
-     
-                       <li>
-                      
-                    
-                    </div>  
-                    
-                </ul> 
-
-            </div>
+            <jsp:include page="navbar.jsp" />
 
 
             <!-- Page Content -->
@@ -79,8 +73,6 @@
                             <h1 style="font-family: initial;">Soupa-Stars Food Blog</h1></center>
 
                     </h1>
-        
-                   
                     <div class = table-responsive" id="postTable">
                         <table>
                             <tbody id="postRows"></tbody>
@@ -189,58 +181,49 @@
             </footer>
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                      aria-labelledby="editDetailsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span aria-hidden="true">&times;</span>
                                     <span class="sr-only">Close</span>
                                 </button>
-                                <h4 class="modal-title" id="editDetailsModalLabel"s>Edit Blog Post</h4>
+                                <h3 class="modal-title" id="editDetailsModalLabel">Edit Blog Post</h3>
                             </div>
-                            
-                            
-                            
                             <div class="modal-body">
-                                <h2>Edit Post</h2>
+                                <center><strong><h2>Edit Post</h2></strong></center>
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label for="edit-title" 
-                                               class="col-md-4 control-label">Title:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">Title:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-title" placeholder="Title" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="edit-author" 
-                                               class="col-md-4 control-label">Author:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-author" placeholder="Author" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="edit-body" 
-                                               class="col-md-4 control-label">Body:</label>
-                                        <div class="col-md-8">
-                                            <input type="text" class="form-control" id="edit-body" placeholder="Body" />
+                                               class="col-lg-3 control-label">Body:</label>
+                                        <div class="col-lg-9"> 
+                                            <input type="text" id="edit-body" name="edit-body" class="hidden">
+                              <textarea id="edit-body" class="form-control" rows="20" type="text"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-category" 
-                                               class="col-md-4 control-label">Category:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">Category:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-category" placeholder="Category" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-taglist" 
-                                               class="col-md-4 control-label">TagList:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">TagList:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-taglist" placeholder="TagList" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-offset-4 col-md-8">
+                                        <div class="col-md-offset-3 col-md-9">
                                             <button type="submit"
                                                     id="edit-button"
                                                     class="btn btn-primary" data-dismiss="modal">

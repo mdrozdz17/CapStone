@@ -17,24 +17,115 @@
     </head>
     <body style ="background-color:powderblue;">
         <div class="container">
-            <div class ="navbar-inverse">
-                <ul class ="nav nav-tabs">
-                    <li role="presentation" class="active">
-                        <a href="${pageContext.request.contextPath}/home">Home</a>
-                    </li>
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-6">
-                            <form action="" class="search-form">
-                                <div class="form-group has-feedback">
-                                    <label for="search" class="sr-only">Search</label>
-                                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            <jsp:include page="navbar.jsp" />
+<!-- Page Content -->
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Blog Post Content Column -->
+                <div class="col-md-8">
+
+                    <!-- Blog Post -->
+
+                    <!-- Title -->
+                    <h1 id="pageTitle">Page Title</h1>
+
+                    
+
+                    <hr>
+
+                    <!-- Date/Time -->
+                    <p id="pageInfo"><span class="glyphicon glyphicon-user"></span><a href="#"> Author </a>&nbsp;
+                        <span class="glyphicon glyphicon-time"></span> Posted on August 28, 2013 at 10:00 PM&nbsp;
+                    </p>
+
+                    <hr>
+
+                    <!-- Post Content -->                    
+                    <p id="pageBody"> content </p>
+                    <table>
+                            <tbody id="postTags"></tbody>
+                    </table>
+                    <hr>
+                </div>
+                    
+                        <!-- Blog Sidebar Widgets Column -->
+                        <div class="col-md-4">
+                            <p></p>
+                            <!-- Blog Search Well -->
+                            <div class="well">
+                                <h4>Blog Search</h4>
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
                                 </div>
-                            </form>
+                                <!-- /.input-group -->
+                            </div>
+
+                            <!-- Authors -->
+                            <div class="well">
+                                <h4>Authors</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table id="authorTable">
+                                            <tablebody id="authorRows"></tablebody>
+                                        </table>
+                                    </div>
+                                    <!-- /.col-md-6 -->
+                                    <!--                            <div class="col-md-6">
+                                                                    <ul class="list-unstyled">
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                        <li><a href="#">Author</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>-->
+                                    <!-- /.col-md-6 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+
+                            <!-- Blog Categories Well -->
+                            <div class="well">
+                                <h4>Blog Categories</h4>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <table id="categoryTable">
+                                            <tablebody id="categoryRows"></tablebody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="well">
+                                <h4>Tags</h4>
+                                <table id="tagTable">
+                                    <tablebody id="tagRows"></tablebody>
+                                </table>
+                                <!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>-->
+                            </div>
+
                         </div>
+
                     </div>
-                </ul>   
-            </div>
-                                    <h3>Add New Static Page</h3>
-                
+                </div>
+            
+            <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/displayStaticPage.js"></script>
+            <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>    
+
+    </body>
 </html>

@@ -16,13 +16,13 @@ public interface SoupaStarsStaticPageDao {
     
 StaticPage create(StaticPage staticPage);
 
-    StaticPage read(Integer id);
+    StaticPage selectPageById(Integer id);
 
     void update(StaticPage staticPage);
 
     void delete(StaticPage staticPage);
 
-    List<StaticPage> listAll();
+    List<StaticPage> getAllStaticPages();
 
     List<StaticPage> listActivePages();
 
