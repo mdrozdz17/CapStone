@@ -23,6 +23,7 @@
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
+        <script src="${pageContext.request.contextPath}/js/search.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
                 <style type="text/css">
             .modal-content {
@@ -56,7 +57,9 @@
     <body style ="background-color:powderblue;">
 
         <div class="container">
+
             <jsp:include page="navbar.jsp" />
+
 
             <!-- Page Content -->
 

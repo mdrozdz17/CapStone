@@ -55,7 +55,13 @@ public class SearchController {
            
     }
   
-// @RequestMapping(value = "/search/{searchTerm}", method = RequestMethod.POST)
-// @ResponseBody
-//    public String 
+ @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
+    public List findPost (HttpServletRequest req){
+        
+    return dao.searchPosts(req.getParameter("searchTerm"));        
+    
+       
+        
+}
+
 }
