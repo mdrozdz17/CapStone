@@ -82,20 +82,18 @@
         
                    
                     <c:if test="${fn:length(SoupaStars) lt 1}">
-                        <form action="loasPosts" method"POST">
-                              <button type="submit" class="btn btn-default"> Load Test Posts</button>
-                        </form>
+                       
+                        
                     </c:if>
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Local Date</th>
-                                <th>Author</th>
-                                <th>Comment</th>
-                                <th>Body</th>
-                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Category</th
                                 <th>&nbsp;</th>
+                                <button type="submit" class="btn btn-default"> Edit</button>
+                                <button type="submit" class="btn btn-default"> Delete</button>
                                 </tr>
                         </thead>
                             
@@ -114,8 +112,6 @@
                                 <td>${post.title}</td>
                                 <td>${post.localDate}</td>
                                 <td${post.author}</td>
-                                <td>${post.comment}</td>
-                                <td>${post.body}</td>
                                 <td>${post.category}</td>
                                 <td>
                                     <sec:authorize access="('ROLE_ADMIN', 'ROLE_VISITOR')">
