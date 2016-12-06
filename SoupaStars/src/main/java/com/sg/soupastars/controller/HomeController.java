@@ -129,7 +129,7 @@ public class HomeController {
 //        - RequestBody: JSON object of our Post, with the postId
     @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
         post.setPostId(id);
         if (post.tagList != null) {
             String tagString = post.tagList.get(0);
@@ -142,7 +142,6 @@ public class HomeController {
             }
         }
         pdao.updatePost(post);
-        return "redirect:mainPage";
     }
 
 //- Retrieve ALL Posts (GET)
@@ -258,19 +257,21 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteStaticPage(@PathVariable("id") int id) {
         StaticPage page = spdao.selectPageById(id);
         spdao.delete(page);
         return "redirect:userPage";
     }
 
-    @RequestMapping(value = "/editStaticPage{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/editStaticPage/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStaticPage(@PathVariable("id") int id, @Valid @RequestBody StaticPage page) {
         page.setPageId(id);
         spdao.update(page);
     }
-
+     
+    
     @RequestMapping(value = "/displayStaticPage{id}", method = RequestMethod.GET)
     public String displayStaticPage(Model model) throws FileNotFoundException {
         List<Post> allPost = pdao.getAllPosts();

@@ -5,25 +5,26 @@
  */
 
 
-$(function () {
+$(document).ready(function () {
+    
     loadStaticPageList();
         $('#editModal').on('show.bs.modal', function (event) {
     var element = $(event.relatedTarget);
-    var pageId = element.data('page-id');
+    var pageId = element.data('post-id');
     var modal = $(this);
 
     // get our object via AJAX
     $.ajax({
         type: 'GET',
-        url: 'staticPages/' + pageId
+        url: 'staticPage/' + pageId
     }).success(function (sampleEditPage) {
         modal.find('#edit-page-id').val(sampleEditPage.pageId);
         modal.find('#edit-title').val(sampleEditPage.title);
         modal.find('#edit-body').val(sampleEditPage.body);
         modal.find('#edit-expirationDate').val(sampleEditPage.expirationDate);
         
-        // needed to have posts show previous text when using tinyMCE
-     // tinyMCE.activeEditor.setContent($('#edit-body').val());
+       // needed to have posts show previous text when using tinyMCE
+      tinyMCE.activeEditor.setContent($('#edit-body').val());
     });
    
 });
@@ -38,7 +39,7 @@ $('#edit-button').click(function (event) {
             pageId: $('#edit-page-id').val(),
             title: $('#edit-title').val(),
             body: $('#edit-body').val(),
-            expirationdate: $('#edit-expirationDate').val()
+            expirationDate: $('#edit-expirationDate').val()
         }),
         headers: {
             'Accept': 'application/json',
@@ -46,7 +47,7 @@ $('#edit-button').click(function (event) {
         },
         'dataType': 'json'
     }).success(function () {
-        loadPosts();
+        location.reload();
     });
 });
 
@@ -70,10 +71,31 @@ function fillStaticPageTable(pageList, status) {
     $.each(pageList, function (arrayPosition, page) {
         pageTable.append($('<tr><td><h4><a href="displayStaticPage' + page.pageId +
                 '">' + page.title + '</a></h4></td>'
-                + '<td>' + page.expirationDate + '</td>'
+                + '<td>' + page.expirationDate + '</td>'   
+        
+        
+        
              //   + '<td><a class="btn btn-primary" href="#" >Edit Page</a></td>'
             //    + '<td><a class="btn btn-primary "href="deleteStaticPage' + page.pageId +'">Delete Page</a></td>'
                 +'</tr>'));
+            pageTable.append($('<span>&nbsp</span>')
+                    //   .append($('<span>&nbsp</span>')
+               
+                  .append($('<a>')
+                                .attr({
+                                    'class': 'btn btn-primary',
+                                    'data-post-id': page.pageId,
+                                    'data-toggle': 'modal',
+                                    'data-target': '#editModal'
+                                })
+                                .text('Edit')))
+               .append($('<span>&nbsp</span>')
+                        .append($('<a>')
+                                .attr({
+                                    'class': 'btn btn-danger',
+                                    'onClick': 'deleteStaticPage(' + page.pageId + ')'
+                                })
+                                .text('Delete')));
     });
 }
     

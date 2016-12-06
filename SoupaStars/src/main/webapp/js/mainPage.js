@@ -56,9 +56,10 @@ $('#edit-button').click(function (event) {
         },
         'dataType': 'json'
     }).success(function () {
-        
+        // used to reload the page after updating
+        location.reload();
     });
-    loadPosts();
+    
 });
 
 });
