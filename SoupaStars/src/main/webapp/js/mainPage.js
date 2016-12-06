@@ -27,7 +27,7 @@ $(document).ready(function () {
             tagString += "#" + sampleEditPost.tagList[i] + " ";
         }
         modal.find('#edit-taglist').val(tagString);
-        loadPosts();
+        
         // needed to have posts show previous text when using tinyMCE
       tinyMCE.activeEditor.setContent($('#edit-body').val());
     });
@@ -53,8 +53,9 @@ $('#edit-button').click(function (event) {
         },
         'dataType': 'json'
     }).success(function () {
-        loadPosts();
+        
     });
+    loadPosts();
 });
 
 });
