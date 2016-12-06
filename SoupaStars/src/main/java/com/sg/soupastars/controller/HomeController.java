@@ -246,7 +246,7 @@ public class HomeController {
         return "userPage";
     }
     
-    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.DELETE)
     public String deleteStaticPage(@PathVariable("id") int id) {
         StaticPage page = spdao.selectPageById(id);
         spdao.delete(page);
@@ -259,6 +259,7 @@ public class HomeController {
         page.setPageId(id);
         spdao.update(page);
     }
+  
     
     @RequestMapping(value = "/displayStaticPage{id}", method = RequestMethod.GET)
     public String displayStaticPage(Model model) throws FileNotFoundException {
