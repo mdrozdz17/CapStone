@@ -29,26 +29,26 @@
           <jsp:include page="navbar.jsp" />
                     <h1>User Page</h1>
 
-            
+            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Create static Page<span class="glyphicon glyphicon"></span></a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Title</th>
                                 <th>Date</th>
-                                <th>Category</th
+                                <th><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a></th>
+                                <th><a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a></th>
                                 <th>&nbsp;</th>
 
                             </tr>
                         </thead>
                             
                     </table>
-            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Edit <span class="glyphicon glyphicon"></span></a>
-            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Delete <span class="glyphicon glyphicon"></span></a>
-            <a class="btn btn-primary" href="editBlogPostForm' + post.postId + '">Create static Page<span class="glyphicon glyphicon"></span></a>
+            
+            
             
             
                     <tbody>
-                        <c:forEach var="post" items="${SoupaStar}">
+                       <c:forEach var="post" items="${SoupaStar}">
                             <s:url value="deleteBlogPostForm" var="deleteBlogPost_url">
                                 <s:param name="postId" value="${post.postId}"/>   
                                 

@@ -24,26 +24,27 @@
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="${pageContext.request.contextPath}/js/mainPage.js"></script>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/soup.jpg">
-         <script>
-//             tinymce.init({
-//                selector: "textarea", // change this value according to your HTML
-//                plugins: [
-//                    "paste",
-//                    "advlist autolink lists link image charmap print preview anchor",
-//                    "searchreplace visualblocks code fullscreen",
-//                    "insertdatetime media table contextmenu paste",
-//                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
-//                ],
-//                toolbar: "paste",
-//                paste_data_images: true,
-//                force_p_newlines : false,
-//                forced_root_block : '',
-//                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-//                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
-//
-//
-//
-//            });
+        
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+         <script> tinymce.init({
+                selector: "textarea", // change this value according to your HTML
+                plugins: [
+                    "paste",
+                    "autoresize",
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table contextmenu paste",
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
+                ],
+                paste_data_images: true,
+                force_p_newlines : false,
+                forced_root_block : '',
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample'
+
+
+
+            });
         </script>
     </head>
         
@@ -172,48 +173,49 @@
             </footer>
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
                      aria-labelledby="editDetailsModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span aria-hidden="true">&times;</span>
                                     <span class="sr-only">Close</span>
                                 </button>
-                                <h4 class="modal-title" id="editDetailsModalLabel"s>Edit Blog Post</h4>
+                                <h3 class="modal-title" id="editDetailsModalLabel">Edit Blog Post</h3>
                             </div>
                             <div class="modal-body">
-                                <h2>Edit Post</h2>
+                                <center><h2>Edit Post</h2></center>
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label for="edit-title" 
-                                               class="col-md-4 control-label">Title:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">Title:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-title" placeholder="Title" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-body" 
-                                               class="col-md-4 control-label">Body:</label>
-                                        <div class="col-md-8">
-                              <textarea id="edit-body" name="edit-body" class="form-control" rows="3" type="text"></textarea>
+                                               class="col-lg-3 control-label">Body:</label>
+                                        <div class="col-lg-9"> 
+                                            <input type="text" id="edit-body" name="edit-body" class="hidden">
+                              <textarea id="edit-body" class="form-control" rows="20" type="text"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-category" 
-                                               class="col-md-4 control-label">Category:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">Category:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-category" placeholder="Category" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="edit-taglist" 
-                                               class="col-md-4 control-label">TagList:</label>
-                                        <div class="col-md-8">
+                                               class="col-lg-3 control-label">TagList:</label>
+                                        <div class="col-lg-9">
                                             <input type="text" class="form-control" id="edit-taglist" placeholder="TagList" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-offset-4 col-md-8">
+                                        <div class="col-md-offset-3 col-md-9">
                                             <button type="submit"
                                                     id="edit-button"
                                                     class="btn btn-primary" data-dismiss="modal">
