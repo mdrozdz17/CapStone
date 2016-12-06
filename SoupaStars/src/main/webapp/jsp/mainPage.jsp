@@ -48,7 +48,7 @@
         </script>
     </head>
         
-    <body style ="background-color:buttonhighlight;">
+    <body style ="background-color:powderblue;">
 
         <div class="container">
             <jsp:include page="navbar.jsp" />
