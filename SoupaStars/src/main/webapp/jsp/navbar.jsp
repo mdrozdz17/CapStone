@@ -24,7 +24,7 @@
                 </li>
                 <ul class="nav nav-tabs" id="static-page-tabs"></ul>
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-2">
+                    <div class="col-md-4 col-md-offset-6">
                         <form action="search" class="search-form" method="post">
                             <div class="form-group has-feedback">
                                 <label for="search" class="sr-only">Search</label>
