@@ -19,15 +19,12 @@
                 selector: "textarea", // change this value according to your HTML
                 plugins: [
                     "paste",
+                    "autoresize",
                     "advlist autolink lists link image charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",
                     "insertdatetime media table contextmenu paste",
                     'emoticons template paste textcolor colorpicker textpattern imagetools codesample',
                 ],
-                width: 600,
-                height: 90,
-                theme_advanced_resizing_min_height: 90,
-                theme_advanced_resizing_max_height: 180,
                 toolbar: "paste",
                 paste_data_images: true,
                 force_p_newlines: false,

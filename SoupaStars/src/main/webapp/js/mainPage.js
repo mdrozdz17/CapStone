@@ -19,13 +19,39 @@ $(document).ready(function () {
     }).success(function (sampleEditPost) {
         modal.find('#edit-post-id').val(sampleEditPost.postId);
         modal.find('#edit-title').val(sampleEditPost.title);
+       
         modal.find('#edit-body').val(sampleEditPost.body);
         modal.find('#edit-category').val(sampleEditPost.category);
         modal.find('#edit-taglist').val(sampleEditPost.taglist);
+     
         
-
+        // needed to have posts show previous text when using tinyMCE
+      tinyMCE.activeEditor.setContent($('#edit-body').val());
     });
-    
+   
+});
+
+$('#edit-button').click(function (event) {
+    event.preventDefault();
+    // update our post via AJAX
+    $.ajax({
+        type: 'PUT',
+        url: 'post/' + $('#edit-post-id').val(),
+        data: JSON.stringify({
+            postId: $('#edit-post-id').val(),
+            title: $('#edit-title').val(),
+            body: $('#edit-body').val(),
+            category: $('#edit-category').val(),
+        //    taglist: $('#edit-taglist').val()
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        'dataType': 'json'
+    }).success(function () {
+        loadPosts();
+    });
 });
 
 });
@@ -62,6 +88,7 @@ $('#add-button').click(function (event) {
         $('#add-body').val('');
         $('#add-category').val('');
         $('#add-taglist').val('');
+    
 
 
         // reload the summary table
@@ -76,28 +103,7 @@ $('#add-button').click(function (event) {
     });
 });
 
-$('#edit-button').click(function (event) {
-    event.preventDefault();
-    // update our post via AJAX
-    $.ajax({
-        type: 'PUT',
-        url: 'post/' + $('#edit-post-id').val(),
-        data: JSON.stringify({
-            postId: $('#edit-post-id').val(),
-            title: $('#edit-title').val(),
-            body: $('#edit-body').val(),
-            category: $('#edit-category').val(),
-            taglist: $('#edit-taglist').val()
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'dataType': 'json'
-    }).success(function () {
-        loadPosts();
-    });
-});
+
 
 
 function loadPosts() {
