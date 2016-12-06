@@ -43,13 +43,13 @@
                 <div class="container">
                     <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="${pageContext.request.contextPath}/">Home</a>
                     </li>
                     <li role="presentation" class="active">
                         <a href="${pageContext.request.contextPath}/displayBlogPostForm">Write a Post</a>
                     </li>
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="${pageContext.request.contextPath}/addStaticPage">Create Static Page</a>
                     </li>
 

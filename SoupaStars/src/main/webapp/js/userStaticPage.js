@@ -57,30 +57,30 @@ $('#add-button').click(function (event) {
     });
 });
 
-$('#edit-button').click(function (event) {
-    event.preventDefault();
-    // update our post via AJAX
-
-    $.ajax({
-        type: 'PUT',
-        url: 'post/' + $('#edit-post-id').val(),
-        data: JSON.stringify({
-            postId: $('#edit-post-id').val(),
-            title: $('#edit-title').val(),
-            author: $('#edit-author').val(),
-            body: $('#edit-body').val(),
-            category: $('#edit-category').val(),
-            taglist: $('#edit-taglist').val()
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        'dataType': 'json'
-    }).success(function () {
-        loadPosts();
-    });
-});
+//$('#edit-button').click(function (event) {
+//    event.preventDefault();
+//    // update our post via AJAX
+//
+//    $.ajax({
+//        type: 'PUT',
+//        url: 'post/' + $('#edit-post-id').val(),
+//        data: JSON.stringify({
+//            postId: $('#edit-post-id').val(),
+//            title: $('#edit-title').val(),
+//            author: $('#edit-author').val(),
+//            body: $('#edit-body').val(),
+//            category: $('#edit-category').val(),
+//            taglist: $('#edit-taglist').val()
+//        }),
+//        headers: {
+//            'Accept': 'application/json',
+//            'Content-Type': 'application/json'
+//        },
+//        'dataType': 'json'
+//    }).success(function () {
+//        loadPosts();
+//    });
+//});
 
 
 function loadPosts() {
