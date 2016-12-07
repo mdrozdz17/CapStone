@@ -78,8 +78,14 @@
                             <tbody>
                             <c:forEach items="${searchList}" var="result">
                                 <tr>
-                                <td>${result.title}</td>
+<!--                                <td>${result.title}</td>
+                                <td>${result.author}</td> -->
                                 </tr>
+                                <tr><h2>${result.title}</h2>
+        <p><span class="glyphicon glyphicon-user"></span><a href="#"> ${result.author}</a>&nbsp;
+        <span class="glyphicon glyphicon-time"></span> ${result.month} ${result.day} ${result.year} &nbsp;
+        <span class="glyphicon glyphicon-comment"></span><a href="#"> ${result.comments}</a></p><p>${result.body}</p></tr>
+        <a class="btn btn-primary" href="displayPost' + ${result.postId} '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
                             </c:forEach>
                         </tbody>        
                     </table>
