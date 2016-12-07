@@ -152,9 +152,9 @@ function fillPostTable(postList, status) {
         postTable.append($('<tr>')
                 
                         .append($('<h2>' + post.title + '</h2>\n\
-        <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
+        <p><span class="glyphicon glyphicon-user"></span><a href="search?searchTerm=' + post.author + '">' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
-        <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
+        <span class="glyphicon glyphicon-duplicate"></span><a href="searchTerm=' + post.category + '">' + post.category + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><span> ' + post.commentList.length + " Comments</span>"
                                 + '<p>' + shortText + '</p>'
                                 )));
