@@ -113,7 +113,7 @@ function loadPosts() {
     //grab off of url query string 
     // substring
     $.ajax({
-        url: '/searchPost' ,
+        url: 'searchPost' ,
         contentType: 'application/json',
         type: 'GET',
         dataType: 'json'
@@ -300,13 +300,13 @@ $(function () {
 
 });
 
-$("#searchTerm").on('submit', function (){
-    var data = this.val();
-    $.ajax({
-        url: "/searchPost",
-        type:"PUT"
-    });
-});
+//$("#searchTerm").on('submit', function (){
+//    var data = this.val();
+//    $.ajax({
+//        url: "searchPost",
+//        type:"PUT"
+//    });
+//});
 
 
 //function searchFunction(){

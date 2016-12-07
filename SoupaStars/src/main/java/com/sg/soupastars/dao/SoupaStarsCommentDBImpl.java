@@ -21,13 +21,13 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
 
     private static final String SQL_INSERT_COMMENT = "insert into Comments (userName, email, commentText, commentDate) VALUES (?, ?, ?, ?)";
     private static final String SQL_DELETE_COMMENT = "delete from Comments where CommentID = ? ";
-    private static final String SQL_SELECT_COMMENT = "select * from Comments where comment_id= ?";
+    private static final String SQL_SELECT_COMMENT = "select * from Comments where CommentID= ?";
     private static final String SQL_UPDATE_COMMENT = "update static_page set name= ?, email= ?, text= ?, date = ?, where comment_id =?";
     private static final String SQL_SELECT_ALL_COMMENT = "select * from Comments";
     private static final String SQL_INSERT_POSTID = "insert into PostComment (PostID, CommentID) values (?, ?)";
     private static final String SQL_DELETE_COMMENT_FROM_POSTCOMMENT = "delete from PostComment where CommentID = ?";
     private static final String SQL_SELECT_POSTID_FROM_POSTCOMMENT = "select PostID from PostComment where CommentID = ?";
-    
+
     private JdbcTemplate jdbcTemplate;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -44,8 +44,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
         Integer commentId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         comment.setCommentId(commentId);
         jdbcTemplate.update(SQL_INSERT_POSTID, postID, comment.getCommentId());
-        
-        
+
         return comment;
 
     }
@@ -62,7 +61,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
 
     @Override
     public int removeComment(int commentId) {
-        int postId = jdbcTemplate.queryForObject(SQL_SELECT_POSTID_FROM_POSTCOMMENT, Integer.class, commentId );
+        int postId = jdbcTemplate.queryForObject(SQL_SELECT_POSTID_FROM_POSTCOMMENT, Integer.class, commentId);
         jdbcTemplate.update(SQL_DELETE_COMMENT_FROM_POSTCOMMENT, commentId);
         jdbcTemplate.update(SQL_DELETE_COMMENT, commentId);
         return postId;
@@ -87,11 +86,11 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
         @Override
         public Comment mapRow(ResultSet rs, int i) throws SQLException {
             Comment comment = new Comment();
-            comment.setCommentId(rs.getInt("comment_id"));
-            comment.setName(rs.getString("name"));
+            comment.setCommentId(rs.getInt("CommentID"));
+            comment.setName(rs.getString("userName"));
             comment.setEmail(rs.getString("email"));
-            comment.setText(rs.getString("text"));
-            comment.setDate(rs.getString("date"));
+            comment.setText(rs.getString("commentText"));
+            comment.setDate(rs.getString("commentDate"));
 
             return comment;
 

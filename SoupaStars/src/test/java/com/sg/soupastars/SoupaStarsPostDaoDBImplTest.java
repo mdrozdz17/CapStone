@@ -24,71 +24,64 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class SoupaStarsPostDaoDBImplTest {
 
-}
+
     
 
-  //private SoupaStarsPostDao dao;
+  private SoupaStarsPostDao dao;
     
-  // public SoupaStarsPostDaoDBImplTest(){
+   public SoupaStarsPostDaoDBImplTest(){
         
-    //}
+   }
+        
+
+    @BeforeClass
+    public static void setUpClass(){
+        
+    }
     
-
-//  private SoupaStarsPostDao dao;
-//    
-//   public SoupaStarsPostDaoDBImplTest(){
-//        
-//    }
-//    
-
-//    @BeforeClass
-//    public static void setUpClass(){
-//        
-//    }
-//    
-//    @AfterClass
-//    public static void tearDownClass(){
-//        
-//    }
-//    
-//    @Before
-//    public void setUp(){
-//    ApplicationContext ctx  = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-//        
-//        dao = (SoupaStarsPostDao) ctx. getBean("SoupaStarsPostDaoDBImpl");
-//        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-//        cleaner.execute("delete from posts");
-//        
-//    }
-//    
-//    @After
-//    public void tearDown(){
-//        
-//    }
-//    
-//    @Test
-//    public void addGetDeletePost(){
-//     Post pt = new Post();
-//        pt.setTitle("Cookies");
-//        pt.setYear(2016);
-//        pt.setMonth("December");
-//        pt.setDay(02);
-//        pt.setAuthor("Alyssa");
-//        pt.setBody("hello");
-//        pt.setCategory("Food");
-//        dao.addPost(pt);
-//        Post fromDb = dao.getPostById(pt.getPostId());
-//        assertEquals(fromDb.getPostId(), pt.getPostId());
-//        assertEquals(fromDb.getTitle(), pt.getTitle());
-//        assertEquals(fromDb.getYear(), pt.getYear());
-//        assertEquals(fromDb.getMonth(), pt.getMonth());
-//        assertEquals(fromDb.getDay(), pt.getDay());
-//        assertEquals(fromDb.getAuthor(), pt.getAuthor());
-//        assertEquals(fromDb.getBody(), pt.getBody());
-//        assertEquals(fromDb.getCategory(), pt.getCategory());
-//        dao.removePost(pt.getPostId());
-//        assertNull(dao.getPostById(pt.getPostId()));
-//        
-//        
-//    }
-//   }
+    @AfterClass
+    public static void tearDownClass(){
+        
+    }
+    
+    @Before
+    public void setUp(){
+    ApplicationContext ctx  = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+        
+        dao = (SoupaStarsPostDao) ctx. getBean("SoupaStarsPostDaoDBImpl");
+        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+        cleaner.execute("delete from posts");
+        
+    }
+    
+    @After
+    public void tearDown(){
+        
+    }
+    
+    @Test
+    public void addGetDeletePost(){
+     Post pt = new Post();
+        pt.setTitle("Cookies");
+        pt.setYear(2016);
+        pt.setMonth("December");
+        pt.setDay(02);
+        pt.setAuthor("Alyssa");
+        pt.setBody("hello");
+        pt.setCategory("Food");
+        dao.addPost(pt);
+        Post fromDb = dao.getPostById(pt.getPostId());
+        assertEquals(fromDb.getPostId(), pt.getPostId());
+        assertEquals(fromDb.getTitle(), pt.getTitle());
+        assertEquals(fromDb.getYear(), pt.getYear());
+        assertEquals(fromDb.getMonth(), pt.getMonth());
+        assertEquals(fromDb.getDay(), pt.getDay());
+        assertEquals(fromDb.getAuthor(), pt.getAuthor());
+        assertEquals(fromDb.getBody(), pt.getBody());
+        assertEquals(fromDb.getCategory(), pt.getCategory());
+        dao.removePost(pt.getPostId());
+        assertNull(dao.getPostById(pt.getPostId()));
+        
+        
+    }
+   }
