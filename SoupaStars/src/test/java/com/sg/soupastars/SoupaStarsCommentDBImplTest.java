@@ -51,7 +51,8 @@ public class SoupaStarsCommentDBImplTest {
     
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
        cleaner.execute("delete from PostComment");
-        cleaner.execute("delete from Comments");
+        cleaner.execute("delete from Comments"); 
+        //this is a test
 
 
      }
