@@ -71,6 +71,7 @@ function fillStaticPageTable(pageList, status) {
         type: 'GET',
         url: 'currentUser'
     }).success(function (author, status) {
+        document.getElementById("username").innerHTML = author + "'s User Page";
         $.each(pageList, function (arrayPosition, page) {
             if (author === page.author) {
                 pageTable.append($('<tr><td><h4><a href="displayStaticPage' + page.pageId +
