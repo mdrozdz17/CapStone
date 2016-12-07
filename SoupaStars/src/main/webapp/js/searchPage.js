@@ -132,6 +132,10 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
+        var shortText = post.body.substring(0,480);
+        if(shortText.length===480){
+            shortText+="...";
+        }
         postTable.append($('<tr>')
                 
                         .append($('<h2>' + post.title + '</h2>\n\
@@ -139,7 +143,7 @@ function fillPostTable(postList, status) {
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
-                                + '<p>' + post.body + '</p>'
+                                + '<p>' + shortText + '</p>'
                                 )));
               
 
