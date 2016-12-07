@@ -94,7 +94,7 @@
                     <!-- Comments Form -->
                     <div class="well">
                         <h4>Leave a Comment:</h4>
-                        <sf: form role="form" action="comment" method="POST">
+                        <form role="form" action="comment" method="POST">
                             <div class="form-group">
                                 Username* <input id="username" name="username" required type="text">
                                 Email <input id="email" name="email" type="text"><br><br>
@@ -102,7 +102,7 @@
                                 <input type="hidden" name="postId" id="postId" value="id-placeholder">
                             </div>
                             <button id="submit-comment" type="submit" class="btn btn-primary">Submit</button>
-                        </sf:form>
+                        </form>
                     </div>
 
                     <hr>

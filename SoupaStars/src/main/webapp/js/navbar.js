@@ -80,9 +80,7 @@ $(function () {
                         var newObject = {
                             label: entry.title
                         };
-                        var newObject = {
-                            label: entry.author
-                        };
+                        
                         newArray[i] = newObject;
                         i++
                     });
