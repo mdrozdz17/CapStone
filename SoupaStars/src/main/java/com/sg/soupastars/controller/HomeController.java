@@ -301,8 +301,9 @@ public class HomeController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String displaySearchPage(HttpServletRequest req, Model model){
         String newTerm = req.getQueryString();
-        String newerTerm = newTerm.replace("+", " ");
-       String searchTerm = newerTerm.replace("searchTerm=", "");
+        String newerTerm = newTerm.replaceAll("[+%,0123456789&]", " ");
+       String newestTerm = newerTerm.replace("searchTerm=", "");
+       String searchTerm = newestTerm.replaceAll("\\s+", " ");
         List resultList = pdao.searchPosts(searchTerm);
         model.addAttribute("searchList", resultList);
         return "search";

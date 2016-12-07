@@ -202,7 +202,7 @@ function fillAuthorTable(postList, status) {
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(authorList, post.author)) {
-            authorTable.append($('<tr><td><a href="#">' + post.author +
+            authorTable.append($('<tr><td><a href="search?searchTerm=' + post.author + '">' + post.author +
                     ' (' + countInstances(authorString, post.author) + ')</a></td></tr>'));
             authorList.push(post.author);
         }
@@ -235,7 +235,7 @@ function fillCategoryTable(postList, status) {
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(categoryList, post.category)) {
-            categoryTable.append($('<tr><td><a href="#">' + post.category + ' ('
+            categoryTable.append($('<tr><td><a href="search?searchTerm=' + post.category + '">' + post.category + ' ('
                     + countInstances(categoryString, post.category) + ')</a></td></tr>'));
             categoryList.push(post.category);
         }
@@ -249,7 +249,7 @@ function fillTagTable(postList, status) {
     $.each(postList, function (arrayPosition, post) {
         for (var i = 0; i < post.tagList.length; i++) {
             if (!contains(tagList, post.tagList[i]) && tagList.length <= 20) {
-                tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
+                tagTable.append($('<a href="search?searchTerm=' + post.tagList[i] + '">#' + post.tagList[i] + ' </a></'));
                 tagList.push(post.tagList[i]);
             }
         }

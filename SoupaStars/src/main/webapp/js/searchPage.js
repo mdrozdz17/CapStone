@@ -113,7 +113,7 @@ function loadPosts() {
     //grab off of url query string 
     // substring
     $.ajax({
-        url: 'searchPost' ,
+        url: 'post' ,
         contentType: 'application/json',
         type: 'GET',
         dataType: 'json'
@@ -185,7 +185,7 @@ function fillAuthorTable(postList, status) {
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(authorList, post.author)) {
-            authorTable.append($('<tr><td><a href="#">' + post.author +
+            authorTable.append($('<tr><td><a href="search?searchTerm=' + post.author + '">' + post.author +
                     ' (' + countInstances(authorString, post.author) + ')</a></td></tr>'));
             authorList.push(post.author);
         }
@@ -218,7 +218,7 @@ function fillCategoryTable(postList, status) {
     });
     $.each(postList, function (arrayPosition, post) {
         if (!contains(categoryList, post.category)) {
-            categoryTable.append($('<tr><td><a href="#">' + post.category + ' ('
+            categoryTable.append($('<tr><td><a href="search?searchTerm=' + post.category + '">' + post.category + ' ('
                     + countInstances(categoryString, post.category) + ')</a></td></tr>'));
             categoryList.push(post.category);
         }

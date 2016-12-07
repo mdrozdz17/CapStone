@@ -76,17 +76,22 @@
                     <div class = table-responsive" id="postTable">
                         <table>
                             <tbody>
-                            <c:forEach items="${searchList}" var="result">
-                                <tr>
-<!--                                <td>${result.title}</td>
-                                <td>${result.author}</td> -->
-                                </tr>
+                       <c:forEach items="${searchList}" var="result">
+                                
                                 <tr><h2>${result.title}</h2>
+                            </tr>
+                            ${result.body}
+                            
+                            <tr>
+                            </tr>
+                            <tr>
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ${result.author}</a>&nbsp;
         <span class="glyphicon glyphicon-time"></span> ${result.month} ${result.day} ${result.year} &nbsp;
-        <span class="glyphicon glyphicon-comment"></span><a href="#"> ${result.comments}</a></p><p>${result.body}</p></tr>
-        <a class="btn btn-primary" href="displayPost' + ${result.postId} '">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        
+        <a class="btn btn-primary" href="displayPost + ${result.postId} ">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        </tr>
                             </c:forEach>
+                        
                         </tbody>        
                     </table>
                     </div>
