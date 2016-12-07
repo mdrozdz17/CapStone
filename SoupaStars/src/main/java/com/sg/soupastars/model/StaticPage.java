@@ -19,7 +19,12 @@ public class StaticPage {
 
     private int pageId;
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    private String author = authentication.getName();
+    public String author;
+            public StaticPage() {
+        if(authentication != null){
+            this.author = authentication.getName();
+        }
+    }
     
     @NotEmpty(message ="Please enter a Title.")
     @Length(max=50, message = "Title must be no longer than 50 characters.")
