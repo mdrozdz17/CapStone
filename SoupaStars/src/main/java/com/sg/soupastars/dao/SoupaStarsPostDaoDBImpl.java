@@ -42,7 +42,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
     private static final String SQL_SELECT_POST_BY_SEARCHTERM = "select * from Post where Title like ? or Author like ? or PostBody like ? or Category like ?";
     private static final String SQL_INSERT_POSTS_TAGS = "select TagBody from PostTag join Tag using (TagID) where PostID = ?";
     private static final String SQL_DELETE_COMMENT = "delete from Comments where CommentID = ? ";
-        private static final String SQL_DELETE_POSTTAG = "delete from PostTag where PostID = ?";
+    private static final String SQL_DELETE_POSTTAG = "delete from PostTag where PostID = ?";
     private static final String SQL_SELECT_TAGS_BY_POST = "select p.PostID, p.Title, p.PostYear, p.PostMonth, p.PostDay, p.Author, p.PostBody, p.Category \n"
             + "from Post p join PostTag on p.PostID = PostTag.PostID where PostTag.TagID = ?";
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
@@ -66,29 +66,27 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
                 post.getDay(),
                 post.getAuthor(),
                 post.getBody(),
-                post.getCategory());    
+                post.getCategory());
         post.setPostId(jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class));
         insertPostTags(post);
 
         return post;
 
     }
-   
+
     private void insertPostTags(Post post) {
 
         int postId = post.getPostId();
-        List<String> tagList = post.getTagList(); 
+        List<String> tagList = post.getTagList();
 
         for (String tag : tagList) {
 
             jdbcTemplate.update(SQL_INSERT_TAG, tag);
             int tagId = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
-            jdbcTemplate.update(SQL_INSERT_POSTTAG,postId, tagId);
-            }
+            jdbcTemplate.update(SQL_INSERT_POSTTAG, postId, tagId);
         }
-
-   
+    }
 
     @Override
     public Post getPostById(int PostId) {
@@ -141,19 +139,21 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
                 post.getBody(),
                 post.getCategory(),
                 post.getPostId());
-                jdbcTemplate.update(SQL_DELETE_POSTTAG, post.getPostId());
-                insertPostTags(post);
+        jdbcTemplate.update(SQL_DELETE_POSTTAG, post.getPostId());
+        insertPostTags(post);
 
     }
 
     @Override
     public void removePost(int postId) {
-        List <Integer> tagIds = jdbcTemplate.query(SQL_GET_TAGIDS_BY_POSTID, new TagIDMapper(), postId);
-        for (int id : tagIds){
-         jdbcTemplate.update(SQL_DELETE_TAG, id);
-     
+        List<Integer> tagIds = jdbcTemplate.query(SQL_GET_TAGIDS_BY_POSTID, new TagIDMapper(), postId);
+        jdbcTemplate.update(SQL_DELETE_POSTTAG, postId);
+        jdbcTemplate.update(SQL_DELETE_POST, postId);
+        for (int id : tagIds) {
+            jdbcTemplate.update(SQL_DELETE_TAG, id);
+
         }
-         jdbcTemplate.update(SQL_DELETE_POST, postId);
+
     }
 
     @Override
@@ -162,19 +162,17 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
         List<Post> list;
         ArrayList<Post> postList = new ArrayList();
         try {
-           list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
-            for(Post p : list){
+            list = jdbcTemplate.query(SQL_SELECT_POST_BY_SEARCHTERM, new PostMapper(), searchTerm, searchTerm, searchTerm, searchTerm);
+            for (Post p : list) {
                 postList.add(p);
             }
             return postList;
-            
+
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
 
     }
-
-   
 
     private static final class PostMapper implements RowMapper<Post> {
 
@@ -204,7 +202,7 @@ public class SoupaStarsPostDaoDBImpl implements SoupaStarsPostDao {
             return tagText;
         }
     }
-    
+
     private static final class TagIDMapper implements RowMapper<Integer> {
 
         @Override

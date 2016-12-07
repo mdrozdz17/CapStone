@@ -14,33 +14,43 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-
 /**
  *
  * @author apprentice
  */
 public class Post {
-   Calendar cal = Calendar.getInstance();
-   // Allows us to get current User logged in
-   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-   @NotEmpty(message ="Please enter a Title")
-   @Length(max=50,message = " Title must be no longer than 50 characters.")
+
+    Calendar cal = Calendar.getInstance();
+    // Allows us to get current User logged in
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    @NotEmpty(message = "Please enter a Title")
+    @Length(max = 50, message = " Title must be no longer than 50 characters.")
     public String title;
     public int year = LocalDate.now().getYear();
     public String month = new SimpleDateFormat("MMMM").format(cal.getTime());
     public int day = LocalDate.now().getDayOfMonth();
-    public String author = authentication.getName();
+
+    public String author;
     public int postId;
     public List<Comment> commentList;
-   @NotEmpty(message ="Please enter a Body")
-   @Length(max=100000,message = " Body must be no longer than 100000 characters.")
+    @NotEmpty(message = "Please enter a Body")
+    @Length(max = 100000, message = " Body must be no longer than 100000 characters.")
     public String body;
-    @NotEmpty(message ="Please enter a Category")
-   @Length(max=50,message = " Category must be no longer than 50 characters.")
+    @NotEmpty(message = "Please enter a Category")
+    @Length(max = 50, message = " Category must be no longer than 50 characters.")
     public String Category;
     public List<String> tagList;
     public int[] tagId;
 
+    public Post() {
+        if(authentication != null){
+            this.author = authentication.getName();
+        }
+    }
+
+//    public Post(String author) {
+//        this.author = author;
+//    }
 
     /**
      * @return the title
@@ -59,7 +69,7 @@ public class Post {
     /**
      * @return the year
      */
-    public int getYear ()  {
+    public int getYear() {
         return LocalDate.now().getYear();
     }
 
@@ -190,5 +200,4 @@ public class Post {
         this.tagId = tagId;
     }
 
-    
 }
