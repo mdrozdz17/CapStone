@@ -16,11 +16,11 @@ public interface SoupaStarsStaticPageDao {
     
 StaticPage create(StaticPage staticPage);
 
-    StaticPage selectPageById(Integer id);
+    public StaticPage selectPageById(Integer id);
 
-    void update(StaticPage staticPage);
+    public void update(StaticPage staticPage);
 
-    void delete(StaticPage staticPage);
+    public void delete(StaticPage staticPage);
 
     List<StaticPage> getAllStaticPages();
 

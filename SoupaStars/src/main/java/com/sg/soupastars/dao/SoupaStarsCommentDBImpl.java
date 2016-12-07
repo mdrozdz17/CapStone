@@ -44,7 +44,7 @@ public class SoupaStarsCommentDBImpl implements SoupaStarsCommentDao {
         Integer commentId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         comment.setCommentId(commentId);
         jdbcTemplate.update(SQL_INSERT_POSTID, postID, comment.getCommentId());
-
+        
         return comment;
 
     }
