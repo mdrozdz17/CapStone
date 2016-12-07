@@ -292,6 +292,24 @@ public class HomeController {
     public List<StaticPage> getAllStaticPages() {
         return spdao.getAllStaticPages();
     }
+
+    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public List<Post> displaySearchPage(HttpServletRequest req){
+        String newTerm = req.getQueryString();
+        String newerTerm = newTerm.replace("+", " ");
+       String searchTerm = newerTerm.replace("searchTerm=", "");
+        List searchList = pdao.searchPosts(searchTerm);
+        this.displaySearchPost(searchList);
+        return searchList;
+    }
+    
+    @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
+    public List<Post> displaySearchPost (List searchList){
+    
+    return searchList;   
+    }
+    
     @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
     @ResponseBody
     public String getCurrentUser(){
@@ -299,4 +317,5 @@ public class HomeController {
             String user = authentication.getName();
         return user;
     }
+
 }

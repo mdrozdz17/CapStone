@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 $(document).ready(function () {
 
     loadPosts();
@@ -22,24 +24,16 @@ $(document).ready(function () {
        
         modal.find('#edit-body').val(sampleEditPost.body);
         modal.find('#edit-category').val(sampleEditPost.category);
-        var tagString = "";
-        for (var i = 0; i < sampleEditPost.tagList.length; i++){
-            tagString += "#" + sampleEditPost.tagList[i] + " ";
-        }
-        modal.find('#edit-taglist').val(tagString);
+        modal.find('#edit-taglist').val(sampleEditPost.taglist);
         
         // needed to have posts show previous text when using tinyMCE
       tinyMCE.activeEditor.setContent($('#edit-body').val());
-      
     });
    
 });
 
 $('#edit-button').click(function (event) {
     event.preventDefault();
-    var tagList = [];
-    tagList.push($('#edit-taglist').val());
-    
     // update our post via AJAX
     $.ajax({
         type: 'PUT',
@@ -47,30 +41,19 @@ $('#edit-button').click(function (event) {
         data: JSON.stringify({
             postId: $('#edit-post-id').val(),
             title: $('#edit-title').val(),
-            body: tinyMCE.activeEditor.getContent(),
+            body: $('#edit-body').val(),
             category: $('#edit-category').val(),
-            tagList: tagList
-     
-
+            taglist: $('#edit-taglist').val()
         }),
-        
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         'dataType': 'json'
-        
     }).success(function () {
-           
-            
-
-        // used to reload the page after updating
-        location.reload();
+        loadPosts();
     });
-   
 });
-
-
 
 });
 // add the onclick handling for our add button
@@ -126,11 +109,15 @@ $('#add-button').click(function (event) {
 
 function loadPosts() {
     //Get our JSON objects from the controller
+    //
+    //grab off of url query string 
+    // substring
     $.ajax({
-        url: 'post',
+        url: '/searchPost' ,
         contentType: 'application/json',
+        type: 'GET',
         dataType: 'json'
-    }).success(function (data, status) {
+        }).success(function (data, status) {
         fillPostTable(data, status);
         fillAuthorTable(data, status);
         fillCategoryTable(data, status);
@@ -145,7 +132,6 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
-        var shortText = post.body.substring(0,480)+"...";
         postTable.append($('<tr>')
                 
                         .append($('<h2>' + post.title + '</h2>\n\
@@ -153,7 +139,7 @@ function fillPostTable(postList, status) {
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
-                                + '<p>' + shortText + '</p>'
+                                + '<p>' + post.body + '</p>'
                                 )));
               
 
@@ -245,7 +231,7 @@ function fillTagTable(postList, status) {
     var tagList = [];
     $.each(postList, function (arrayPosition, post) {
         for (var i = 0; i < post.tagList.length; i++) {
-            if (!contains(tagList, post.tagList[i]) && tagList.length <= 20) {
+            if (!contains(tagList, post.tagList[i])) {
                 tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
                 tagList.push(post.tagList[i]);
             }
@@ -301,9 +287,7 @@ $(function () {
                         var newObject = {
                             label: entry.title
                         };
-                        var newObject = {
-                            label: entry.author
-                        };
+                       
                         newArray[i] = newObject;
                         i++
                     });
@@ -316,18 +300,63 @@ $(function () {
 
 });
 
-$("#searchTerm").on('submit', function (name, url){
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-    
+$("#searchTerm").on('submit', function (){
+    var data = this.val();
+    $.ajax({
+        url: "/searchPost",
+        type:"PUT"
     });
+});
 
 
-
+//function searchFunction(){
+//    var input, filter, bl, tr, i, a;
+//    input = document.getElementById("searchTerm");
+//    bl = document.getElementById("postTable");
+//    tr = bl.getElementsById("postRows");
+//    for (i = 0; i < tr.length; i++) {
+//        a = tr[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            tr[i].style.display = "";
+//        } else {
+//            tr[i].style.display = "none";
+//
+//        }
+//    }
+//    
+//}
+//
+//
+//<script>
+//function searchFunction(){
+//    var input, filter, bl, tr, i, a;
+//    input = document.getElementById("searchTerm");
+//    bl = document.getElementById("postTable");
+//    tr = bl.getElementsById("postRows");
+//    for (i = 0; i < tr.length; i++) {
+//        a = tr[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            tr[i].style.display = "";
+//        } else {
+//            tr[i].style.display = "none";
+//
+//        }
+//    }
+//    
+//}
+//function myFunction() {
+//    var input, filter, ul, li, a, i;
+//    input = document.getElementById("myInput");
+//    filter = input.value.toUpperCase();
+//    ul = document.getElementById("myUL");
+//    li = ul.getElementsByTagName("li");
+//    for (i = 0; i < li.length; i++) {
+//        a = li[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            li[i].style.display = "";
+//        } else {
+//            li[i].style.display = "none";
+//
+//        }
+//    }
+//}
