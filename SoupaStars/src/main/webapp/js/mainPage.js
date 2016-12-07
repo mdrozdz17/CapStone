@@ -30,6 +30,7 @@ $(document).ready(function () {
         
         // needed to have posts show previous text when using tinyMCE
       tinyMCE.activeEditor.setContent($('#edit-body').val());
+      
     });
    
 });
@@ -46,21 +47,30 @@ $('#edit-button').click(function (event) {
         data: JSON.stringify({
             postId: $('#edit-post-id').val(),
             title: $('#edit-title').val(),
-            body: $('#edit-body').val(),
+            body: tinyMCE.activeEditor.getContent(),
             category: $('#edit-category').val(),
             tagList: tagList
+     
+
         }),
+        
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         'dataType': 'json'
+        
     }).success(function () {
+           
+            
+
         // used to reload the page after updating
         location.reload();
     });
-    
+   
 });
+
+
 
 });
 // add the onclick handling for our add button

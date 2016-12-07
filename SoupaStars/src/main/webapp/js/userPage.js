@@ -38,7 +38,7 @@ $('#edit-button').click(function (event) {
         data: JSON.stringify({
             pageId: $('#edit-page-id').val(),
             title: $('#edit-title').val(),
-            body: $('#edit-body').val(),
+            body: tinyMCE.activeEditor.getContent(),
             expirationDate: $('#edit-expirationDate').val()
         }),
         headers: {
