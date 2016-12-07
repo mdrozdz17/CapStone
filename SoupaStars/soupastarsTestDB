@@ -1,4 +1,4 @@
-drop database if exists SoupaStarsTest;
+
 create database SoupaStarsTest;
 
 use SoupaStarsTest;

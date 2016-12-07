@@ -19,7 +19,7 @@ public class SoupaStarsUserDaoDBImpl implements SoupaStarsUserDao {
             = "delete from users where username = ?";
     private static final String SQL_DELETE_AUTHORITIES
             = "delete from authorities where username = ?";
-
+    private static final String SQL_SELECT_USER_BY_ID = "select * from users where user_id = ?";
     private static final String SQL_SELECT_ALL_USERS
             = "select * from users";
 
@@ -61,8 +61,8 @@ public class SoupaStarsUserDaoDBImpl implements SoupaStarsUserDao {
     }
 
     @Override
-    public User getUserId(int userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public User getUserById(int userId) {
+        return jdbcTemplate.queryForObject(SQL_SELECT_USER_BY_ID, new UserMapper(), userId);
     }
    private static final class UserMapper implements RowMapper<User> {
 
@@ -71,6 +71,7 @@ public class SoupaStarsUserDaoDBImpl implements SoupaStarsUserDao {
             User user = new User();
             user.setUserId(rs.getInt("user_id"));
             user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
             return user;
         }
 

@@ -145,7 +145,10 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
-        var shortText = post.body.substring(0,480)+"...";
+        var shortText = post.body.substring(0,480);
+        if(shortText.length===480){
+            shortText+="...";
+        }
         postTable.append($('<tr>')
                 
                         .append($('<h2>' + post.title + '</h2>\n\
