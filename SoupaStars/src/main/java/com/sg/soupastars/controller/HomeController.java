@@ -31,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
@@ -289,5 +291,12 @@ public class HomeController {
     @ResponseBody
     public List<StaticPage> getAllStaticPages() {
         return spdao.getAllStaticPages();
+    }
+    @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCurrentUser(){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String user = authentication.getName();
+        return user;
     }
 }
