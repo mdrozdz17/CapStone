@@ -5,13 +5,21 @@
  */
 package com.sg.soupastars.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author apprentice
  */
 public class Comment {
    public int commentId;
+   @NotEmpty(message="Please enter a First Name.")
+    @Length(max=50,message="First Name must be no longer than 50 characters.")
    public String name;
+    @Email(message="Please enter a valid Email address.")
+    @Length(max=50,message="Email must be no longer than 50 characters.")
    private String email;
    public String text;
    private String date;
