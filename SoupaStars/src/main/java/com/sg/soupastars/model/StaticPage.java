@@ -22,7 +22,7 @@ public class StaticPage {
     private String author = authentication.getName();
     
     @NotEmpty(message ="Please enter a Title.")
-    @Length(max=2, message = "Title must be no longer than 50 characters.")
+    @Length(max=50, message = "Title must be no longer than 50 characters.")
     private String title;
       @NotEmpty(message ="Please enter a Body.")
     @Length(max=100000,message = " Title must be no longer than 100000 characters.")

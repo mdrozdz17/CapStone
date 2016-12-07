@@ -226,15 +226,19 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/displayStaticPageForm", method = RequestMethod.GET)
-    public String showStaticPageForm() {
+    public String showStaticPageForm(Model model) {
+        StaticPage page = new StaticPage();
+        model.addAttribute("page",page);
         return "displayStaticPageForm";
     }
 
     // Add a new Static Page
     @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
-    public String addNewPage(HttpServletRequest req) {
-        StaticPage page = new StaticPage();
+    public String addNewPage(HttpServletRequest req, @Valid @ModelAttribute("page") StaticPage page, BindingResult result) throws IOException {
 
+           if (result.hasErrors()) {
+            return "displayStaticPageForm";
+        }
         String expirationString = req.getParameter("add-expiration");
         String[] expirationArray = expirationString.split("/");
 

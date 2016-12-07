@@ -27,49 +27,48 @@ public class SoupaStarsStaticPageDaoDBImplTests {
     
     private SoupaStarsStaticPageDao dao;
     
-    //public SoupaStarsStaticPageDaoDBImplTests(){
+    public SoupaStarsStaticPageDaoDBImplTests(){
         
     }
     
-//    @BeforeClass
-//    public static void setUpClass(){
-//        
-//    }
-//    
-//    @AfterClass
-//    public static void tearDownClass(){
-//        
-//    }
-//    
-//    @Before
-//    public void setUp(){
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
-//        
-//        dao = (SoupaStarsStaticPageDao) ctx.getBean("SoupaStarsStaticPageDaoDBImpl");
-//        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-//        cleaner.execute("delete from Static Page");
-//    }
-//    
-//    @After
-//    public void tearDown(){
-//        
-//    }
-//    
-//    @Test
-//    public void addGetDeleteStaticPage(){
-//        StaticPage sp = new StaticPage();
-//        sp.setTitle("candy");
-//        sp.setBody("yum");
-//        sp.setActive("active");
-//        sp.setExpirationDate("12/30/2016");
-//        dao.addStaticPage(sp);
-//        StaticPage fromDb = dao.getStaticPageById(sp.getStaticId());
-//        assertEquals(fromDb.getStaticId(), sp.getStaticId());
-//        assertEquals(fromDb.getBody(), sp.getBody());
-//        assertEquals(fromDb.getActive(), sp.getActive());
-//        assertEquals(fromDb.getExpirationDate(), sp.getExpirationDate());
-//        dao.removeStaticPage(sp.getStaticId());
-//        assertNull(dao.getStaticPageById(sp.getStaticId()));
-//    }
-//  
-//}
+    @BeforeClass
+    public static void setUpClass(){
+       
+    }
+    
+    @AfterClass
+    public static void tearDownClass(){
+        
+    }
+    
+    @Before
+    public void setUp(){
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
+        
+        dao = (SoupaStarsStaticPageDao) ctx.getBean("SoupaStarsStaticPageDaoDBImpl");
+        JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+        cleaner.execute("delete from Static Page");
+    }
+    
+    @After
+    public void tearDown(){
+        
+    }
+    
+    @Test
+    public void addGetDeleteStaticPage(){
+        StaticPage sp = new StaticPage();
+        sp.setAuthor("Alyssa");
+        sp.setTitle("candy");
+        sp.setBody("yum");
+        sp.setExpirationDate("12/30/2016");
+        dao.addStaticPage(sp);
+        StaticPage fromDb = dao.getStaticPageById(sp.PageId());
+        assertEquals(fromDb.getPageId(), sp.getPageId());
+        assertEquals(fromDb.getAuthor(), sp.getAuthor());
+         assertEquals(fromDb.getBody(), sp.getBody());
+        assertEquals(fromDb.getExpirationDate(), sp.getExpirationDate());
+        dao.removeStaticPage(sp.PageId());
+        assertNull(dao.getStaticPageById(sp.getPageId()));
+    }
+        }
