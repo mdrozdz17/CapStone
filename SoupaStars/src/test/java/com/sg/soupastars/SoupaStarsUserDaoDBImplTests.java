@@ -25,12 +25,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class SoupaStarsUserDaoDBImplTests {
     
-   // private SoupaStarsUserDao dao;
+//    private SoupaStarsUserDao dao;
     
-   // public SoupaStarsUserDaoDBImplTests(){
-        
+//    public SoupaStarsUserDaoDBImplTests(){
+//        
    }
-    
+//    
 //    @BeforeClass
 //    public static void setUpClass(){
 //        
@@ -59,8 +59,8 @@ public class SoupaStarsUserDaoDBImplTests {
 //    public void addGetDeleteUser(){
 //        User us = new User();
 //        us.setUserId(9);
-//        us.setPassword("cat");
-//        us.setUsername("meow");
+//        us.setUsername("cat");
+//        us.setPassword("meow");
 //        us = dao.addUser(us);
 //        User fromDb = dao.getUserId(us.getUserId());
 //        assertEquals(fromDb.getUserId(), us.getUserId());
