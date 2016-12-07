@@ -47,7 +47,7 @@ public class SoupaStarsStaticPageDaoDBImplTests {
         
         dao = (SoupaStarsStaticPageDao) ctx.getBean("SoupaStarsStaticPageDaoDBImpl");
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-        cleaner.execute("delete from Static Page");
+        cleaner.execute("delete from StaticPage");
     }
     
     @After
@@ -62,13 +62,13 @@ public class SoupaStarsStaticPageDaoDBImplTests {
         sp.setTitle("candy");
         sp.setBody("yum");
         sp.setExpirationDate("12/30/2016");
-        dao.addStaticPage(sp);
-        StaticPage fromDb = dao.getStaticPageById(sp.PageId());
+        dao.create(sp);
+        StaticPage fromDb = dao.selectPageById(sp.getPageId());
         assertEquals(fromDb.getPageId(), sp.getPageId());
         assertEquals(fromDb.getAuthor(), sp.getAuthor());
          assertEquals(fromDb.getBody(), sp.getBody());
         assertEquals(fromDb.getExpirationDate(), sp.getExpirationDate());
-        dao.removeStaticPage(sp.PageId());
-        assertNull(dao.getStaticPageById(sp.getPageId()));
+        dao.delete(sp);
+        assertNull(dao.selectPageById(sp.getPageId()));
     }
         }
