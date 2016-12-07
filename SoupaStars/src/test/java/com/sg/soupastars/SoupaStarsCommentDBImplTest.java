@@ -54,10 +54,15 @@ public class SoupaStarsCommentDBImplTest {
         pdao = (SoupaStarsPostDao) ctx.getBean("SoupaStarsPostDaoDBImpl");
 
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
+
         cleaner.execute("delete from PostComment");
         cleaner.execute("delete from Comments");
+        cleaner.execute("delete from PostTag");
+        cleaner.execute("delete from PostComment");
         cleaner.execute("delete from Post");
+        
     }
+
 
     @After
     public void tearDown() {
@@ -77,14 +82,14 @@ public class SoupaStarsCommentDBImplTest {
         List<String> tagList = new ArrayList();
         tagList.add("tag");
         pt.setTagList(tagList);
-        pdao.addPost(pt);
+        Post post = pdao.addPost(pt);
         
         Comment nc = new Comment();
         nc.setName("Alyssa");
         nc.setEmail("arice713@yahoo.com");
         nc.setText("hi");
         nc.setDate("November 17, 2016");
-        nc = dao.addComment(nc, 1);
+        nc = dao.addComment(nc, post.postId);
         Comment fromDb = dao.getCommentById(nc.getCommentId());
         assertEquals(fromDb.getCommentId(), nc.getCommentId());
         assertEquals(fromDb.getName(), nc.getName());
