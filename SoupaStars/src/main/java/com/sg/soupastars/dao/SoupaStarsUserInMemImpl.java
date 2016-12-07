@@ -30,7 +30,7 @@ public class SoupaStarsUserInMemImpl implements SoupaStarsUserDao {
     }
 
     @Override
-    public User getUserId(int userId) {
+    public User getUserById(int userId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
