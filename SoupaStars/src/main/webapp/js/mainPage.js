@@ -155,7 +155,7 @@ function fillPostTable(postList, status) {
         <p><span class="glyphicon glyphicon-user"></span><a href="#"> ' + post.author + '</a>&nbsp;\n\
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
-        <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
+        <span class="glyphicon glyphicon-comment"></span><span> ' + post.commentList.length + " Comments</span>"
                                 + '<p>' + shortText + '</p>'
                                 )));
               
