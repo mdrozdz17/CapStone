@@ -19,21 +19,20 @@ public class StaticPage {
 
     private int pageId;
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    public String author;
-            public StaticPage() {
-        if(authentication != null){
-            this.author = authentication.getName();
-        }
-    }
-    
+     public String author;
     @NotEmpty(message ="Please enter a Title.")
     @Length(max=50, message = "Title must be no longer than 50 characters.")
     private String title;
       @NotEmpty(message ="Please enter a Body.")
     @Length(max=100000,message = " Title must be no longer than 100000 characters.")
     private String body;
-    
     private String expirationDate;
+    
+        public StaticPage() {
+        if(authentication != null){
+            this.author = authentication.getName();
+        }
+    }
 
     public String getTitle() {
         return title;

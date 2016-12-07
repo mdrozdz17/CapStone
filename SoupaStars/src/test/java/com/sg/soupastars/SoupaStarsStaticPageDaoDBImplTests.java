@@ -7,7 +7,6 @@
 package com.sg.soupastars;
 
 import com.sg.soupastars.dao.SoupaStarsStaticPageDao;
-import com.sg.soupastars.dao.SoupaStarsStaticPageDaoDBImpl;
 import com.sg.soupastars.model.StaticPage;
 import org.junit.After;
 import org.junit.AfterClass;
