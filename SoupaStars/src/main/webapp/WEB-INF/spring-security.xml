@@ -26,6 +26,7 @@
     <http pattern="/" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
+    <http pattern="/fonts/**" security="none" />
     <http pattern="/img/**" security="none" />
     <!-- #3 - Authentication/login form and protected endpoint configuration -->
     <http auto-config="true" use-expressions="false">
@@ -42,20 +43,21 @@
         <!-- #3e - Access to these endpoints require admin role -->
         
        
-        <intercept-url pattern="/displayStaticPage" access="ROLE_ADMIN" />
-         <intercept-url pattern="/addNewBlogPost" access="ROLE_ADMIN, ROLE_USER" />
+        <intercept-url pattern="/userPage" access="ROLE_ADMIN" />
+         <intercept-url pattern="/addNewBlogPost/**" access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/edit" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment" access="ROLE_ADMIN" />
         <intercept-url pattern="/comment/**" access="ROLE_ADMIN" />
-        <intercept-url pattern="/post" access="ROLE_ADMIN, ROLE_USER" />
-        <intercept-url pattern="/post/**" access="ROLE_ADMIN, ROLE_USER" />
+        <!--<intercept-url pattern="/post" access="ROLE_ADMIN" />-->
+        <intercept-url pattern="/post/*" access="ROLE_ADMIN" />
+        <intercept-url pattern="/displayBlogPostForm" access="ROLE_ADMIN" />
         <intercept-url pattern="/displayUserForm" access="ROLE_ADMIN" />
         <intercept-url pattern="/addUser" access="ROLE_ADMIN" />
         <intercept-url pattern="/deleteUser" access="ROLE_ADMIN" />
          <!-- For Spring Security Hashing Passwords Examples -->
         <intercept-url pattern="/user/**" access="ROLE_ADMIN" />
         <!-- #3f - Access to all other controller endpoints require user role -->
-        <intercept-url pattern="/**" access="ROLE_USER" />
+<!--        <intercept-url pattern="/**" access="ROLE_USER" />-->
     </http>
     <!-- #4 - Authentication Manager config -->
     <authentication-manager>

@@ -6,6 +6,8 @@
 
 package com.sg.soupastars.model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -18,11 +20,14 @@ public class StaticPage {
     private int pageId;
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     private String author = authentication.getName();
-
+    
+    @NotEmpty(message ="Please enter a Title.")
+    @Length(max=2, message = "Title must be no longer than 50 characters.")
     private String title;
-
+      @NotEmpty(message ="Please enter a Body.")
+    @Length(max=100000,message = " Title must be no longer than 100000 characters.")
     private String body;
-
+    
     private String expirationDate;
 
     public String getTitle() {

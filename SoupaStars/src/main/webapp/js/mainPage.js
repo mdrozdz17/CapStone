@@ -145,6 +145,7 @@ function fillPostTable(postList, status) {
         return b.postId - a.postId;
     });
     $.each(sortedPosts, function (arrayPosition, post) {
+        var shortText = post.body.substring(0,480)+"...";
         postTable.append($('<tr>')
                 
                         .append($('<h2>' + post.title + '</h2>\n\
@@ -152,7 +153,7 @@ function fillPostTable(postList, status) {
         <span class="glyphicon glyphicon-time"></span> Posted on ' + post.month + ' ' + post.day + ', ' + post.year + '&nbsp;\n\
         <span class="glyphicon glyphicon-duplicate"></span><a href="#"> ' + post.category + ' </a>&nbsp;\n\
         <span class="glyphicon glyphicon-comment"></span><a href="#"> ' + post.commentList.length + " Comments</a>"
-                                + '<p>' + post.body + '</p>'
+                                + '<p>' + shortText + '</p>'
                                 )));
               
 
@@ -244,7 +245,7 @@ function fillTagTable(postList, status) {
     var tagList = [];
     $.each(postList, function (arrayPosition, post) {
         for (var i = 0; i < post.tagList.length; i++) {
-            if (!contains(tagList, post.tagList[i])) {
+            if (!contains(tagList, post.tagList[i]) && tagList.length <= 20) {
                 tagTable.append($('<a href="#">#' + post.tagList[i] + ' </a></'));
                 tagList.push(post.tagList[i]);
             }

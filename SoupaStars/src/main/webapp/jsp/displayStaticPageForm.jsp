@@ -53,7 +53,7 @@
                             <label for="add-title" 
                                    class="col-md-4 control-label">Title:</label>
                             <div class="col-md-5">
-                                <input type="text" class ="form-control"  required ="true" max = "50"
+                                <input type="text" class ="form-control"  required ="true" max = "2"
                                           id="add-title" name="add-title"
                                           path="title"
                                           placeholder="Title" />
@@ -64,7 +64,7 @@
                                 <label for="add-Expiration" 
                                        class="col-md-4 control-label">Expiration Date (Optional):</label>
                                 <div class="col-md-5">
-                                <input type="text" class ="form-control"  required ="true" max = "100"
+                                <input type="text" class ="form-control"  max = "100"
                                           id="add-expiration" name ="add-expiration"
                                          
                                           path="Expiration"
@@ -77,7 +77,7 @@
                                        class="col-md-4 control-label">Body of Page:</label>
                                 <div class="col-md-7">
 
-                                <textarea rows = "8" type="text" class="form-control" max = "10000"
+                                <textarea rows = "8" type="text" class="form-control" required ="true" max = "100000"
                                              id="add-body" name ="add-body"
                                              path="body"
                                              placeholder="Text Goes Here" />
