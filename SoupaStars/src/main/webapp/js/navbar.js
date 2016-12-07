@@ -35,8 +35,8 @@ function fillTabs(pageList, status) {
             var expYear = dateArray[2];
             if((page.expirationDate === "N/A")
                     || expYear > thisYear
-                    || (expYear === thisYear && expMonth > thisMonth)
-                    || (expYear === thisYear && expMonth === thisMonth && expDay>thisDay)){
+                    || (expYear == thisYear && expMonth > thisMonth)
+                    || (expYear == thisYear && expMonth == thisMonth && expDay>thisDay)){
                 navTabs.append($('<li role="presentation">' +
                 '<a href="displayStaticPage' + page.pageId +
                 '">' + page.title + '</a>' +
