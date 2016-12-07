@@ -55,7 +55,7 @@
         <div class="container">
             
           <jsp:include page="navbar.jsp" />
-                    <h1>User Page</h1>
+                    <h1 id="username">User Page</h1>
 
             <a class="btn btn-primary" href="displayStaticPageForm">Create static Page<span class="glyphicon glyphicon"></span></a>
             <p></p>

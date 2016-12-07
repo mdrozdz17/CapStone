@@ -23,10 +23,33 @@ function loadTabs() {
 function fillTabs(pageList, status) {
     var navTabs = $("#static-page-tabs");
     navTabs.empty();
+    var currentDate = new Date();
+    var thisDay = currentDate.getDate();
+    var thisMonth = currentDate.getMonth() + 1;
+    var thisYear = currentDate.getFullYear();
+    
     $.each(pageList, function (arrayPosition, page) {
-        navTabs.append($('<li role="presentation">' +
+        try{
+            var dateArray = page.expirationDate.split("/");
+            var expDay = dateArray[1];
+            var expMonth = dateArray[0];
+            var expYear = dateArray[2];
+            if((page.expirationDate === "N/A")
+                    || expYear > thisYear
+                    || (expYear == thisYear && expMonth > thisMonth)
+                    || (expYear == thisYear && expMonth == thisMonth && expDay>thisDay)){
+                navTabs.append($('<li role="presentation">' +
                 '<a href="displayStaticPage' + page.pageId +
                 '">' + page.title + '</a>' +
                 '</li>'));
+            }
+        }
+        catch(err){
+            navTabs.append($('<li role="presentation">' +
+                '<a href="displayStaticPage' + page.pageId +
+                '">' + page.title + '</a>' +
+                '</li>'));
+        }
+        
     });
 }

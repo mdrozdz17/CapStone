@@ -31,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
@@ -290,4 +292,30 @@ public class HomeController {
     public List<StaticPage> getAllStaticPages() {
         return spdao.getAllStaticPages();
     }
+
+    
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public List<Post> displaySearchPage(HttpServletRequest req){
+        String newTerm = req.getQueryString();
+        String newerTerm = newTerm.replace("+", " ");
+       String searchTerm = newerTerm.replace("searchTerm=", "");
+        List searchList = pdao.searchPosts(searchTerm);
+        this.displaySearchPost(searchList);
+        return searchList;
+    }
+    
+    @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
+    public List<Post> displaySearchPost (List searchList){
+    
+    return searchList;   
+    }
+    
+    @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCurrentUser(){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String user = authentication.getName();
+        return user;
+    }
+
 }
