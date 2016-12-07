@@ -55,13 +55,12 @@ public class SearchController {
            
     }
   
- @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
-    public List findPost (HttpServletRequest req){
-        
-    return dao.searchPosts(req.getParameter("searchTerm"));        
-    
-       
-        
-}
+// @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
+//    public List findPost (HttpServletRequest req){
+//             
+//    
+//       
+//        
+//}
 
 }

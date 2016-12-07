@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 $(document).ready(function () {
 
     loadPosts();
@@ -107,11 +109,15 @@ $('#add-button').click(function (event) {
 
 function loadPosts() {
     //Get our JSON objects from the controller
+    //
+    //grab off of url query string 
+    // substring
     $.ajax({
-        url: 'post',
+        url: '/searchPost' ,
         contentType: 'application/json',
+        type: 'GET',
         dataType: 'json'
-    }).success(function (data, status) {
+        }).success(function (data, status) {
         fillPostTable(data, status);
         fillAuthorTable(data, status);
         fillCategoryTable(data, status);
@@ -281,9 +287,7 @@ $(function () {
                         var newObject = {
                             label: entry.title
                         };
-                        var newObject = {
-                            label: entry.author
-                        };
+                       
                         newArray[i] = newObject;
                         i++
                     });
@@ -296,18 +300,63 @@ $(function () {
 
 });
 
-$("#searchTerm").on('submit', function (name, url){
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-    
+$("#searchTerm").on('submit', function (){
+    var data = this.val();
+    $.ajax({
+        url: "/searchPost",
+        type:"PUT"
     });
+});
 
 
-
+//function searchFunction(){
+//    var input, filter, bl, tr, i, a;
+//    input = document.getElementById("searchTerm");
+//    bl = document.getElementById("postTable");
+//    tr = bl.getElementsById("postRows");
+//    for (i = 0; i < tr.length; i++) {
+//        a = tr[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            tr[i].style.display = "";
+//        } else {
+//            tr[i].style.display = "none";
+//
+//        }
+//    }
+//    
+//}
+//
+//
+//<script>
+//function searchFunction(){
+//    var input, filter, bl, tr, i, a;
+//    input = document.getElementById("searchTerm");
+//    bl = document.getElementById("postTable");
+//    tr = bl.getElementsById("postRows");
+//    for (i = 0; i < tr.length; i++) {
+//        a = tr[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            tr[i].style.display = "";
+//        } else {
+//            tr[i].style.display = "none";
+//
+//        }
+//    }
+//    
+//}
+//function myFunction() {
+//    var input, filter, ul, li, a, i;
+//    input = document.getElementById("myInput");
+//    filter = input.value.toUpperCase();
+//    ul = document.getElementById("myUL");
+//    li = ul.getElementsByTagName("li");
+//    for (i = 0; i < li.length; i++) {
+//        a = li[i].getElementsByTagName("a")[0];
+//        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//            li[i].style.display = "";
+//        } else {
+//            li[i].style.display = "none";
+//
+//        }
+//    }
+//}

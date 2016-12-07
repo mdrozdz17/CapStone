@@ -25,11 +25,11 @@
                 <ul class="nav nav-tabs" id="static-page-tabs"></ul>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-6">
-                        <form action="search" class="search-form" method="post">
+                        <form action="search" class="search-form" method="GET">
                             <div class="form-group has-feedback">
                                 <label for="search" class="sr-only">Search</label>
-                                <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                <input type="text" class="form-control" name="searchTerm" id="searchTerm" placeholder="search" >
+                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                         </form>
                     </div>
@@ -48,3 +48,4 @@
         </div>
     </body>
 </html>
+
