@@ -75,9 +75,13 @@
                     </h1>
                     <div class = table-responsive" id="postTable">
                         <table>
-                            <tbody id="postRows"></tbody>
-                   
-
+                            <tbody>
+                            <c:forEach items="${searchList}" var="result">
+                                <tr>
+                                <td>${result.title}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>        
                     </table>
                     </div>
                         
