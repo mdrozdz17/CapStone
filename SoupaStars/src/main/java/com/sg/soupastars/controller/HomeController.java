@@ -308,12 +308,12 @@ public class HomeController {
         return "search";
     }
     
-    @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Post> displaySearchPost (List searchList){
-    
-    return searchList;   
-    }
+//    @RequestMapping(value = "/searchPost", method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Post> displaySearchPost (List searchList){
+//    
+//    return searchList;   
+//    }
     
     @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
     @ResponseBody

@@ -50,7 +50,10 @@ public class SoupaStarsCommentDBImplTest {
         dao = (SoupaStarsCommentDao) ctx.getBean("SoupaStarsCommentDBImpl");
     
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-       cleaner.execute("delete from Comments");
+       cleaner.execute("delete from PostComment");
+        cleaner.execute("delete from Comments");
+
+
      }
     
     @After

@@ -66,8 +66,8 @@ Insert into User (UserID, Username, UserPassword)
 
 create table if not exists SoupaStarsTest.PostComment
 (PostID int not null, CommentID int);
-alter table PostComment add constraint fk_PostComment_PostID foreign key (PostID) references Post(PostID);
-alter table PostComment add constraint fk_PostComment_CommentID foreign key (CommentID) references Comments(CommentID);
+alter table PostComment add constraint fk_PostComment_PostID foreign key (PostID) references Post(PostID) ON DELETE CASCADE;
+alter table PostComment add constraint fk_PostComment_CommentID foreign key (CommentID) references Comments(CommentID) ON DELETE CASCADE;
 
 Insert into PostComment (PostID, CommentID) values(1,1);
 Insert into PostComment (PostID, CommentID) values(1,2);
@@ -76,8 +76,8 @@ Insert into PostComment (PostID, CommentID) values(2,4);
 
 create table if not exists SoupaStarsTest.PostTag
 (PostID int not null, TagID int);
-alter table PostTag add constraint fk_PostTag_PostID foreign key (PostID) references Post(PostID);
-alter table PostTag add constraint fk_PostTag_TagID foreign key (TagID) references Tag(TagID);
+alter table PostTag add constraint fk_PostTag_PostID foreign key (PostID) references Post(PostID) ON DELETE CASCADE;
+alter table PostTag add constraint fk_PostTag_TagID foreign key (TagID) references Tag(TagID) ON DELETE CASCADE;
 
 
 insert into PostTag (PostID, TagID) values (1,1);
