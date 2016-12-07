@@ -5,9 +5,6 @@
  */
 package com.sg.soupastars.model;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.sql.Date;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;

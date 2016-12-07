@@ -17,6 +17,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
@@ -50,7 +52,8 @@ public class SoupaStarsPostDaoDBImplTest {
         
         dao = (SoupaStarsPostDao) ctx. getBean("SoupaStarsPostDaoDBImpl");
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
-        cleaner.execute("delete from posts");
+        cleaner.execute("delete from PostTag");
+        cleaner.execute("delete from Post");
         
     }
     
@@ -61,12 +64,13 @@ public class SoupaStarsPostDaoDBImplTest {
     
     @Test
     public void addGetDeletePost(){
-     Post pt = new Post();
+       
+      Post pt = new Post();
         pt.setTitle("Cookies");
         pt.setYear(2016);
         pt.setMonth("December");
         pt.setDay(02);
-        pt.setAuthor("Alyssa");
+        pt.setAuthor("admin");
         pt.setBody("hello");
         pt.setCategory("Food");
         dao.addPost(pt);
