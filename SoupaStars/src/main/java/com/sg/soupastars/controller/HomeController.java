@@ -31,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,30 +43,30 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class HomeController {
-    
+
     private SoupaStarsPostDao pdao;
-     
+
     private SoupaStarsCommentDao cdao;
     private SoupaStarsStaticPageDao spdao;
-    
+
     @Inject
-    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao, SoupaStarsStaticPageDao spdao){
+    public HomeController(SoupaStarsPostDao pdao, SoupaStarsCommentDao cdao, SoupaStarsStaticPageDao spdao) {
         this.pdao = pdao;
         this.cdao = cdao;
         this.spdao = spdao;
     }
-    
-       // Main  Page
-    @RequestMapping(value={"/mainPage","/"},method=RequestMethod.GET)
-    public String displayMainPage(){
+
+    // Main  Page
+    @RequestMapping(value = {"/mainPage", "/"}, method = RequestMethod.GET)
+    public String displayMainPage() {
         return "mainPage";
     }
-    
-    @RequestMapping(value={"/home"}, method=RequestMethod.GET)
-    public String displayHomePage(){
+
+    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    public String displayHomePage() {
         return "home";
     }
-    
+
     // - Retrieve a Post by Id (GET)
 //        - /post/{postId}
 //        - Response Body: POST in JSON  
@@ -84,8 +86,8 @@ public class HomeController {
         pdao.addPost(post);
         return post;
     }
-    
-        // Display New Blog Post Form
+
+    // Display New Blog Post Form
     @RequestMapping(value = "displayBlogPostForm", method = RequestMethod.GET)
     public String displayNewBlogForm(Model model) {
         Post post = new Post();
@@ -93,7 +95,7 @@ public class HomeController {
 
         return "displayBlogPostForm";
     }
-    
+
     // Add a new Blog Post
     @RequestMapping(value = "/addNewBlogPost", method = RequestMethod.POST)
     public String addNewPost(HttpServletRequest req, @Valid @ModelAttribute("post") Post post, BindingResult result) throws IOException {
@@ -101,51 +103,65 @@ public class HomeController {
         if (result.hasErrors()) {
             return "displayBlogPostForm";
         }
+        if (post.tagList != null) {
+            String tagString = post.tagList.get(0);
+            post.tagList.clear();
+            String[] tagArray = tagString.split("#");
+            for (String tag : tagArray) {
+                if(!tag.equals("")){
+                post.tagList.add(tag);
+                }
+            }
+        }
         pdao.addPost(post);
 
         return "redirect:mainPage";
     }
-    
-        // Delete a  Blog Post
+
+    // Delete a  Blog Post
     @RequestMapping(value = "/deleteBlogPost{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deletePost(@PathVariable("id") int id) {
         pdao.removePost(id);
         return "redirect:mainPage";
     }
-    
-
 
 //- Update a Post (PUT)
 //        - post/{postId}
 //        - RequestBody: JSON object of our Post, with the postId
     @RequestMapping(value = "/post/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
+    public void updatePost(@PathVariable("id") int id, @Valid @RequestBody Post post) {
         post.setPostId(id);
+        if (post.tagList != null) {
+            String tagString = post.tagList.get(0);
+            post.tagList.clear();
+            String[] tagArray = tagString.split("#");
+            for (String tag : tagArray) {
+                if(!tag.equals("")){
+                post.tagList.add(tag);
+                }
+            }
+        }
         pdao.updatePost(post);
-        return "redirect:mainPage";
     }
-    
+
 //- Retrieve ALL Posts (GET)
 //        - /post
-    @RequestMapping(value="/post", method=RequestMethod.GET)
-    @ResponseBody public List<Post> getAllPosts(){
+    @RequestMapping(value = "/post", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Post> getAllPosts() {
         return pdao.getAllPosts();
     }
-    
 
-    
     @RequestMapping(value = "/displayPost{id}", method = RequestMethod.GET)
     public String displayPost(Model model) throws FileNotFoundException {
         List<Post> allPost = pdao.getAllPosts();
         model.addAttribute("posts", allPost);
         return "displayPost";
     }
-    
+
     // Comments 
-   
-    
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Comment getComment(@PathVariable("id") int id) {
@@ -158,24 +174,24 @@ public class HomeController {
     public void createComment(HttpServletRequest req, HttpServletResponse response) throws IOException {
         Comment comment = new Comment();
         Date date = new Date();
-        SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm MMMM dd, yyyy");       
+        SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm MMMM dd, yyyy");
         String dateString = dateformat.format(date);
-       
+
         comment.setName(req.getParameter("username"));
         comment.setEmail(req.getParameter("email"));
         comment.setText(req.getParameter("comment-body"));
         comment.setDate(dateString);
         int postID = Integer.parseInt(req.getParameter("postId"));
         cdao.addComment(comment, postID);
-        response.sendRedirect("/SoupaStars/displayPost"+postID);
+        response.sendRedirect("/SoupaStars/displayPost" + postID);
     }
 
 //- Delete a Comment (DELETE)
     @RequestMapping(value = "/deleteComment/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteComment(@PathVariable("id") int id,HttpServletResponse response) throws IOException { 
-       int postId = cdao.removeComment(id);
-    response.sendRedirect("/SoupaStars/displayPost"+postId);
+    public void deleteComment(@PathVariable("id") int id, HttpServletResponse response) throws IOException {
+        int postId = cdao.removeComment(id);
+        response.sendRedirect("/SoupaStars/displayPost" + postId);
     }
 
 //- Update a Comment (PUT)
@@ -185,18 +201,16 @@ public class HomeController {
         comment.setCommentId(id);
         cdao.updateComment(comment);
     }
-    
+
 //- Retrieve ALL Comments (GET)
-    @RequestMapping(value="/comment", method=RequestMethod.GET)
-    @ResponseBody public List<Comment> getAllComments(){
+    @RequestMapping(value = "/comment", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Comment> getAllComments() {
         return cdao.getAllComments();
     }
-    
-   
-    
+
     // I am unsure about this. The RequestMapping cannot be /displayPost since it
     // would be ambigious. However we do not have a displayComment page.
-    
     @RequestMapping(value = "/displayComment", method = RequestMethod.GET)
     public String displayComment(Model model) throws FileNotFoundException {
         List<Comment> allComment = cdao.getAllComments();
@@ -205,37 +219,35 @@ public class HomeController {
         // return the logical view
         return "displayComment";
     }
-    
+
     @RequestMapping(value = "/userPage", method = RequestMethod.GET)
     public String displayUserPage() {
-    return "userPage";
-}
-    
-  
-        @RequestMapping(value="/displayStaticPageForm", method = RequestMethod.GET)
+        return "userPage";
+    }
+
+    @RequestMapping(value = "/displayStaticPageForm", method = RequestMethod.GET)
     public String showStaticPageForm() {
         return "displayStaticPageForm";
     }
-    
+
     // Add a new Static Page
     @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
-    public String addNewPage(HttpServletRequest req)  {
+    public String addNewPage(HttpServletRequest req) {
         StaticPage page = new StaticPage();
-        
+
         String expirationString = req.getParameter("add-expiration");
         String[] expirationArray = expirationString.split("/");
-        
+
         try {
             int month = Integer.parseInt(expirationArray[0]);
             int day = Integer.parseInt(expirationArray[1]);
             int year = Integer.parseInt(expirationArray[2]);
-            if(month < 1 || month > 12 ||
-               day < 1 || day > 31 ||
-               year < 1900 || year > 2100){
+            if (month < 1 || month > 12
+                    || day < 1 || day > 31
+                    || year < 1900 || year > 2100) {
                 expirationString = "N/A";
             }
-        }
-        catch(NumberFormatException nfe){
+        } catch (NumberFormatException nfe) {
             expirationString = "N/A";
         }
         page.setTitle(req.getParameter("add-title"));
@@ -245,20 +257,22 @@ public class HomeController {
 
         return "userPage";
     }
-    
-    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/deleteStaticPage{id}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteStaticPage(@PathVariable("id") int id) {
         StaticPage page = spdao.selectPageById(id);
         spdao.delete(page);
         return "redirect:userPage";
     }
-  
-    @RequestMapping(value = "/editStaticPage{id}", method = RequestMethod.PUT)
+
+    @RequestMapping(value = "/editStaticPage/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateStaticPage(@PathVariable("id") int id, @Valid @RequestBody StaticPage page) {
         page.setPageId(id);
         spdao.update(page);
     }
+     
     
     @RequestMapping(value = "/displayStaticPage{id}", method = RequestMethod.GET)
     public String displayStaticPage(Model model) throws FileNotFoundException {
@@ -266,17 +280,19 @@ public class HomeController {
         model.addAttribute("posts", allPost);
         return "displayStaticPage";
     }
-    
+
     @RequestMapping(value = "/staticPage/{id}", method = RequestMethod.GET)
     @ResponseBody
     public StaticPage getStaticPage(@PathVariable("id") int id) {
         return spdao.selectPageById(id);
     }
-    
-    @RequestMapping(value="/staticPages", method=RequestMethod.GET)
-    @ResponseBody public List<StaticPage> getAllStaticPages(){
+
+    @RequestMapping(value = "/staticPages", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StaticPage> getAllStaticPages() {
         return spdao.getAllStaticPages();
     }
+
     
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public List<Post> displaySearchPage(HttpServletRequest req){
@@ -294,4 +310,12 @@ public class HomeController {
     return searchList;   
     }
     
+    @RequestMapping(value = "/currentUser", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCurrentUser(){
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String user = authentication.getName();
+        return user;
+    }
+
 }

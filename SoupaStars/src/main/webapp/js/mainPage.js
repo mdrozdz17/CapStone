@@ -22,16 +22,24 @@ $(document).ready(function () {
        
         modal.find('#edit-body').val(sampleEditPost.body);
         modal.find('#edit-category').val(sampleEditPost.category);
-        modal.find('#edit-taglist').val(sampleEditPost.taglist);
+        var tagString = "";
+        for (var i = 0; i < sampleEditPost.tagList.length; i++){
+            tagString += "#" + sampleEditPost.tagList[i] + " ";
+        }
+        modal.find('#edit-taglist').val(tagString);
         
         // needed to have posts show previous text when using tinyMCE
       tinyMCE.activeEditor.setContent($('#edit-body').val());
+      
     });
    
 });
 
 $('#edit-button').click(function (event) {
     event.preventDefault();
+    var tagList = [];
+    tagList.push($('#edit-taglist').val());
+    
     // update our post via AJAX
     $.ajax({
         type: 'PUT',
@@ -39,19 +47,30 @@ $('#edit-button').click(function (event) {
         data: JSON.stringify({
             postId: $('#edit-post-id').val(),
             title: $('#edit-title').val(),
-            body: $('#edit-body').val(),
+            body: tinyMCE.activeEditor.getContent(),
             category: $('#edit-category').val(),
-            taglist: $('#edit-taglist').val()
+            tagList: tagList
+     
+
         }),
+        
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
         'dataType': 'json'
+        
     }).success(function () {
-        loadPosts();
+           
+            
+
+        // used to reload the page after updating
+        location.reload();
     });
+   
 });
+
+
 
 });
 // add the onclick handling for our add button

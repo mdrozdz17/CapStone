@@ -64,8 +64,9 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
     public void update(StaticPage staticPage) {
 
         jdbcTemplate.update(SQL_UPDATE_STATICPAGE,
+                staticPage.getAuthor(),
+                 staticPage.getTitle(),
                 staticPage.getBody(),
-                staticPage.getTitle(),
                 staticPage.getExpirationDate(),
                 staticPage.getPageId());
 
