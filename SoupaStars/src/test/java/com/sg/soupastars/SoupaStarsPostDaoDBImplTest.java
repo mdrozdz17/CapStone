@@ -59,29 +59,29 @@ public class SoupaStarsPostDaoDBImplTest {
         
     }
     
-    @Test
-    public void addGetDeletePost(){
-     Post pt = new Post();
-        pt.setTitle("Cookies");
-        pt.setYear(2016);
-        pt.setMonth("December");
-        pt.setDay(02);
-        pt.setAuthor("Alyssa");
-        pt.setBody("hello");
-        pt.setCategory("Food");
-        dao.addPost(pt);
-        Post fromDb = dao.getPostById(pt.getPostId());
-        assertEquals(fromDb.getPostId(), pt.getPostId());
-        assertEquals(fromDb.getTitle(), pt.getTitle());
-        assertEquals(fromDb.getYear(), pt.getYear());
-        assertEquals(fromDb.getMonth(), pt.getMonth());
-        assertEquals(fromDb.getDay(), pt.getDay());
-        assertEquals(fromDb.getAuthor(), pt.getAuthor());
-        assertEquals(fromDb.getBody(), pt.getBody());
-        assertEquals(fromDb.getCategory(), pt.getCategory());
-        dao.removePost(pt.getPostId());
-        assertNull(dao.getPostById(pt.getPostId()));
-        
-        
-    }
+//    @Test
+//    public void addGetDeletePost(){
+//     Post pt = new Post();
+//        pt.setTitle("Cookies");
+//        pt.setYear(2016);
+//        pt.setMonth("December");
+//        pt.setDay(02);
+//        pt.setAuthor("Alyssa");
+//        pt.setBody("hello");
+//        pt.setCategory("Food");
+//        dao.addPost(pt);
+//        Post fromDb = dao.getPostById(pt.getPostId());
+//        assertEquals(fromDb.getPostId(), pt.getPostId());
+//        assertEquals(fromDb.getTitle(), pt.getTitle());
+//        assertEquals(fromDb.getYear(), pt.getYear());
+//        assertEquals(fromDb.getMonth(), pt.getMonth());
+//        assertEquals(fromDb.getDay(), pt.getDay());
+//        assertEquals(fromDb.getAuthor(), pt.getAuthor());
+//        assertEquals(fromDb.getBody(), pt.getBody());
+//        assertEquals(fromDb.getCategory(), pt.getCategory());
+//        dao.removePost(pt.getPostId());
+//        assertNull(dao.getPostById(pt.getPostId()));
+//        
+//        
+//    }
    }
