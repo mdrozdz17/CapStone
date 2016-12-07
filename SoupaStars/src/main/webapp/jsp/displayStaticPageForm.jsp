@@ -46,30 +46,30 @@
                     <hr />
                     <center><h1 style="font-family: initial;">Add New Static Page</h1></center>
                     <hr />
-                    <form class="form-horizontal" role="form" modelAttribute="post"
+                    <sf:form class="form-horizontal" role="form" modelAttribute="page"
                              action="addNewStaticPage"
                              method="POST">
                         <div class="form-group">
                             <label for="add-title" 
                                    class="col-md-4 control-label">Title:</label>
                             <div class="col-md-5">
-                                <input type="text" class ="form-control"  required ="true" max = "2"
-                                          id="add-title" name="add-title"
+                                <sf:input type="text" class ="form-control"  required ="true" max = "2"
+                                          id="add-title" 
                                           path="title"
                                           placeholder="Title" />
-                                
+                                <sf:errors path="title" cssClass="error"></sf:errors>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="add-Expiration" 
+                                <label for="add-expirationDate" 
                                        class="col-md-4 control-label">Expiration Date (Optional):</label>
                                 <div class="col-md-5">
-                                <input type="text" class ="form-control"  max = "100"
-                                          id="add-expiration" name ="add-expiration"
-                                         
-                                          path="Expiration"
+                                <sf:input type="text" class ="form-control"  max = "100"
+                                          id="add-expirationDate"                                         
+                                          path="expirationDate"
                                           placeholder="01/01/2017" />
-                                
+                                 <sf:errors path="expirationDate" cssClass="error"></sf:errors>
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -77,20 +77,19 @@
                                        class="col-md-4 control-label">Body of Page:</label>
                                 <div class="col-md-7">
 
-                                <textarea rows = "8" type="text" class="form-control" required ="true" max = "100000"
-                                             id="add-body" name ="add-body"
+                                <sf:textarea rows = "8" type="text" class="form-control" max = "100000"
+                                             id="add-body"
                                              path="body"
                                              placeholder="Text Goes Here" />
                                 </textarea>
-                                
+                                <sf:errors path="body" cssClass="error"></sf:errors>
+
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
                                 <div class="col-md-offset-4 col-md-8">
-                                <hidden path="postId" />
+                                <sf:hidden path="pageId" />
 
                                 <button type="submit" id="add-button"
                                         class="btn btn-primary">Add Static Page</button>
@@ -98,7 +97,7 @@
                         </div>
                     </div>
 
-                </form>
+                </sf:form>
         </div>
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
