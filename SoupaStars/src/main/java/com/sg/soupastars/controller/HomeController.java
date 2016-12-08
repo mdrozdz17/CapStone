@@ -234,12 +234,12 @@ public class HomeController {
 
     // Add a new Static Page
     @RequestMapping(value = "/addNewStaticPage", method = RequestMethod.POST)
-    public String addNewPage(HttpServletRequest req, @Valid @ModelAttribute("page") StaticPage page, BindingResult result) throws IOException {
+    public String addNewPage(HttpServletRequest req)  {
 
-           if (result.hasErrors()) {
-            return "displayStaticPageForm";
-        }
-        String expirationString = req.getParameter("add-expiration");
+        StaticPage page = new StaticPage();  
+        page.setTitle(req.getParameter("add-title"));
+        String expirationString = req.getParameter("add-expirationDate");
+        
         String[] expirationArray = expirationString.split("/");
 
         try {
@@ -254,9 +254,9 @@ public class HomeController {
         } catch (NumberFormatException nfe) {
             expirationString = "N/A";
         }
-        page.setTitle(req.getParameter("add-title"));
-        page.setBody(req.getParameter("add-body"));
-        page.setExpirationDate(expirationString);
+       
+       page.setBody(req.getParameter("add-body"));
+       page.setExpirationDate(expirationString);
         spdao.create(page);
 
         return "userPage";
