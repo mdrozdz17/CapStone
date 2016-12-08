@@ -237,8 +237,9 @@ public class HomeController {
     public String addNewPage(HttpServletRequest req)  {
 
         StaticPage page = new StaticPage();  
-        page.setTitle(req.getParameter("add-title"));
-        String expirationString = req.getParameter("add-expirationDate");
+        page.setTitle(req.getParameter("title"));
+        page.setBody(req.getParameter("body"));
+        String expirationString = req.getParameter("expirationDate");
         
         String[] expirationArray = expirationString.split("/");
 
@@ -255,7 +256,7 @@ public class HomeController {
             expirationString = "N/A";
         }
        
-       page.setBody(req.getParameter("add-body"));
+      
        page.setExpirationDate(expirationString);
         spdao.create(page);
 
