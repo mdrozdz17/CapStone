@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.annotation.Propagation;
@@ -54,9 +55,13 @@ public class SoupaStarsStaticPageDaoDBImpl implements SoupaStarsStaticPageDao {
 
     @Override
     public StaticPage selectPageById(Integer id) {
-
-        StaticPage staticPage = jdbcTemplate.queryForObject(SQL_SELECT_STATICPAGE, new PageMapper(), id);
-        return staticPage;
+        try{
+        return jdbcTemplate.queryForObject(SQL_SELECT_STATICPAGE, new PageMapper(), id);
+        } catch (EmptyResultDataAccessException ex) {
+        return null;
+    }
+    
+       
 
     }
 
